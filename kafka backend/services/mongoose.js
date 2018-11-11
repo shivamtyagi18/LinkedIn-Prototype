@@ -1,7 +1,7 @@
 var mongoose = require("mongoose");
 
 mongoose.Promise = global.Promise;
-var url = `mongodb://sarang4488:partner123@ds141514.mlab.com:41514/linkedin`;
+var url = `mongodb://id:password@ds141514.mlab.com:41514/linkedin`;
 const options = {
   poolSize: 1000
 };
