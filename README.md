@@ -5,7 +5,7 @@ Shivam Tyagi
 Sarang Grover
 Jasnoor Brar
 Maahi Chatterjee
-Divjyot
+Divjyot Singh Khanuja
 Darryl Ferdinands
 
 Did node backend react frontend kafka backend installations and created the folder structures for the same.
