@@ -4,8 +4,9 @@ Team project CMPE273
 Shivam Tyagi
 Sarang Grover
 Jasnoor Brar
-Mahi Chatterji
-Divjyot
+Maahi Chatterjee
+Divjyot Singh Khanuja
+Darryl Ferdinands
 
 Did node backend react frontend kafka backend installations and created the folder structures for the same.
 
