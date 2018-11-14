@@ -10,8 +10,8 @@ function ConnectionProvider() {
                     console.warn('Error refreshing kafka metadata', err);
                 }
             });*/
-            this.kafkaConsumerConnection = new kafka.Consumer(this.client,[ { topic: topic_name, partition: 0 }]);
-            this.client.on('ready', function () { console.log('client  backend ready!') })
+            this.kafkaConsumerConnection = new kafka.Consumer(this.client,[ { topic: topic_name, partition: 1 }]);
+            this.client.on('ready', function () { console.log('client ready!') })
         // }
         return this.kafkaConsumerConnection;
     };
@@ -29,7 +29,7 @@ function ConnectionProvider() {
             var HighLevelProducer = kafka.HighLevelProducer;
             this.kafkaProducerConnection = new HighLevelProducer(this.client);
             //this.kafkaConnection = new kafka.Producer(this.client);
-            console.log('producer ready backend');
+            console.log('producer ready');
         }
         return this.kafkaProducerConnection;
     };

@@ -32,7 +32,9 @@ var mongoose = require("mongoose");
 
 mongoose.Promise = global.Promise;
 var url = `mongodb://id:password@ds141514.mlab.com:41514/linkedin`;
-mongoose.connect(url);
+
+mongoose.connect('mongodb://sarang4488:partner123@ds141514.mlab.com:41514/linkedin',{ useNewUrlParser: true });
+//mongoose.connect(url);
 console.log("Database Connected mongo");
 
 module.exports = { mongoose };
