@@ -85,7 +85,9 @@ module.exports.Users = mongoose.model("Users", {
     default: "appliedJobs"
   },
   email: {
-    type: String
+    type: String,
+    required: true,
+    unique: true
   },
   password: {
     type: String
