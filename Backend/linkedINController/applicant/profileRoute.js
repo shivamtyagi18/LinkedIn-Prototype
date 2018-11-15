@@ -2,43 +2,43 @@ const express = require("express");
 var kafka = require("../../kafka/client");
 var app = express.Router();
 
-app.post("/converttravel", function(req, res) {
-  console.log("Inside convert post request");
-  //console.log(req.body.email);
-  kafka.make_request(
-    "converttravel_topic",
-    {
-      email: req.body.email
-    },
-    function(err, result) {
-      console.log("in result");
-      // console.log(res, err);
-      if (err) {
-        res.sendStatus(400).end();
-      } else {
-        if (result.code == 200) {
-          // console.log(result);
-          console.log("Type changed successfully");
-          res.sendStatus(200).end();
+// app.post("/converttravel", function(req, res) {
+//   console.log("Inside convert post request");
+//   //console.log(req.body.email);
+//   kafka.make_request(
+//     "converttravel_topic",
+//     {
+//       email: req.body.email
+//     },
+//     function(err, result) {
+//       console.log("in result");
+//       // console.log(res, err);
+//       if (err) {
+//         res.sendStatus(400).end();
+//       } else {
+//         if (result.code == 200) {
+//           // console.log(result);
+//           console.log("Type changed successfully");
+//           res.sendStatus(200).end();
 
-          // done(null, { results: results.value });
-        } else {
-          console.log("fail");
-          //done(null, false, { message: results.value });
-        }
-      }
-    }
-  );
-});
+//           // done(null, { results: results.value });
+//         } else {
+//           console.log("fail");
+//           //done(null, false, { message: results.value });
+//         }
+//       }
+//     }
+//   );
+// });
 
-app.get("/userDisplay", function(req, res) {
+app.get("/userDisplay/:email", function(req, res) {
   console.log("Inside User Display Post Request");
   console.log("Req Body : ", req.body);
   console.log("Req Params : ", req.params);
   kafka.make_request(
     "userdisplay_topic",
     {
-      email: req.body.email
+      email: req.params.email
     },
     function(err, result) {
       console.log("in result");
@@ -64,23 +64,13 @@ app.get("/userDisplay", function(req, res) {
   );
 });
 
-app.post("/updateUser", function(req, res) {
+app.post("/userupdate", function(req, res) {
   console.log("Inside User Update Post Request");
   //console.log("Req Body : ", username + "password : ",password);
   console.log("Req Body : ", req.body);
   kafka.make_request(
     "userupdate_topic",
-    {
-      email: req.body.email,
-      name: req.body.name,
-      about: req.body.about,
-      city: req.body.city,
-      company: req.body.company,
-      school: req.body.school,
-      hometown: req.body.hometown,
-      languages: req.body.languages,
-      gender: req.body.gender
-    },
+    req.body,
     function(err, result) {
       console.log("in result");
       // console.log(res, err);

@@ -97,51 +97,95 @@ password : {
 
 });
 
-module.exports.Properties = mongoose.model("Property", {
-  ownername: {
+// module.exports.Properties = mongoose.model("Property", {
+//   ownername: {
+//     type: String
+//   },
+//   name: {
+//     type: String
+//   },
+//   propertydescription: {
+//     type: String
+//   },
+//   location: {
+//     type: String
+//   },
+//   checkin: {
+//     type: Date
+//   },
+//   checkout: {
+//     type: Date
+//   },
+//   guests: {
+//     type: Number
+//   },
+//   price: {
+//     type: Number
+//   },
+//   type: {
+//     type: String
+//   },
+//   bedrooms: {
+//     type: Number
+//   },
+//   bathrooms: {
+//     type: Number
+//   },
+//   amenities: {
+//     type: String
+//   },
+
+//   description: {
+//     type: String
+//   },
+//   image: {
+//     type: String
+//   }
+// });
+
+module.exports.AddedJobs = mongoose.model("AddedJobs", {
+  numberOfApplicants: {
+    type: Number,
+    default : 0
+  },
+  numberOfViews: {
+    type: Number,
+    default : 0
+  },
+  jobTitle: {
     type: String
   },
-  name: {
-    type: String
-  },
-  propertydescription: {
+  jobDescription: {
     type: String
   },
   location: {
     type: String
   },
-  checkin: {
-    type: Date
-  },
-  checkout: {
-    type: Date
-  },
-  guests: {
-    type: Number
-  },
-  price: {
-    type: Number
-  },
-  type: {
+  inustry: {
     type: String
   },
-  bedrooms: {
-    type: Number
-  },
-  bathrooms: {
-    type: Number
-  },
-  amenities: {
+  employmentType: {
     type: String
+  },
+  jobFunction: {
+    type: String
+  },
+  companyLogo: {
+    type: String
+  },
+  companyName: {
+    type: String
+  },
+  jobOpenings: {
+    type: Number
+  },
+  postedOn: {
+    type: Date
   },
 
-  description: {
-    type: String
-  },
-  image: {
-    type: String
-  }
+  
 });
+
 
 module.exports.Booking = mongoose.model("Booking", {
   customername: {

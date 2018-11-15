@@ -1,5 +1,5 @@
 const express = require("express");
-var kafka = require("../kafka/client");
+var kafka = require("../../kafka/client");
 var app = express.Router();
 
 
@@ -29,7 +29,7 @@ app.post("/jobsearch", function(req, res) {
           }
 
           // console.log("property store:", PropertyStore);
-          // res.redirect("/search/searchresult");
+           res.redirect("/applicant/search/searchresult");
           console.log("redirect successful");
           // done(null, { results: results.value });
         } else {
@@ -46,8 +46,7 @@ app.get("/searchresult", function(req, res) {
   res.writeHead(200, {
     "Content-Type": "application/json"
   });
-
-  res.end(JSON.stringify(PropertyStore));
+  res.end(JSON.stringify(JobStore));
 });
 
 app.post("/displayproperty", function(req, res) {
