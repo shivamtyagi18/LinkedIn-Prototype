@@ -53,7 +53,7 @@ app.use(function(req, res, next) {
 
 app.use("/applicant", routes.User); // by shivam 14/11
 app.use("/applicant/search", routes.Search); //  by shivam 14/11
-app.use("/connectionRequest", routes.ConnectionRequest);
+app.use("/applicant/connections", routes.ApplicantConnections);
 app.use("/saveJob", routes.SaveJob);
 app.use("/dashboard", routes.Dashboard);
 app.use("/applicant/profile", routes.ApplicantProfile); // changed for applicant by shivam 14/11

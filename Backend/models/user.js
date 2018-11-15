@@ -73,7 +73,9 @@ var User = mongoose.model("User", {
     default: "appliedJobs"
   },
   email: {
-    type: String
+    type: String,
+    unique: true,
+    required: true
   },
 
   password: {
