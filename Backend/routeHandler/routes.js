@@ -2,9 +2,11 @@ module.exports = {
   User: require("../linkedINController/applicant/loginRegister"), //changed by shivam 14/11
   Search: require("../linkedINController/applicant/searchRoute"),
   SaveJob: require("../linkedINController/applicant/saveJob"),
-  ApplicantConnections: require("../linkedINController/applicant/applicantConnections"),
+  ConnectionRequest: require("../linkedINController/applicant/connectionRequest"),
   Property: require("../linkedINController/propertyRoute"),
   Booking: require("../linkedINController/bookingRoute"),
   Dashboard: require("../linkedINController/dashboardRoute"),
-  ApplicantProfile: require("../linkedINController/applicant/profileRoute") //changed by shivam 14/11
+  ApplicantProfile: require("../linkedINController/applicant/profileRoute") ,//changed by shivam 14/11
+  ApplicantMessages: require("../linkedINController/applicant/messagesRoute") //changed by shivam 15/11
+  
 };
