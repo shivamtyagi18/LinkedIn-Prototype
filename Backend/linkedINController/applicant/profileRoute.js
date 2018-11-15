@@ -64,13 +64,30 @@ app.get("/userDisplay/:email", function(req, res) {
   );
 });
 
-app.post("/userupdate", function(req, res) {
+app.put("/userUpdate/:email", function(req, res) {
   console.log("Inside User Update Post Request");
   //console.log("Req Body : ", username + "password : ",password);
   console.log("Req Body : ", req.body);
+  console.log("Req Params : ", req.params);
   kafka.make_request(
-    "userupdate_topic",
-    req.body,
+    "userupdate_topic",{
+        "firstName": req.body.firstName,
+        "lastName": req.body.lastName,
+        "phone": req.body.phone,
+        "address": req.body.address,
+        "city": req.body.city,
+        "state": req.body.state,
+        "zipcode": req.body.zipcode,
+        "country": req.body.country,
+        "experience": req.body.experience,
+        "education": req.body.education,
+        "skills": req.body.skills,
+        "profileSummary": req.body.profileSummary,
+        "resume": req.body.resume,
+        "gender": req.body.gender,
+        "img": req.body.img,
+        "email": req.params.email
+    },
     function(err, result) {
       console.log("in result");
       // console.log(res, err);
