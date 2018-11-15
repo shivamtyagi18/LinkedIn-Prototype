@@ -54,8 +54,8 @@ app.use(function(req, res, next) {
 app.use("/applicant", routes.User); // by shivam 14/11
 app.use("/applicant/search", routes.Search); //  by shivam 14/11
 // app.use("/property", routes.Property);
-// app.use("/booking", routes.Booking);
-// app.use("/dashboard", routes.Dashboard);
+app.use("/saveJob", routes.SaveJob);
+app.use("/dashboard", routes.Dashboard);
 app.use("/applicant/profile", routes.ApplicantProfile); // changed for applicant by shivam 14/11
 app.listen(3001);
 console.log("Server Listening on port 3001");
