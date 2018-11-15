@@ -4,21 +4,21 @@ function handle_request(msg, callback) {
   var res = {};
 
   console.log("In saveJob request:" + JSON.stringify(msg));
-  var email = msg.email;
-  var jobId = msg.jobId;
+  var receiverEmail = msg.receiver;
+  var senderEmail = msg.sender;
   mongoose.Users.findOneAndUpdate(
-    { email: email },
-    { $push: { savedJobs: jobId } },
+    { email: receiverEmail },
+    { $push: { connections: senderEmail } },
     { new: true },
     function(err, user) {
-      console.log("job saved: ", user);
+      console.log("Connection added: ", user);
       res.code = "200";
       res.value = user; //not required
       callback(null, res);
       // res.status(200).json(testdata).end();
     },
     err => {
-      console.log("Error saving job");
+      console.log("Error adding connection");
       res.code = "402";
       callback(null, res);
     }

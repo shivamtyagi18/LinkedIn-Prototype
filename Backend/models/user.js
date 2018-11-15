@@ -65,14 +65,9 @@ var User = mongoose.model("User", {
     type: String,
     default: "image"
   },
-  connections: {
-    type: String,
-    default: "connections"
-  },
-  savedJobs: {
-    type: Array,
-    default: "savedJobs"
-  },
+  connectionRequests: [String],
+  connections: [String],
+  savedJobs: [String],
   appliedJobs: {
     type: String,
     default: "appliedJobs"

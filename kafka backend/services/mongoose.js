@@ -77,14 +77,9 @@ module.exports.Users = mongoose.model("Users", {
     type: String,
     default: "image"
   },
-  connections: {
-    type: String,
-    default: "connections"
-  },
-  savedJobs: {
-    type: String,
-    default: "savedJobs"
-  },
+  connectionRequests: [String],
+  connections: [String],
+  savedJobs: [String],
   appliedJobs: {
     type: String,
     default: "appliedJobs"
