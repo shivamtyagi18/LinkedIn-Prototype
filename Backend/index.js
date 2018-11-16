@@ -51,6 +51,7 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.use("/recruiter", routes.Recruiter);
 app.use("/applicant", routes.User); // by shivam 14/11
 app.use("/applicant/search", routes.Search); //  by shivam 14/11
 app.use("/applicant/connections", routes.ApplicantConnections);

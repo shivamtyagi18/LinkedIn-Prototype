@@ -7,6 +7,6 @@ module.exports = {
   Booking: require("../linkedINController/bookingRoute"),
   Dashboard: require("../linkedINController/dashboardRoute"),
   ApplicantProfile: require("../linkedINController/applicant/profileRoute") ,//changed by shivam 14/11
-  ApplicantMessages: require("../linkedINController/applicant/messagesRoute") //changed by shivam 15/11
-  
+  ApplicantMessages: require("../linkedINController/applicant/messagesRoute"),
+  Recruiter: require("../linkedINController/recruiterModule/Recruiter")  
 };
