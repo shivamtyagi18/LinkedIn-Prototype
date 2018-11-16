@@ -30,17 +30,38 @@ class RegisterRecruiter extends Component {
     const {
       meta: { touched, error }
     } = field;
-    const className = `form-group ${touched && error ? "has-danger" : ""}`;
+    const className = `${touched && error ? "has-danger" : ""}`;
 
     return (
       <div className={className}>
         <input
-          className="form-control"
           type="text"
           {...field.input}
           placeholder="First name"
+          style={{
+            width: "90%",
+
+            height: "32px",
+            marginBottom: "15px",
+            marginTop: "20px",
+            paddingLeft: "6px",
+            fontSize: "16px",
+            border: "1px solid #bfbfbf"
+          }}
         />
-        <div className="text-help">{touched ? error : ""}</div>
+        <div
+          className="text-help"
+          style={{
+            backgroundColor: "rgb(51,125,165)",
+            color: "white",
+            textAlign: "center",
+            width: "90%",
+            marginLeft: "20px",
+            marginBottom: "15px"
+          }}
+        >
+          {touched ? error : ""}
+        </div>
       </div>
     );
   }
@@ -49,17 +70,37 @@ class RegisterRecruiter extends Component {
     const {
       meta: { touched, error }
     } = field;
-    const className = `form-group ${touched && error ? "has-danger" : ""}`;
+    const className = ` ${touched && error ? "has-danger" : ""}`;
 
     return (
       <div className={className}>
         <input
-          className="form-control"
           type="text"
           {...field.input}
           placeholder="Last name"
+          style={{
+            width: "90%",
+
+            height: "32px",
+            marginBottom: "15px",
+            paddingLeft: "6px",
+            fontSize: "16px",
+            border: "1px solid #bfbfbf"
+          }}
         />
-        <div className="text-help">{touched ? error : ""}</div>
+        <div
+          className="text-help"
+          style={{
+            backgroundColor: "rgb(51,125,165)",
+            color: "white",
+            textAlign: "center",
+            width: "90%",
+            marginLeft: "20px",
+            marginBottom: "15px"
+          }}
+        >
+          {touched ? error : ""}
+        </div>
       </div>
     );
   }
@@ -68,17 +109,37 @@ class RegisterRecruiter extends Component {
     const {
       meta: { touched, error }
     } = field;
-    const className = `form-group ${touched && error ? "has-danger" : ""}`;
+    const className = ` ${touched && error ? "has-danger" : ""}`;
 
     return (
       <div className={className}>
         <input
-          className="form-control"
           type="email"
           {...field.input}
           placeholder="Email address"
+          style={{
+            width: "90%",
+
+            height: "32px",
+            marginBottom: "15px",
+            paddingLeft: "6px",
+            fontSize: "16px",
+            border: "1px solid #bfbfbf"
+          }}
         />
-        <div className="text-help">{touched ? error : ""}</div>
+        <div
+          className="text-help"
+          style={{
+            backgroundColor: "rgb(51,125,165)",
+            color: "white",
+            textAlign: "center",
+            width: "90%",
+            marginLeft: "20px",
+            marginBottom: "15px"
+          }}
+        >
+          {touched ? error : ""}
+        </div>
       </div>
     );
   }
@@ -87,17 +148,37 @@ class RegisterRecruiter extends Component {
     const {
       meta: { touched, error }
     } = field;
-    const className = `form-group ${touched && error ? "has-danger" : ""}`;
+    const className = ` ${touched && error ? "has-danger" : ""}`;
 
     return (
       <div className={className}>
         <input
-          className="form-control"
           type="password"
           {...field.input}
           placeholder="Password"
+          style={{
+            width: "90%",
+
+            height: "32px",
+            paddingLeft: "6px",
+            fontSize: "16px",
+            border: "1px solid #bfbfbf",
+            marginBottom: "15px"
+          }}
         />
-        <div className="text-help">{touched ? error : ""}</div>
+        <div
+          className="text-help"
+          style={{
+            backgroundColor: "rgb(51,125,165)",
+            color: "white",
+            textAlign: "center",
+            width: "90%",
+            marginLeft: "20px",
+            marginBottom: "15px"
+          }}
+        >
+          {touched ? error : ""}
+        </div>
       </div>
     );
   }
@@ -139,115 +220,122 @@ class RegisterRecruiter extends Component {
     }
 
     return (
-      <body id="signup">
-        <div>
-          {redirect}
-          {/* <Navlogin navdata={this.props.navdata} /> */}
+      <React.Fragment>
+        <div
+          className="container-fluid"
+          style={{
+            backgroundColor: "rgb(51,125,165)"
+          }}
+        >
+          <div style={{ textAlign: "center" }}>
+            <img
+              src="images/linkedinlogo.png"
+              alt="linkedin"
+              style={{ marginTop: "20px" }}
+            />
+          </div>
+          <h1
+            className="text-center"
+            style={{ color: "white", textAlign: "center" }}
+          >
+            Make the most of your professional life
+          </h1>
           <div
-            className="container-fluid"
+            className="text-center"
             style={{
-              marginTop: "10px",
-              backgroundColor: "#f4f4f4"
+              marginTop: "20px",
+
+              width: "30%",
+              marginLeft: "500px",
+              height: "450px",
+              backgroundColor: "rgb(238,238,238)"
             }}
           >
-            <div className="row justify-content-md-center">
-              <div className="col">
-                <h1 className="text-center">
-                  <br />
-                  <br />
-                  <br />
-                  Sign up for Linkedin
-                </h1>
-                <h4
-                  className="text-center"
-                  style={{ color: "#777777", fontSize: "18px;" }}
-                >
-                  Already have an account? <Link to="/login">Log in</Link>
-                </h4>
-                <br />
-                <div
-                  className="text-center"
-                  style={{
-                    width: "30%",
-                    marginLeft: "480px",
+            <div>{errorMessage}</div>
 
-                    height: "500px"
-                  }}
-                >
-                  <div>{errorMessage}</div>
-
-                  <form
-                    onSubmit={handleSubmit(this.submitregister.bind(this))}
-                    className="form-group"
-                  >
-                    <Field name="fName" component={this.renderField} />
-                    <Field name="lName" component={this.renderField1} />
-                    <Field
-                      name="email"
-                      placeholder="Email Address"
-                      component={this.renderField2}
-                    />
-                    <Field
-                      name="password"
-                      placeholder="Password"
-                      component={this.renderField3}
-                    />
-                    {/* <input
-                      type="text"
-                      className="form-control"
-                      placeholder="First name"
-                      name="fName"
-                      onChange={this.fNameChangeHandler}
-                    />
-                    <br />
-
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Surname"
-                      name="lName"
-                      onChange={this.lNameChangeHandler}
-                    />
-
-                    <br />
-                    <input
-                      type="email"
-                      className="form-control"
-                      placeholder="Email"
-                      name="email"
-                      onChange={this.emailChangeHandler}
-                    />
-                    <br />
-                    <input
-                      type="password"
-                      className="form-control"
-                      placeholder="Password"
-                      name="password"
-                      onChange={this.passwordChangeHandler}
-                    /> */}
-
-                    <br />
-                    <button type="submit" className="btn btn-warning btn-lg">
-                      Sign me Up
-                    </button>
-                  </form>
-                </div>
-              </div>
-            </div>
+            <form
+              onSubmit={handleSubmit(this.submitregister.bind(this))}
+              className="form-group form-group-lg recruiter"
+            >
+              <Field name="firstName" component={this.renderField} />
+              <Field name="lastName" component={this.renderField1} />
+              <Field
+                name="email"
+                placeholder="Email Address"
+                component={this.renderField2}
+              />
+              <Field
+                name="password"
+                placeholder="Password"
+                component={this.renderField3}
+              />
+              <p
+                style={{
+                  textAlign: "center",
+                  marginLeft: "12px",
+                  fontSize: "14px"
+                }}
+              >
+                <span style={{ color: "#7f8182" }}>
+                  You agree to the LinkedIn{" "}
+                </span>
+                <a href="#" style={{ textDecoration: "none", color: "black" }}>
+                  User Agreement
+                </a>
+                ,{" "}
+                <a href="#" style={{ textDecoration: "none", color: "black" }}>
+                  Privacy Policy
+                </a>
+                <span style={{ color: "#7f8182" }}>, and </span>
+                <a href="#" style={{ textDecoration: "none", color: "black" }}>
+                  {" "}
+                  Cookie Policy
+                </a>
+              </p>
+              <button
+                type="submit"
+                className="btn btn-primary "
+                style={{
+                  fontWeight: "bold",
+                  borderWidth: "1px",
+                  borderStyle: "solid",
+                  cursor: "pointer",
+                  textAlign: "center",
+                  textShadow: "0 1px 1px rgba(0,0,0,0.35)",
+                  height: "auto",
+                  width: "90%",
+                  backgroundImage:
+                    "-webkit-linear-gradient(top, #287bbc 0%,#23639a 100%)"
+                }}
+              >
+                Agree & Join
+              </button>
+            </form>
           </div>
+          <p
+            style={{
+              color: "#cccfd2",
+              textAlign: "center",
+              marginTop: "4px",
+              marginBottom: "300px"
+            }}
+          >
+            Linkedin Corporation &copy; 2018
+          </p>
+          .
         </div>
-      </body>
+      </React.Fragment>
     );
   }
 }
 
 function validate(values) {
   const errors = {};
-  if (!values.fName) {
-    errors.fName = "Enter first name ";
+  if (!values.firstName) {
+    errors.firstName = "Enter first name ";
   }
-  if (!values.lName) {
-    errors.lName = "Enter last name";
+  if (!values.lastName) {
+    errors.lastName = "Enter last name";
   }
   if (!values.email) {
     errors.email = "Enter an email";
