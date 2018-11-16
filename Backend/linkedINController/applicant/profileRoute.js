@@ -70,23 +70,24 @@ app.put("/userUpdate/:email", function(req, res) {
   console.log("Req Body : ", req.body);
   console.log("Req Params : ", req.params);
   kafka.make_request(
-    "userupdate_topic",{
-        "firstName": req.body.firstName,
-        "lastName": req.body.lastName,
-        "phone": req.body.phone,
-        "address": req.body.address,
-        "city": req.body.city,
-        "state": req.body.state,
-        "zipcode": req.body.zipcode,
-        "country": req.body.country,
-        "experience": req.body.experience,
-        "education": req.body.education,
-        "skills": req.body.skills,
-        "profileSummary": req.body.profileSummary,
-        "resume": req.body.resume,
-        "gender": req.body.gender,
-        "img": req.body.img,
-        "email": req.params.email
+    "userupdate_topic",
+    {
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      phone: req.body.phone,
+      address: req.body.address,
+      city: req.body.city,
+      state: req.body.state,
+      zipcode: req.body.zipcode,
+      country: req.body.country,
+      experience: req.body.experience,
+      education: req.body.education,
+      skills: req.body.skills,
+      profileSummary: req.body.profileSummary,
+      resume: req.body.resume,
+      gender: req.body.gender,
+      img: req.body.img,
+      email: req.params.email
     },
     function(err, result) {
       console.log("in result");
@@ -171,4 +172,37 @@ app.post("/updatePassword", function(req, res) {
     }
   );
 });
+
+app.get("/viewConnections/:email", function(req, res) {
+  console.log("Inside view connections get Request");
+  console.log("Req Params : ", req.params);
+  kafka.make_request(
+    "viewconnections_topic",
+    {
+      email: req.params.email
+    },
+    function(err, result) {
+      console.log("in result");
+      // console.log(res, err);
+      if (err) {
+        res.sendStatus(400).end();
+      } else {
+        if (result.code == 200) {
+          console.log(result);
+          res.writeHead(200, {
+            "Content-Type": "application/json"
+          });
+          console.log(JSON.stringify(result.value));
+          res.end(JSON.stringify(result.value));
+
+          // done(null, { results: results.value });
+        } else {
+          console.log("fail");
+          //done(null, false, { message: results.value });
+        }
+      }
+    }
+  );
+});
+
 module.exports = app;
