@@ -86,61 +86,6 @@ app.post("/loginApplicant", function(req, res) {
   );
 });
 
-// app.post("/loginowner", function(req, res) {
-//   console.log("Inside Login owner Post Request");
-//   console.log(req.body);
-//   kafka.make_request(
-//     "loginowner_topic",
-//     { email: req.body.email, password: req.body.password },
-//     function(err, result) {
-//       console.log("in result");
-//       // console.log(res, err);
-//       if (err) {
-//         res.sendStatus(400).end();
-//       } else {
-//         if (result.code == 200) {
-//           console.log(result);
-//           const payload = {
-//             email: result.email
-//           };
-//           jwt.sign(
-//             payload,
-//             config.secret,
-//             { expiresIn: 8000 },
-//             (err, token) => {
-//               res.json({
-//                 success: true,
-//                 token: token,
-//                 email: result.value.email,
-//                 name: result.value.name,
-//                 type: result.value.type,
-//                 code: result.code
-//               });
-//             }
-//           );
-
-//           res.code = "200";
-//           res.value = result;
-//           console.log("success");
-//           // done(null, { results: results.value });
-//         } else if (result.code == 401) {
-//           res.json({
-//             success: false,
-//             code: result.code
-//           });
-//           console.log("Password does not match");
-//           //done(null, false, { message: results.value });
-//         } else if (result.code == 404) {
-//           res.json({
-//             success: false,
-//             code: result.code
-//           });
-//           console.log("User does not exist");
-//         }
-//       }
-//     }
-//   );
-// });
 
 app.post("/registerApplicant", function(req, res) {
   console.log("Inside Register Post Request");
@@ -163,7 +108,7 @@ app.post("/registerApplicant", function(req, res) {
         if (result.code == 200) {
           console.log(result);
           res.json({
-            success: false,
+            success: true,
             code: result.code
           });
           console.log("successful user registered");
@@ -179,42 +124,5 @@ app.post("/registerApplicant", function(req, res) {
     }
   );
 });
-
-// app.post("/registerowner", function(req, res) {
-//   console.log("Inside Register owner Post Request");
-//   console.log(req.body);
-//   kafka.make_request(
-//     "registerowner_topic",
-//     {
-//       fName: req.body.fName,
-//       lName: req.body.lName,
-//       email: req.body.email,
-//       password: req.body.password
-//     },
-//     function(err, result) {
-//       console.log("in result");
-//       // console.log(res, err);
-//       if (err) {
-//         res.sendStatus(400).end();
-//       } else {
-//         if (result.code == 200) {
-//           console.log(result);
-//           res.json({
-//             success: false,
-//             code: result.code
-//           });
-//           console.log("successful owner registered");
-//           // done(null, { results: results.value });
-//         } else if (result.code == 404) {
-//           res.json({
-//             success: false,
-//             code: result.code
-//           });
-//           console.log("User already exist");
-//         }
-//       }
-//     }
-//   );
-// });
 
 module.exports = app;

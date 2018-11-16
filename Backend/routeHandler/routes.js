@@ -3,9 +3,9 @@ module.exports = {
   Search: require("../linkedINController/applicant/searchRoute"),
   SaveJob: require("../linkedINController/applicant/saveJob"),
   ApplicantConnections: require("../linkedINController/applicant/applicantConnections"),
-  Property: require("../linkedINController/propertyRoute"),
-  Booking: require("../linkedINController/bookingRoute"),
-  Dashboard: require("../linkedINController/dashboardRoute"),
+  // Property: require("../linkedINController/propertyRoute"),
+  // Booking: require("../linkedINController/bookingRoute"),
+  // Dashboard: require("../linkedINController/dashboardRoute"),
   ApplicantProfile: require("../linkedINController/applicant/profileRoute") ,//changed by shivam 14/11
   ApplicantMessages: require("../linkedINController/applicant/messagesRoute"),
   Recruiter: require("../linkedINController/recruiterModule/Recruiter")  

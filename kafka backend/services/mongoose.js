@@ -147,51 +147,6 @@ module.exports.Recruiter = mongoose.model("Recruiter", {
   }
 });
 
-// module.exports.Properties = mongoose.model("Property", {
-//   ownername: {
-//     type: String
-//   },
-//   name: {
-//     type: String
-//   },
-//   propertydescription: {
-//     type: String
-//   },
-//   location: {
-//     type: String
-//   },
-//   checkin: {
-//     type: Date
-//   },
-//   checkout: {
-//     type: Date
-//   },
-//   guests: {
-//     type: Number
-//   },
-//   price: {
-//     type: Number
-//   },
-//   type: {
-//     type: String
-//   },
-//   bedrooms: {
-//     type: Number
-//   },
-//   bathrooms: {
-//     type: Number
-//   },
-//   amenities: {
-//     type: String
-//   },
-
-//   description: {
-//     type: String
-//   },
-//   image: {
-//     type: String
-//   }
-// });
 
 module.exports.AddedJobs = mongoose.model("AddedJobs", {
   jobId: {
@@ -239,46 +194,4 @@ module.exports.AddedJobs = mongoose.model("AddedJobs", {
 
 });
 
-module.exports.Booking = mongoose.model("Booking", {
-  customername: {
-    type: String
-  },
-  propertyname: {
-    type: String
-  },
 
-  checkin: {
-    type: Date
-  },
-  checkout: {
-    type: Date
-  },
-  guests: {
-    type: Number
-  },
-  price: {
-    type: Number
-  },
-  description: {
-    type: String
-  }
-});
-
-module.exports.Inbox = mongoose.model("Inbox", {
-  customername: {
-    type: String
-  },
-  propertyname: {
-    type: String
-  },
-
-  ownername: {
-    type: String
-  },
-  messageCustomer: {
-    type: String
-  },
-  messageOwner: {
-    type: String
-  }
-});

@@ -49,35 +49,5 @@ app.get("/searchresult", function(req, res) {
   res.end(JSON.stringify(JobStore));
 });
 
-app.post("/displayproperty", function(req, res) {
-  console.log("Inside Property Post Request");
-  //console.log("Req Body : ", username + "password : ",password);
-  console.log("Property to be displayed to  book is: ", req.body);
-  kafka.make_request(
-    "displayproperty_topic",
-    {
-      name: req.body.propertyname
-    },
-    function(err, result) {
-      console.log("in result");
-      // console.log(res, err);
-      if (err) {
-        res.sendStatus(400).end();
-      } else {
-        if (result.code == 200) {
-          console.log(result);
-          res.code = "200";
-          res.value = result;
-          res.end(JSON.stringify(result.value));
-          console.log("successful display property done");
-          // done(null, { results: results.value });
-        } else {
-          console.log("fail");
-          //done(null, false, { message: results.value });
-        }
-      }
-    }
-  );
-});
 
 module.exports = app;
