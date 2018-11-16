@@ -97,6 +97,56 @@ module.exports.Users = mongoose.model("Users", {
   }
 });
 
+module.exports.Recruiter = mongoose.model("Recruiter", {
+  // adminID: {
+  //   type: Number,
+  //   unique: true
+  // },
+  firstName: {
+    type: String,
+    required: true
+  },
+  lastName: {
+    type: String,
+    required: true
+  },
+  address: {
+    type: String,
+    default: "Address"
+  },
+
+  city: {
+    type: String,
+    default: "City"
+  },
+  state: {
+    type: String,
+    default: "State"
+  },
+  zipcode: {
+    type: String,
+    default: "Zip Code"
+  },
+  phoneNumber: {
+    type: String,
+    default: "XXX-XXX-XXXX"
+  },
+
+  email: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  password: {
+    type: String,
+    required: true
+  },
+  companyName: {
+    type: String,
+    default: "Company Name"
+  }
+});
+
 // module.exports.Properties = mongoose.model("Property", {
 //   ownername: {
 //     type: String
@@ -144,27 +194,23 @@ module.exports.Users = mongoose.model("Users", {
 // });
 
 module.exports.AddedJobs = mongoose.model("AddedJobs", {
-  numberOfApplicants: {
-    type: Number,
-    default: 0
-  },
-  numberOfViews: {
-    type: Number,
-    default: 0
+  jobId: {
+    type: Number
   },
   jobTitle: {
     type: String
   },
+
   jobDescription: {
     type: String
   },
-  location: {
-    type: String
-  },
-  inustry: {
+  industry: {
     type: String
   },
   employmentType: {
+    type: String
+  },
+  location: {
     type: String
   },
   jobFunction: {
@@ -177,11 +223,20 @@ module.exports.AddedJobs = mongoose.model("AddedJobs", {
     type: String
   },
   jobOpenings: {
-    type: Number
+    type:Number
+  },
+  numberOfApplicants: {
+    type: Number,
+    default:0
+  },
+  numberOfViews: {
+    type: Number,
+    default: 0
   },
   postedOn: {
-    type: Date
+    type:Date
   }
+
 });
 
 module.exports.Booking = mongoose.model("Booking", {
