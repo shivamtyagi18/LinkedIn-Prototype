@@ -12,19 +12,21 @@ function handle_request(msg, callback){
             {"email":msg.email},
             {
                 $set : {
-                    firstName :msg.firstName, 
-                    lastName : msg.lastName,
-                    // type : msg.type,
-                    phone : msg.phone,
-                    city : msg.city,
-                    country : msg.country,
-                    company : msg.company,
-                    school:msg.school,
-                    hometown:msg.hometown,
-                    languages:msg.languages,
-                    gender : msg.gender,
-                    about : msg.about,
-                    img : msg.description, 
+                    firstName: msg.firstName,
+                    lastName: msg.lastName,
+                    phone: msg.phone,
+                    address: msg.address,
+                    city: msg.city,
+                    state: msg.state,
+                    zipcode: msg.zipcode,
+                    country: msg.country,
+                    experience: msg.experience,
+                    education: msg.education,
+                    skills: msg.skills,
+                    profileSummary: msg.profileSummary,
+                    resume: msg.resume,
+                    gender: msg.gender,
+                    img: msg.img
                 }
 
             },function(err,user){
