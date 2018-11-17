@@ -41,7 +41,8 @@ app.post("/addRecruiter", function(req, res) {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       email: req.body.email,
-      password: req.body.password
+      password: req.body.password,
+      type : "recruiter"
     },
     function(err, result) {
       console.log("in result");
