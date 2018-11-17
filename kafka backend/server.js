@@ -3,13 +3,13 @@ var connection = new require("./kafka/Connection");
 
 var login = require("./services/applicantKafka/login");
 var registerapplicant = require("./services/applicantKafka/registerapplicant");
-var saveJob = require("./services//applicantKafka/saveJob");
-var jobsearch = require("./services//applicantKafka/jobsearch");
-var userdisplay = require("./services//applicantKafka/userdisplay");
-var viewConnections = require("./services//applicantKafka/viewConnections");
-var connectionRequest = require("./services//applicantKafka/connectionRequest");
-var connectionAccept = require("./services//applicantKafka/connections");
-var userUpdate = require("./services//applicantKafka/userupdate");
+var saveJob = require("./services/applicantKafka/saveJob");
+var jobsearch = require("./services/applicantKafka/jobsearch");
+var userdisplay = require("./services/applicantKafka/userdisplay");
+var viewConnections = require("./services/applicantKafka/viewConnections");
+var connectionRequest = require("./services/applicantKafka/connectionRequest");
+var connectionAccept = require("./services/applicantKafka/connections");
+var userUpdate = require("./services/applicantKafka/userupdate");
 var profileViews = require("./services/applicantKafka/profileViews");
 var clickCounts = require("./services/applicantKafka/clickCounts");
 
