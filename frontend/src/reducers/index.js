@@ -8,6 +8,7 @@ import LogoutReducer from "./tlogout";
 import LoginOwnerReducer from "./authloginowner";
 import TravelRegisterReducer from "./travelregister";
 import OwnerRegisterReducer from "./ownerregister";
+import ADDRECRUITERREDUCER from "./addRecruiter";
 const mainReducer = combineReducers({
   form: formReducer,
   property: PropertyReducer,
@@ -17,7 +18,8 @@ const mainReducer = combineReducers({
   logout: LogoutReducer,
   traveldash: TravelReducer,
   travelregister: TravelRegisterReducer,
-  ownerregister: OwnerRegisterReducer
+  ownerregister: OwnerRegisterReducer,
+  addRecruiter: ADDRECRUITERREDUCER
 });
 
 const rootReducer = (state, action) => {

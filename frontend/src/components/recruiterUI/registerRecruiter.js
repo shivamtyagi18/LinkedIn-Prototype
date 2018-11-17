@@ -6,16 +6,13 @@ import { Redirect } from "react-router";
 //import Navlogin from "./navlogin";
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
-//import { tregister } from "../actions";
+import logo from "./linkedinlogo.png";
+import { addRecruiter } from "../../actions";
 
 class RegisterRecruiter extends Component {
   constructor() {
     super();
     this.state = {
-      fName: "",
-      lName: "",
-      email: "",
-      password: "",
       authFlag: false,
       userFlag: false
     };
@@ -186,7 +183,7 @@ class RegisterRecruiter extends Component {
   submitregister(values) {
     console.log(values);
 
-    // this.props.tregister(values);
+    this.props.addRecruiter(values);
   }
 
   render() {
@@ -197,7 +194,7 @@ class RegisterRecruiter extends Component {
       redirect = (
         <Redirect
           to={{
-            pathname: "/login"
+            pathname: "/recruiter/loginRecruiter"
           }}
         />
       );
@@ -207,20 +204,22 @@ class RegisterRecruiter extends Component {
       errorMessage = (
         <div
           style={{
-            backgroundColor: "orange",
+            backgroundColor: "red",
             fontSize: "12px",
             color: "white",
             textAlign: "center",
-            padding: "6px"
+            padding: "6px",
+            marginTop: "10px"
           }}
         >
-          <h5>User Already exists.</h5>
+          <h5>Recruiter Already exists.</h5>
         </div>
       );
     }
 
     return (
       <React.Fragment>
+        {redirect}
         <div
           className="container-fluid"
           style={{
@@ -228,11 +227,7 @@ class RegisterRecruiter extends Component {
           }}
         >
           <div style={{ textAlign: "center" }}>
-            <img
-              src="images/linkedinlogo.png"
-              alt="linkedin"
-              style={{ marginTop: "20px" }}
-            />
+            <img src={logo} alt="linkedin" style={{ marginTop: "20px" }} />
           </div>
           <h1
             className="text-center"
@@ -247,12 +242,11 @@ class RegisterRecruiter extends Component {
 
               width: "30%",
               marginLeft: "500px",
-              height: "450px",
+
               backgroundColor: "rgb(238,238,238)"
             }}
           >
             <div>{errorMessage}</div>
-
             <form
               onSubmit={handleSubmit(this.submitregister.bind(this))}
               className="form-group form-group-lg recruiter"
@@ -310,6 +304,17 @@ class RegisterRecruiter extends Component {
               >
                 Agree & Join
               </button>
+              <h4
+                style={{
+                  marginTop: "20px",
+                  color: "#286695",
+                  paddingBottom: "10px"
+                }}
+              >
+                {" "}
+                <span style={{ color: "black" }}> Already on Linkedin? </span>
+                <Link to="/recruiter/loginRecruiter">Log in</Link>
+              </h4>
             </form>
           </div>
           <p
@@ -347,10 +352,15 @@ function validate(values) {
 }
 function mapStateToProps(state) {
   return {
-    register: state.travelregister
+    register: state.addRecruiter
   };
 }
 export default reduxForm({
   validate,
   form: "RegisterForm"
-})(connect(mapStateToProps)(RegisterRecruiter));
+})(
+  connect(
+    mapStateToProps,
+    { addRecruiter }
+  )(RegisterRecruiter)
+);
