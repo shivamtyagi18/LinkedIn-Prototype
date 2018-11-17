@@ -4,7 +4,7 @@ function handle_request(msg, callback) {
   var res = {};
   console.log("In handle user update request:" + JSON.stringify(msg));
 
-  mongoose.Recruiter.findOneAndUpdate(
+  mongoose.Users.findOneAndUpdate(
     {
       email: msg.Email
     },

@@ -10,7 +10,7 @@ function handle_request(msg, callback) {
   console.log("In handle recruiter login request:" + JSON.stringify(msg));
   console.log("check password request:" + msg.password);
 
-  mongoose.Recruiter.findOne({ email: msg.email }, function(err, user) {
+  mongoose.Users.findOne({ email: msg.email,type: "recruiter" }, function(err, user) {
     //console.log("password" + user.password);
     if (err) {
       console.log(err);

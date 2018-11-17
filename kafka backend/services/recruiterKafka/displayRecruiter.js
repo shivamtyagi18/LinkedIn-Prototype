@@ -3,9 +3,10 @@ var mongoose = require("../mongoose");
 function handle_request(msg, callback) {
   var res = {};
   console.log("In handle recruiter display request:" + JSON.stringify(msg));
-  mongoose.Recruiter.findOne(
+  mongoose.Users.findOne(
     {
-      email: msg.email
+      email: msg.email,
+      type : "recruiter"
     },
     function(err, user) {
       if (!user) {

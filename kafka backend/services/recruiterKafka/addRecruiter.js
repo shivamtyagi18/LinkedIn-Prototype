@@ -21,11 +21,13 @@ function handle_request(msg, callback) {
     var lastName = msg.lastName;
     var email = msg.email;
     var password = hash;
-    var recruiter = new mongoose.Recruiter({
+    var type = msg.type;
+    var recruiter = new mongoose.Users({
       firstName: firstName,
       lastName: lastName,
       email: email,
-      password: password
+      password: password,
+      type:type
     });
     recruiter.save().then(
       recruiter => {

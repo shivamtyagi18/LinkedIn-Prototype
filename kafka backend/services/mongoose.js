@@ -2,7 +2,6 @@ var mongoose = require("mongoose");
 
 mongoose.Promise = global.Promise;
 
-
 //var url = `mongodb://id:password@ds141514.mlab.com:41514/linkedin`;
 
 mongoose.connect(
@@ -93,59 +92,64 @@ module.exports.Users = mongoose.model("Users", {
     unique: true
   },
   password: {
-    type: String
-  }
-});
-
-module.exports.Recruiter = mongoose.model("Recruiter", {
-  // adminID: {
-  //   type: Number,
-  //   unique: true
-  // },
-  firstName: {
     type: String,
-    required: true
-  },
-  lastName: {
-    type: String,
-    required: true
-  },
-  address: {
-    type: String,
-    default: "Address"
-  },
-
-  city: {
-    type: String,
-    default: "City"
-  },
-  state: {
-    type: String,
-    default: "State"
-  },
-  zipcode: {
-    type: String,
-    default: "Zip Code"
-  },
-  phoneNumber: {
-    type: String,
-    default: "XXX-XXX-XXXX"
-  },
-
-  email: {
-    type: String,
-    required: true,
-    unique: true
-  },
-  password: {
-    type: String,
-    required: true
+    required : true
   },
   companyName: {
     type: String,
     default: "Company Name"
   }
 });
+
+// module.exports.Recruiter = mongoose.model("Recruiter", {
+//   // adminID: {
+//   //   type: Number,
+//   //   unique: true
+//   // },
+//   firstName: {
+//     type: String,
+//     required: true
+//   },
+//   lastName: {
+//     type: String,
+//     required: true
+//   },
+//   address: {
+//     type: String,
+//     default: "Address"
+//   },
+
+//   city: {
+//     type: String,
+//     default: "City"
+//   },
+//   state: {
+//     type: String,
+//     default: "State"
+//   },
+//   zipcode: {
+//     type: String,
+//     default: "Zip Code"
+//   },
+//   phoneNumber: {
+//     type: String,
+//     default: "XXX-XXX-XXXX"
+//   },
+
+//   email: {
+//     type: String,
+//     required: true,
+//     unique: true
+//   },
+//   password: {
+//     type: String,
+//     required: true
+//   },
+//   companyName: {
+//     type: String,
+//     default: "Company Name"
+//   }
+// });
 
 
 module.exports.AddedJobs = mongoose.model("AddedJobs", {
