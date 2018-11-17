@@ -7,6 +7,7 @@ function handle_request(msg, callback) {
   var email = msg.email;
   console.log("user name", email);
   mongoose.Users.findOne({ email: email }, function(err, user) {
+    console.log("User views: ", user.clickCounts);
     console.log("User : ", user);
     console.log("Error : ", err);
     //console.log("Password : ",user.Credentials[0].password);
