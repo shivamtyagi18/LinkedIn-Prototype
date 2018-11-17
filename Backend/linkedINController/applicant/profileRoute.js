@@ -224,7 +224,7 @@ app.get("/profileViews/:email", function(req, res) {
           res.writeHead(200, {
             "Content-Type": "application/json"
           });
-          console.log(JSON.stringify(result.value));
+          console.log(JSON.stringify("value",result.value));
           res.end(JSON.stringify(result.value));
 
           // done(null, { results: results.value });
