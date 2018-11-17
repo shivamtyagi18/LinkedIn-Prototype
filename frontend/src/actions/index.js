@@ -3,7 +3,7 @@ import axios from "axios";
 export const FETCH_PROPERTIES = "fetch_properties";
 export const TLOGIN = "TLOGIN";
 export const OLOGIN = "OLOGIN";
-export const TREGISTER = "TREGISTER";
+export const ADDRECRUITER = "ADDRECRUITER";
 export const OREGISTER = "OREGISTER";
 export const HOMESEARCH = "HOMESEARCH";
 export const FETCH_OWNERDASHBOARD = "FETCH_OWNERDASHBOARD";
@@ -16,7 +16,6 @@ axios.defaults.headers.common["authorization"] = localStorage.getItem("token");
 
 const ROOT_URL = "http://localhost:3001";
 
-//target action
 export function fetchProperty() {
   //middleware call
   //receive response from backend
@@ -76,7 +75,7 @@ export function ologin(values, callback) {
 //     payload: request
 //   };
 // }
-export function tregister(values, callback) {
+export function addRecruiter(values, callback) {
   //middleware call
   //receive response from backend
   // return async function (dispatch){
@@ -87,7 +86,7 @@ export function tregister(values, callback) {
   //}  })
   axios.defaults.withCredentials = true;
   const request = axios
-    .post(`${ROOT_URL}/register`, values)
+    .post(`${ROOT_URL}/recruiter/addRecruiter`, values)
     .then(datarequested => {
       console.log(datarequested);
       if (callback) callback();
@@ -97,7 +96,7 @@ export function tregister(values, callback) {
   //Action dispatched
   console.log("Request", request);
   return {
-    type: TREGISTER,
+    type: ADDRECRUITER,
     payload: request
   };
 }

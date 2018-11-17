@@ -26,8 +26,13 @@ class Main extends Component {
         <div>
           <Route
             exact
-            path="/registerRecruiter"
+            path="/recruiter/addRecruiter"
             component={RegisterRecruiter}
+          />
+          <Route
+            exact
+            path="/recruiter/loginRecruiter"
+            component={LoginRecruiter}
           />
         </div>
       </Provider>
