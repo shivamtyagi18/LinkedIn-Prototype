@@ -7,7 +7,7 @@ var jwt = require('jsonwebtoken');
 function handle_request(msg, callback){
     var res = {};
     console.log("In login request:"+ JSON.stringify(msg));
-    mongoose.Users.findOne({"email":msg.email},function(err,user){
+    mongoose.Users.findOne({"email":msg.email,"type":"applicant"},function(err,user){
         console.log("User : ",user);
         console.log("Error : ",err);
        // console.log("Password : ",user.Credentials[0].password);

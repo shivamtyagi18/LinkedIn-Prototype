@@ -68,6 +68,9 @@ module.exports.Users = mongoose.model("Users", {
     type: String,
     default: "profileSummary"
   },
+  clickCounts: {
+    type: Number
+  },
   resume: {
     type: String,
     default: "resume"

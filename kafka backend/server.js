@@ -10,6 +10,9 @@ var viewConnections = require("./services//applicantKafka/viewConnections");
 var connectionRequest = require("./services//applicantKafka/connectionRequest");
 var connectionAccept = require("./services//applicantKafka/connections");
 var userUpdate = require("./services//applicantKafka/userupdate");
+var profileViews = require("./services/applicantKafka/profileViews");
+var clickCounts = require("./services/applicantKafka/clickCounts");
+
 var addRecruiter = require("./services/recruiterKafka/addRecruiter");
 var addJob = require("./services/recruiterKafka/addJob");
 var getJobs = require("./services/recruiterKafka/getJobs");
@@ -17,6 +20,7 @@ var editJob = require("./services/recruiterKafka/editJob");
 var loginRecruiter = require("./services/recruiterKafka/loginRecruiter");
 var recruiterDisplay = require("./services/recruiterKafka/displayRecruiter");
 var modifyRecruiterAccount = require("./services/recruiterKafka/modifyRecruiterAccount");
+
 
 function handleTopicRequest(topic_name, fname) {
   //var topic_name = 'root_topic';
@@ -59,6 +63,9 @@ handleTopicRequest("connectionaccept_topic", connectionAccept);
 handleTopicRequest("userupdate_topic", userUpdate);
 handleTopicRequest("savejob_topic", saveJob);
 handleTopicRequest("viewconnections_topic", viewConnections);
+handleTopicRequest("profileviews_topic", profileViews);
+handleTopicRequest("clickcounts_topic", clickCounts);
+
 handleTopicRequest("addRecruiter_topic", addRecruiter);
 handleTopicRequest("addJob_topic", addJob);
 handleTopicRequest("getJobs_topic", getJobs);

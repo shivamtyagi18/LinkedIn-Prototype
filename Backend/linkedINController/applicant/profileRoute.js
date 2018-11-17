@@ -205,4 +205,71 @@ app.get("/viewConnections/:email", function(req, res) {
   );
 });
 
+
+app.get("/profileViews/:email", function(req, res) {
+  console.log("Inside view connections get Request");
+  console.log("Req Params : ", req.params);
+  kafka.make_request(
+    "profileviews_topic",
+    {
+      email: req.params.email
+    },
+    function(err, result) {
+      console.log("in result");
+      // console.log(res, err);
+      if (err) {
+        res.sendStatus(400).end();
+      } else {
+        if (result.code == 200) {
+          console.log(result);
+          res.writeHead(200, {
+            "Content-Type": "application/json"
+          });
+          console.log(JSON.stringify(result.value));
+          res.end(JSON.stringify(result.value));
+
+          // done(null, { results: results.value });
+        } else {
+          console.log("fail");
+          //done(null, false, { message: results.value });
+        }
+      }
+    }
+  );
+});
+
+app.put("/clickCounts/:email", function(req, res) {
+  console.log("Inside Click Count Post Request");
+  //console.log("Req Body : ", username + "password : ",password);
+  console.log("Req Body : ", req.body);
+  console.log("Req Params : ", req.params);
+  kafka.make_request(
+    "clickcounts_topic",
+    {
+      email: req.params.email
+    },
+    function(err, result) {
+      console.log("in result");
+      // console.log(res, err);
+      if (err) {
+        res.sendStatus(400).end();
+      } else {
+        if (result.code == 200) {
+          console.log(result);
+          res.writeHead(200, {
+            "Content-Type": "application/json"
+          });
+          console.log(JSON.stringify(result.value));
+          res.end(JSON.stringify(result.value));
+
+          // done(null, { results: results.value });
+        } else {
+          console.log("fail");
+          //done(null, false, { message: results.value });
+        }
+      }
+    }
+  );
+});
+
 module.exports = app;
