@@ -1,7 +1,4 @@
-var mongoose = require('./mongoose');
-var bcrypt = require('bcrypt');
-var config = require('./config/settings');
-var saltRounds = 10;
+var mongoose = require('../mongoose');
 
 
 function handle_request(msg, callback){

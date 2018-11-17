@@ -1,12 +1,9 @@
-var mongoose = require("./mongoose");
-var bcrypt = require("bcrypt");
-var jwt = require("jsonwebtoken");
-var config = require("./config/settings");
+var mongoose = require("../mongoose");
 
 function handle_request(msg, callback) {
   var res = {};
 
-  console.log("In View Connections request:" + JSON.stringify(msg));
+  console.log("In View Profileview request:" + JSON.stringify(msg));
   var email = msg.email;
   console.log("user name", email);
   mongoose.Users.findOne({ email: email }, function(err, user) {
@@ -21,7 +18,7 @@ function handle_request(msg, callback) {
       callback(null, res);
     } else {
       res.code = "200";
-      res.value = user.connections;
+      res.value = user.clickCounts;
       //res.cookie('cookie',user.Credentials[0].email,{maxAge: 900000, httpOnly: false, path : '/'});
       callback(null, res);
     }
