@@ -1,25 +1,24 @@
-var mongoose = require("./mongoose");
+var mongoose = require("../mongoose");
 
 function handle_request(msg, callback) {
   var res = {};
 
-  console.log("In saveJob request:" + JSON.stringify(msg));
-  var email = msg.email;
-  var jobId = msg.jobId;
-  var companyName = msg.companyName;
+  console.log("In connection request request:" + JSON.stringify(msg));
+  var receiverEmail = msg.receiver;
+  var senderEmail = msg.sender;
   mongoose.Users.findOneAndUpdate(
-    { email: email},
-    { $push: { savedJobs: jobId + " " + companyName } },
+    { email: receiverEmail },
+    { $push: { connectionRequests: senderEmail } },
     { new: true },
     function(err, user) {
-      console.log("job saved: ", user);
+      console.log("Connection request sent: ", user);
       res.code = "200";
       res.value = user; //not required
       callback(null, res);
       // res.status(200).json(testdata).end();
     },
     err => {
-      console.log("Error saving job");
+      console.log("Error in seding connection request");
       res.code = "402";
       callback(null, res);
     }

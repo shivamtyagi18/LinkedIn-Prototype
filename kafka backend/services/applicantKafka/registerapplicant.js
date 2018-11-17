@@ -1,6 +1,6 @@
-var mongoose = require('./mongoose');
+var mongoose = require('../mongoose');
 var bcrypt = require('bcrypt');
-var config = require('./config/settings');
+//var config = require('../config/settings');
 var saltRounds = 10;
 
 

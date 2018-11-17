@@ -1,15 +1,15 @@
 var connection = new require("./kafka/Connection");
 //topics files
 
-var login = require("./services/login");
-var registerapplicant = require("./services/registerapplicant");
-var saveJob = require("./services/saveJob");
-var jobsearch = require("./services/jobsearch");
-var userdisplay = require("./services/userdisplay");
-var viewConnections = require("./services/viewConnections");
-var connectionRequest = require("./services/connectionRequest");
-var connectionAccept = require("./services/connections");
-var userUpdate = require("./services/userupdate");
+var login = require("./services//applicantKafka/login");
+var registerapplicant = require("./services/applicantKafka/registerapplicant");
+var saveJob = require("./services//applicantKafka/saveJob");
+var jobsearch = require("./services//applicantKafka/jobsearch");
+var userdisplay = require("./services//applicantKafka/userdisplay");
+var viewConnections = require("./services//applicantKafka/viewConnections");
+var connectionRequest = require("./services//applicantKafka/connectionRequest");
+var connectionAccept = require("./services//applicantKafka/connections");
+var userUpdate = require("./services//applicantKafka/userupdate");
 var addRecruiter = require("./services/recruiterKafka/addRecruiter");
 var addJob = require("./services/recruiterKafka/addJob");
 var getJobs = require("./services/recruiterKafka/getJobs");

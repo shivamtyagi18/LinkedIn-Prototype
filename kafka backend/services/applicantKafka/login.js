@@ -1,7 +1,7 @@
-var mongoose = require('./mongoose');
+var mongoose = require('../mongoose');
 var bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
-var config = require('./config/settings');
+//var config = require('../config/settings');
 
 
 function handle_request(msg, callback){
