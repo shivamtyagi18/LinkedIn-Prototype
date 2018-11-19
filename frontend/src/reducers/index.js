@@ -11,7 +11,8 @@ import OwnerRegisterReducer from "./ownerregister";
 import ADDRECRUITERREDUCER from "./addRecruiter";
 
 import CREATEAPPLICANT from "./createApplicant";
-import LoginApplicantReducer from "./applicantLogin"
+import LoginApplicantReducer from "./applicantLogin";
+import LoginRecruiterReducer from "./loginRecruiter";
 
 const mainReducer = combineReducers({
   form: formReducer,
@@ -24,8 +25,9 @@ const mainReducer = combineReducers({
   travelregister: TravelRegisterReducer,
   ownerregister: OwnerRegisterReducer,
   addRecruiter: ADDRECRUITERREDUCER,
-  createApplicant : CREATEAPPLICANT,
+  createApplicant: CREATEAPPLICANT,
   loginApplicant: LoginApplicantReducer,
+  loginRecruiter: LoginRecruiterReducer
 });
 
 const rootReducer = (state, action) => {

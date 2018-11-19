@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const FETCH_PROPERTIES = "fetch_properties";
 export const TLOGIN = "TLOGIN";
-export const OLOGIN = "OLOGIN";
+export const LOGINRECRUITER = "LOGINRECRUITER";
 export const ADDRECRUITER = "ADDRECRUITER";
 export const OREGISTER = "OREGISTER";
 export const HOMESEARCH = "HOMESEARCH";
@@ -54,38 +54,38 @@ export function tlogin(values, callback) {
 //------------------------------for Applicant login----------------------------------//
 
 export function createApplicant(values, callback) {
-  axios.defaults.withCredentials=true;
+  axios.defaults.withCredentials = true;
   const request = axios
     .post(`${ROOT_URL}/applicant/registerApplicant`, values)
-    .then((response) =>  {
-      console.log("Status Code : ",response.status);
-      console.log(response); 
-  //then((datafromreq) => {
-    if(callback) callback();
-    return response
-  });
-    console.log("Request",request);
-    // console.log("Request",request);
-    // console.log("Request",request);
+    .then(response => {
+      console.log("Status Code : ", response.status);
+      console.log(response);
+      //then((datafromreq) => {
+      if (callback) callback();
+      return response;
+    });
+  console.log("Request", request);
+  // console.log("Request",request);
+  // console.log("Request",request);
   return {
     type: CREATEAPPLICANT,
     payload: request
   };
 }
 
-
 export function loginUser(values, callback) {
-  axios.defaults.withCredentials=true;
-  const request=axios.post(`${ROOT_URL}/applicant/loginApplicant`, values)
+  axios.defaults.withCredentials = true;
+  const request = axios
+    .post(`${ROOT_URL}/applicant/loginApplicant`, values)
     .then(response => {
-      console.log("Status Code : ",response.status);
-      console.log(response); 
-    //then((datafromreq) => {
-      if(callback) callback();
-      return response
+      console.log("Status Code : ", response.status);
+      console.log(response);
+      //then((datafromreq) => {
+      if (callback) callback();
+      return response;
     });
 
-    console.log("Request",request);
+  console.log("Request", request);
   return {
     type: LOGIN_APPLICANT,
     payload: request
@@ -93,7 +93,7 @@ export function loginUser(values, callback) {
 }
 
 export function logoutUser() {
-  axios.defaults.withCredentials=true;
+  axios.defaults.withCredentials = true;
   return {
     type: LOGOUT_APPLICANT,
     payload: null
@@ -102,12 +102,12 @@ export function logoutUser() {
 
 //----------------------------------------------------------------------------------//
 
-export function ologin(values, callback) {
+export function loginRecruiter(values, callback) {
   //middleware call
   //receive response from backend
   axios.defaults.withCredentials = true;
   const request = axios
-    .post(`${ROOT_URL}/loginowner`, values)
+    .post(`${ROOT_URL}/recruiter/loginRecruiter`, values)
     .then(datarequested => {
       if (callback) callback();
       return datarequested;
@@ -115,7 +115,7 @@ export function ologin(values, callback) {
   //Action dispatched
   console.log("Request", request);
   return {
-    type: OLOGIN,
+    type: LOGINRECRUITER,
     payload: request
   };
 }
