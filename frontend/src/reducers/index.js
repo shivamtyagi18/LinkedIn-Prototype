@@ -9,6 +9,7 @@ import LoginOwnerReducer from "./authloginowner";
 import TravelRegisterReducer from "./travelregister";
 import OwnerRegisterReducer from "./ownerregister";
 import ADDRECRUITERREDUCER from "./addRecruiter";
+import CREATEAPPLICANT from "./createApplicant";
 const mainReducer = combineReducers({
   form: formReducer,
   property: PropertyReducer,
@@ -19,7 +20,8 @@ const mainReducer = combineReducers({
   traveldash: TravelReducer,
   travelregister: TravelRegisterReducer,
   ownerregister: OwnerRegisterReducer,
-  addRecruiter: ADDRECRUITERREDUCER
+  addRecruiter: ADDRECRUITERREDUCER,
+  createApplicant : CREATEAPPLICANT
 });
 
 const rootReducer = (state, action) => {

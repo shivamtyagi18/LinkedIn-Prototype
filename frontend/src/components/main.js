@@ -5,6 +5,10 @@ import { createStore, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
 //import Inbox from "./inbox";
 import RegisterRecruiter from "./recruiterUI/registerRecruiter";
+import LoginRecruiter from "./recruiterUI/loginRecruiter";
+
+
+import LoginApplicant from "./applicantUI/loginApplicant";
 
 import RootReducer from "../reducers";
 
@@ -34,6 +38,12 @@ class Main extends Component {
             path="/recruiter/loginRecruiter"
             component={LoginRecruiter}
           />
+
+        <Route
+          exact
+          path="/applicant/loginApplicant"
+          component={LoginApplicant}
+        />
         </div>
       </Provider>
     );
