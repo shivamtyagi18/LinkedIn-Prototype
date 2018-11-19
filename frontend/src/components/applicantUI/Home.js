@@ -54,28 +54,13 @@ class Home extends Component {
         if(!localStorage.getItem('token')){
             redirectVar = <Redirect to= "/"/>
         }
-        
-
-       // console.log("1",this.props.location.state.username)
-       // console.log("2",this.props.location.state.loginFlag)
-       // console.log("3",this.props.navdata)
-      /*  if(this.state.homeFlag)
-        {
-            redirectVar = <Redirect to= "/search"/>
-        }*/
 
         return(
 
             <div>
                 {redirectVar}
-                <div>
                 {nav}
-                </div>
-                <div style={{marginTop:"3%"}}>
-                {searchbar}
-                </div>
-                
-               
+                {searchbar}  
             </div> 
         )
     }
