@@ -22,6 +22,22 @@
   color: #61dafb;
 }
 
+.main-div-search {
+  border-radius: 2px;
+  margin: 100px auto 30px;
+  max-width: 130%;
+  padding: 130px 30px 40px 30px;
+  font-size: 44px;
+  color: #498dc5;
+  background-color: #498dc5;
+  font-weight: 400;
+  letter-spacing: .1px;
+  text-align: left;
+  line-height: normal;
+  box-sizing: border-box;
+  font-family: Lato,Arial,Helvetica Neue,sans-serif;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

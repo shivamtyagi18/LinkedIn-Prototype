@@ -9,6 +9,7 @@ import LoginRecruiter from "./recruiterUI/loginRecruiter";
 
 
 import LoginApplicant from "./applicantUI/loginApplicant";
+import ApplicantHome from "./applicantUI/Home"
 
 import RootReducer from "../reducers";
 
@@ -44,6 +45,12 @@ class Main extends Component {
           path="/applicant/loginApplicant"
           component={LoginApplicant}
         />
+
+        <Route
+        exact
+        path="/applicant/applicantHome"
+        component={ApplicantHome}
+      />
         </div>
       </Provider>
     );
