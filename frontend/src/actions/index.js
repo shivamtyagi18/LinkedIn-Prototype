@@ -11,6 +11,10 @@ export const FETCH_TRAVElDASHBOARD = "FETCH_TRAVElDASHBOARD";
 export const TLOGOUT = "tlogout";
 export const BOOKING = "booking";
 
+export const LOGIN_APPLICANT = "login_applicant";
+export const LOGOUT_APPLICANT = "logout_applicant";
+export const CREATEAPPLICANT = "create_applicant";
+
 axios.defaults.headers.common["authorization"] = localStorage.getItem("token");
 //export const CREATE_BOOK = "create_book";
 
@@ -46,6 +50,57 @@ export function tlogin(values, callback) {
     payload: request
   };
 }
+
+//------------------------------for Applicant login----------------------------------//
+
+export function createApplicant(values, callback) {
+  axios.defaults.withCredentials=true;
+  const request = axios
+    .post(`${ROOT_URL}/applicant/registerApplicant`, values)
+    .then((response) =>  {
+      console.log("Status Code : ",response.status);
+      console.log(response); 
+  //then((datafromreq) => {
+    if(callback) callback();
+    return response
+  });
+    console.log("Request",request);
+    // console.log("Request",request);
+    // console.log("Request",request);
+  return {
+    type: CREATEAPPLICANT,
+    payload: request
+  };
+}
+
+
+export function loginUser(values, callback) {
+  axios.defaults.withCredentials=true;
+  const request=axios.post(`${ROOT_URL}/applicant/loginApplicant`, values)
+    .then(response => {
+      console.log("Status Code : ",response.status);
+      console.log(response); 
+    //then((datafromreq) => {
+      if(callback) callback();
+      return response
+    });
+
+    console.log("Request",request);
+  return {
+    type: LOGIN_APPLICANT,
+    payload: request
+  };
+}
+
+export function logoutUser() {
+  axios.defaults.withCredentials=true;
+  return {
+    type: LOGOUT_APPLICANT,
+    payload: null
+  };
+}
+
+//----------------------------------------------------------------------------------//
 
 export function ologin(values, callback) {
   //middleware call
