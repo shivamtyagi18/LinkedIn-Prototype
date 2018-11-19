@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import NavLoginRecruiter from "./navLoginRecruiter";
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
-//import { tlogin } from "../actions";
+import { loginRecruiter } from "../../actions";
 import __ from "lodash";
 
 //Define a SignUp Component
@@ -136,7 +136,7 @@ class LoginRecruiter extends Component {
 
   submitlogin(values) {
     console.log(values);
-    //this.props.tlogin(values);
+    this.props.loginRecruiter(values);
   }
 
   render() {
@@ -159,7 +159,7 @@ class LoginRecruiter extends Component {
       errorMessage = (
         <div
           style={{
-            backgroundColor: "orange",
+            backgroundColor: "red",
             fontSize: "12px",
             color: "white",
             textAlign: "center",
@@ -174,14 +174,14 @@ class LoginRecruiter extends Component {
       errorMessage = (
         <div
           style={{
-            backgroundColor: "orange",
+            backgroundColor: "red",
             fontSize: "12px",
             color: "white",
             textAlign: "center",
             padding: "6px"
           }}
         >
-          <h5>User does not exist</h5>
+          <h5>Recruiter does not exist</h5>
         </div>
       );
     }
@@ -328,7 +328,7 @@ function validate(values) {
 
 function mapStateToProps(state) {
   return {
-    login: state.login
+    login: state.loginRecruiter
   };
 }
 export default reduxForm({
@@ -337,6 +337,11 @@ export default reduxForm({
   destroyOnUnmount: false,
   forceUnregisterOnUnmount: true,
   keepDirtyOnReinitialize: true
-})(connect(mapStateToProps)(LoginRecruiter));
+})(
+  connect(
+    mapStateToProps,
+    { loginRecruiter }
+  )(LoginRecruiter)
+);
 //export Sign Up Component
 //export default Login;
