@@ -44,7 +44,7 @@ class SearchBar extends Component {
         return (
           <div className={className}>
             <label>{field.label}</label>
-            <input style={{fontSize:"1.2rem"}} className="form-control" type="email" {...field.input}  placeholder={field.placeholder}/>
+            <input style={{fontSize:"2.2rem"}} className="form-control" type="text" {...field.input}  placeholder={field.placeholder}/>
             <div className="text-help">
               {touched ? error : ""}
             </div>
@@ -59,7 +59,7 @@ class SearchBar extends Component {
         return (
           <div className={className}>
             <label>{field.label}</label>
-            <input  style={{fontSize:"1.2rem"}} className="form-control" type="password" {...field.input}  placeholder={field.placeholder}/>
+            <input  style={{fontSize:"2.2rem"}} className="form-control" type="text" {...field.input}  placeholder={field.placeholder}/>
             <div className="text-help">
               {touched ? error : ""}
             </div>
@@ -94,29 +94,28 @@ class SearchBar extends Component {
             let redirectVar = null;
 
         return(
-            <div style={{opacity:"1",zIndex:"1000",position:"absolute"}}> 
+            <div style={{backgroundColor:"#498dc5",marginTop:"4%",height:"0%"}}> 
             {redirectVar}  
-            <div class="container">
-                <div class="login-form"> 
-                    <div class="main-div-search" >
+
+                    <div className="navbar" >
 
                     <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
 
-                    <div class="nav navbar-nav navbar-right navbar-brand" style={{marginTop:"-2%"}}>
+                    <div class="nav navbar-nav navbar-right navbar-brand" style={{marginTop:"2%",marginRight:"5%"}}>
                     <button class="btn btn-primary" style={{backgroundColor:"transparent",borderColor:"white",fontSize:"18px"}}>Search</button>
                     </div>
 
-                    <div class="col-sm-4" style={{marginTop:"-2%"}}>
+                    <div class="col-sm-5" style={{marginTop:"2%"}}>
                     <Field
-                    name="password"
+                    name="location"
                     component={this.renderFieldLocation}
                     placeholder="Location"
                     />
                     </div>
 
-                    <div class="col-sm-4" style={{marginTop:"-2%"}}>
+                    <div class="col-sm-5" style={{marginTop:"2%"}}>
                     <Field
-                    name="email"
+                    name="jobtitle"
                     component={this.renderFieldTitle}
                     placeholder="Job Title"
                     />
@@ -124,8 +123,7 @@ class SearchBar extends Component {
                     </form>
                       
                 </div>
-                </div>
-                </div>
+                
             
     </div>
             
@@ -138,11 +136,11 @@ function validate(values) {
     const errors = {};
   
     // Validate the inputs from 'values'
-    if (!values.username) {
-      errors.username = "Enter an ID";
+    if (!values.location) {
+      errors.location = "Enter Location";
     }
-    if (!values.password) {
-      errors.password = "Enter Password";
+    if (!values.jobtitle) {
+      errors.jobtitle = "Enter Keyword";
     }
     
   
