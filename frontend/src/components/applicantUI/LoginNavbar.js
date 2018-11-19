@@ -20,7 +20,7 @@ class LoginNavbar extends Component {
         super(props);
         //maintain the state required for this component
         this.state = {
-             email : "",
+            // email : "",
             // password : "",
             // type : "",
             loginFlag : false,
@@ -86,8 +86,8 @@ class LoginNavbar extends Component {
         values.type="applicant";
         console.log("login data",values);
         this.props.loginUser(values, () => {
-           //this.props.history.push("/home");
-           window.location.reload(1); //refreshes the page so redux state is lost
+           //this.props.history.push("/applicant/applicantHome");
+          // window.location.reload(1); //refreshes the page so redux state is lost
            console.log("tested")
          });
       }
@@ -99,20 +99,58 @@ class LoginNavbar extends Component {
     render(){
 
         const { handleSubmit } = this.props;
+       // this.state.email=localStorage.getItem("email")
         //if Cookie is set render Logout and user Button
         //<li><Link to="/" onClick = {this.handleLogout}><span class="glyphicon glyphicon-user"></span>Logout</Link></li>
        
             //Else display login button
-            console.log("Not Able to read cookie");
-
+            console.log("Not Able to read cookie",this.props.loginApplicant.code);
             
+
+            let redirectVar = null;
+
+            if(this.props.loginApplicant.code==="401"){
+              this.state.err = "Invalid Login"
+              window.alert(this.state.err)
+             // redirectVar = <Redirect to= "/login"/>
+          }
+          else if(localStorage.getItem('token') === "408"){
+              localStorage.removeItem("email")
+              localStorage.removeItem("token")
+              this.state.err = "Server not available, try again"
+             // redirectVar = <Redirect to= "/login"/>
+          }
+           //<p>Please enter your username and password</p>
+          else if (localStorage.getItem('token')) {
+              redirectVar = <Redirect 
+              to= {{
+                      pathname : '/applicant/applicantHome',
+                      state : {
+                          email : this.state.email,
+                          loginFlag : this.state.loginFlag
+                      }  
+              }} />
+              
+            //    this.props.history.push({
+            //   pathname : '/applicant/applicantHome',
+            //   state : {
+            //       username : this.state.email,
+            //       loginFlag : this.state.loginFlag
+            //   }
+            // })
+            console.log(this.state.email)
+            // console.log(this.state.loginFlag)
+            }
+  
+           
         
 
         
-          // {redirectVar} 
+          
 
         return(
-            <div style={{opacity:"1",zIndex:"1000",position:"absolute"}}>  
+            <div style={{opacity:"1",zIndex:"1000",position:"absolute"}}> 
+            {redirectVar}  
             <nav class="navbar navbar-light navbar-fixed-top" style={{backgroundColor:"#283e4a",height:"5%"}}>
                 <div class="container-fluid" >
                     <div class="navbar-header">
@@ -122,6 +160,8 @@ class LoginNavbar extends Component {
                     <div class="nav navbar-nav navbar-right navbar-brand">
                         <p style={{color:"white"}}>Forgot Password</p>
                     </div>
+
+                   
 
                     <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
 
@@ -173,7 +213,7 @@ function validate(values) {
   }
 
   function mapStateToProps(state) {
-    return { login: state.login };
+    return { loginApplicant: state.loginApplicant };
   }
 
 
