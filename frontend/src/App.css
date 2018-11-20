@@ -46,3 +46,45 @@
     transform: rotate(360deg);
   }
 }
+
+.divider {
+  width: 20px;
+  height: auto;
+  display: inline-block;
+}
+.profile-block-introduction {
+  background: #ffffff none repeat scroll 0 0;
+  border-radius: 1px;
+  margin: 10px auto 30px;
+  margin-top: 60px;
+  max-width: 1000px;
+  height: auto;
+  border: 1px solid grey;
+}
+.profile-block-experience {
+  background: #ffffff none repeat scroll 0 0;
+  border-radius: 1px;
+  margin: 10px auto 30px;
+  margin-top: -2px;
+  max-width: 1000px;
+  height: auto;
+
+  border: 1px solid grey;
+}
+
+.profile-block-skills {
+  background: #ffffff none repeat scroll 0 0;
+  border-radius: 1px;
+  margin: 10px auto 30px;
+  margin-top: -2px;
+  max-width: 1000px;
+  height: auto;
+
+  border: 1px solid grey;
+}
+
+.btn.btn-secondary.dropdown-toggle {
+  margin-top: 4px;
+  font-size: 17px;
+  font-weight: 500;
+}

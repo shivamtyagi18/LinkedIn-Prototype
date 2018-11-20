@@ -30,7 +30,7 @@ class Search extends Component {
             bedroom : false,
             guests : false,
         }  
-        this.propertyChangeHandler = this.propertyChangeHandler.bind(this);
+        this.propertyChangeHandler = this.jobsChangeHandler.bind(this);
        // this.handlePageChange = this.handlePageChange.bind(this);
         this.handlePriceFilter = this.handlePriceFilter.bind(this)
         this.handleGuestsFilter = this.handleGuestsFilter.bind(this)
@@ -71,7 +71,7 @@ class Search extends Component {
         console.log("Filter by bedrooms results")
     }
 
-    propertyChangeHandler = (e) => {
+    jobsChangeHandler = (e) => {
         this.setState({
             displayprop : e.target.dataset.attr,
         })
@@ -157,31 +157,32 @@ class Search extends Component {
     //        console.log("properties",this.props.property)
            
        
-    let details = [this.props.Jobs].map(job => {
+    let details = Object.keys(this.props.Jobs).map(job => {
+         var jobs=this.props.Jobs[job]
           // const imgurl = require(`../uploads/${property.img}`);
            // const imgurl1 = require(`../uploads/${property.img}`);            // const imgurl2 = require(`../uploads/${property.img}`);
            // const imgurl2 = `https://s3.us-east-2.amazonaws.com/homeawayuploads/${property.img}`;
-            console.log("jobs",job)
+            console.log("jobs",jobs)
             return( 
         <div>
             
-            <div class="row main-div-search1">
+            <div class="row">
                 <div class="col-sm-12">
 
-                <div class="col-sm-6">
-                    <div class="col-sm-12" style={{height:"60px",marginTop:"30px",marginBottom:"30px",marginLeft:"40px"}}>
-                        <td onClick={this.propertyChangeHandler} name="displayprop" data-attr={job.jobId} style={{fontSize:"35px",fontFamily:"Courier New",fontWeight:"550"}}>
-                        {job.jobId}
+                <div class="col-sm-10">
+                    <div class="col-sm-12" style={{height:"10%",marginTop:"10%"}}>
+                        <td onClick={this.jobsChangeHandler} name="displayprop" data-attr={jobs.jobId} style={{fontSize:"35px",fontFamily:"Courier New",fontWeight:"550"}}>
+                        {jobs.jobTitle}
                         </td>
                     </div>
-                    <div class="col-sm-12" style={{height:"200px",marginTop:"30px"}}>
-                    <div class="col-sm-3" ><div class="col-sm-12" style={{fontSize:"19px",fontWeight:"500",textAlign:"left"}}>{job.jobTitle} BR</div></div>
-                    <div class="col-sm-3" ><div class="col-sm-12" style={{fontSize:"19px",fontWeight:"500",textAlign:"left"}}>{job.jobTitle} BA</div></div>
-                    <div class="col-sm-3" ><div class="col-sm-12" style={{fontSize:"19px",fontWeight:"500",textAlign:"left"}}>Sleeps {job.jobTitle}</div></div>
+                    <div class="col-sm-12" style={{height:"10%"}}>
+                    <div class="col-sm-3" ><div class="col-sm-12" style={{fontSize:"2rem",fontWeight:"500",textAlign:"left"}}>{jobs.companyName}</div></div>
+                    <div class="col-sm-3" ><div class="col-sm-12" style={{fontSize:"2rem",fontWeight:"500",textAlign:"left"}}>{jobs.employmentType}</div></div>
+                    <div class="col-sm-3" ><div class="col-sm-12" style={{fontSize:"2rem",fontWeight:"500",textAlign:"left"}}>{jobs.postedOn}</div></div>
                     </div>
                     
-                    <div class="col-sm-12" style={{backgroundColor:"#eee",marginLeft:"40px"}}>
-                    <div class="col-sm-12" style={{fontSize:"26px",fontWeight:"500",textAlign:"left"}}> $ {job.jobTitle} per night</div>
+                    <div class="col-sm-12" style={{backgroundColor:"#eee",marginLeft:"10%"}}>
+                    <div class="col-sm-12" style={{fontSize:"2rem",fontWeight:"500",textAlign:"left"}}>{jobs.jobDescription}</div>
                     </div>
                     
                 </div>
@@ -212,15 +213,15 @@ class Search extends Component {
         let redirectVar = null;
 
           
-    //    if(this.state.displayprop!==""){
-    //         this.props.history.push({
-    //             pathname : '/property',
-    //             state : {
-    //                 displayprops : this.state.displayprop
-    //             }
+       if(this.state.displayprop!==""){
+            this.props.history.push({
+                pathname : '/property',
+                state : {
+                    displayprops : this.state.displayprop
+                }
 
-    //         })
-    //     }
+            })
+        }
 
         
        
