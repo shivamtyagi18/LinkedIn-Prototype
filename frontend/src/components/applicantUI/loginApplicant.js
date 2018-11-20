@@ -222,9 +222,9 @@ class LoginApplicant extends Component {
       );
     }
 
-    console.log("server error",this.props.createApplicant)
+   
 
-    if (this.props.createApplicant === "Error") {
+    if (this.props.createApplicant == "Error") {
       this.state.err = "Server not available, try again!!";
       console.log("server error",this.props.createApplicant)
       window.alert(this.state.err);

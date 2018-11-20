@@ -8,9 +8,8 @@ export default function(state = { error: false }, action) {
   switch (action.type) {
     //target
     case CREATEAPPLICANT:
-    if (action.payload.data !== undefined){
-      console.log(action.payload.data);
-
+    if (action.payload.data){
+      console.log("data received",action.payload.data);
       return action.payload.data;
     }else{
       return "Error";
