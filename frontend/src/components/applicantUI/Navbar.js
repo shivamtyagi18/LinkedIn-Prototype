@@ -9,6 +9,8 @@ import { connect } from "react-redux";
 import _ from "lodash";
 import { loginUser } from "../../actions";
 import { logoutUser } from "../../actions";
+import { tlogout } from "../../actions";
+
 
 
 
@@ -37,7 +39,10 @@ class Navbar extends Component {
     //handle logout to destroy the cookie
     handleLogout = () => {
         cookie.remove('cookie', { path: '/' })
-        this.props.logoutUser(); 
+        //this.props.logoutUser(); 
+        this.props.tlogout();
+        
+        
             
     }
     
@@ -121,10 +126,40 @@ class Navbar extends Component {
                     <div class="navbar-header">
                         <a class="navbar-brand" href="/"><img alt="LinkedIn logo" class="site-header-logo__img img-responsive" role="presentation" src="https://static.licdn.com/sc/h/95o6rrc5ws6mlw6wqzy0xgj7y"></img></a>
                     </div>
+
+                    
                     
                     {navLogin}
                     
-                    
+                    <div class="nav navbar-nav navbar-right navbar-brand">
+                       <Link to="/applicant/notifications">
+                       <p style={{ color: "white" }}>Notifications</p>
+                       </Link> 
+                    </div>
+
+                    <div class="nav navbar-nav navbar-right navbar-brand">
+                    <Link to="/applicant/messagin">
+                        <p style={{ color: "white" }}>Messaging</p>
+                    </Link>
+                    </div>
+
+                    <div class="nav navbar-nav navbar-right navbar-brand">
+                    <Link to="/applicant/jobs">
+                        <p style={{ color: "white" }}>Jobs</p>
+                    </Link>
+                    </div>
+
+                    <div class="nav navbar-nav navbar-right navbar-brand">
+                    <Link to="/applicant/myNetwork">
+                        <p style={{ color: "white" }}>My Network</p>
+                    </Link>
+                    </div>
+
+                    <div class="nav navbar-nav navbar-right navbar-brand">
+                    <Link to="/applicant/applicantHome">
+                    <svg viewBox="0 0 24 24" width="24px" height="24px" x="0" y="0" preserveAspectRatio="xMinYMin meet" class="nav-icon" focusable="false" style={{color:"white"}} xmlns="http://www.w3.org/2000/svg"><path d="M22,8.45L12.85,2.26a1.5,1.5,0,0,0-1.69,0L2,8.45,3.06,10,4,9.37V19a1,1,0,0,0,1,1h5V15h4v5h5a1,1,0,0,0,1-1V9.37L20.94,10Z" class="active-item" style={{fillOpacity: "1"}}></path><path d="M22,9.45L12.85,3.26a1.5,1.5,0,0,0-1.69,0L2,9.45,3.06,11,4,10.37V20a1,1,0,0,0,1,1h6V16h2v5h6a1,1,0,0,0,1-1V10.37L20.94,11ZM18,19H15V15a1,1,0,0,0-1-1H10a1,1,0,0,0-1,1v4H6V8.89l6-4,6,4V19Z" class="inactive-item" style={{fill:"currentColor"}}></path></svg>
+                    </Link>
+                    </div>
                       
                 </div>
             </nav>
@@ -137,5 +172,5 @@ class Navbar extends Component {
      return { login: state.login };
    }
   
-   export default connect(mapStateToProps, { loginUser, logoutUser })(Navbar);
+   export default connect(mapStateToProps, { loginUser, logoutUser,tlogout })(Navbar);
 //export default Navbar;

@@ -175,6 +175,29 @@ class LoginApplicant extends Component {
     );
   }
 
+  //Removes the error meeage when inputs are focussed
+  // handleFocus = () => {
+  //   this.setState({ error: false });
+  // };
+  //Call the Will Mount to set the auth Flag to false
+  // componentWillMount() {
+  //   this.setState({
+  //     authFlag: false
+  //   });
+  // }
+  // //email change handler to update state variable with the text entered by the user
+  // emailChangeHandler = e => {
+  //   this.setState({
+  //     email: e.target.value
+  //   });
+  // };
+  // //password change handler to update state variable with the text entered by the user
+  // passwordChangeHandler = e => {
+  //   this.setState({
+  //     password: e.target.value
+  //   });
+  // };
+
   submitlogin(values) {
     console.log(values);
     //this.props.tlogin(values);
@@ -193,7 +216,7 @@ class LoginApplicant extends Component {
     let redirect = null;
     let nav = <LoginNavbar navdata={this.props.navdata}/>
 
-    if (this.props.createApplicant.code === 200) {
+    if (this.props.register.code === 200) {
       redirect = (
         <Redirect
           to={{
@@ -203,9 +226,8 @@ class LoginApplicant extends Component {
       );
     }
 
-
     let errorMessage = null;
-    if (this.props.createApplicant.code === 402) {
+    if (this.props.register.code == 402) {
       errorMessage = (
         <div
           style={{
@@ -220,15 +242,6 @@ class LoginApplicant extends Component {
           <h5>User Already exists.</h5>
         </div>
       );
-    }
-
-   
-
-    if (this.props.createApplicant == "Error") {
-      this.state.err = "Server not available, try again!!";
-      console.log("server error",this.props.createApplicant)
-      window.alert(this.state.err);
-      // redirectVar = <Redirect to= "/login"/>
     }
 
     return (
@@ -358,6 +371,7 @@ class LoginApplicant extends Component {
   }
 }
 
+
 function validate(values) {
   const errors = {};
   if (!values.firstName) {
@@ -377,7 +391,7 @@ function validate(values) {
 
 function mapStateToProps(state) {
   return {
-    createApplicant: state.createApplicant
+    register: state.createApplicant
   };
 }
 export default reduxForm({
@@ -390,17 +404,4 @@ export default reduxForm({
   )(LoginApplicant)
 );
 
-// function mapStateToProps(state) {
-//   return {
-//     login: state.login
-//   };
-// }
-// export default reduxForm({
-//   validate,
-//   form: "Login",
-//   destroyOnUnmount: false,
-//   forceUnregisterOnUnmount: true,
-//   keepDirtyOnReinitialize: true
-// })(connect(mapStateToProps)(LoginRecruiter));
-//export Sign Up Component
-//export default Login;
+

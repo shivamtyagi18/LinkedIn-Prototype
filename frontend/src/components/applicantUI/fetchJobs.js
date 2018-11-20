@@ -30,7 +30,7 @@ class Search extends Component {
             bedroom : false,
             guests : false,
         }  
-        this.propertyChangeHandler = this.jobsChangeHandler.bind(this);
+        this.jobsChangeHandler = this.jobsChangeHandler.bind(this);
        // this.handlePageChange = this.handlePageChange.bind(this);
         this.handlePriceFilter = this.handlePriceFilter.bind(this)
         this.handleGuestsFilter = this.handleGuestsFilter.bind(this)
@@ -92,8 +92,6 @@ class Search extends Component {
         this.props.fetchJobs();             
     }
 
-    
-
     render(){
         //let finalProperty = null;
         let nav = <Navbar navdata={this.props.navdata}/>
@@ -106,57 +104,8 @@ class Search extends Component {
         
         const No_of_Results = Object.keys(this.props.Jobs).map(Jobs => this.props.Jobs[Jobs])  //pagination
         this.state.total = No_of_Results.length
-        console.log("total",this.state.total) 
-
-        // if(!this.state.price && !this.state.bedrooms && !this.state.guests){
-            
-            //  var Jobs = Object.keys(this.props.Jobs).map(Jobs => this.props.Jobs[Jobs]).slice(0,5);    //pagination
-            //  finalJobs = this.state.Per_page_Jobs.length !== 0 ? this.state.Per_page_Property : properties; 
-        // }
-
-       
-        
-        // if(this.state.price){
-
-        //     const properties_sort_price = Object.keys(this.props.property).map(property => this.props.property[property]).sort(function(a, b) {
-        //         var priceA = a.price; // ignore upper and lowercase
-        //         var priceB = b.price;
-        //         // var nameA = a.name.toUpperCase(); // ignore upper and lowercase
-        //         // var nameB = b.name.toUpperCase(); // ignore upper and lowercase
-        //         // if (nameA < nameB) {
-        //         //   return -1;
-        //         // }
-        //         // if (nameA > nameB) {
-        //         //   return 1;
-        //         // }
-    
-        //         if (priceA < priceB) {
-        //               return -1;
-        //             }
-        //             if (priceA > priceB) {
-        //               return 1;
-        //             }
-              
-        //         // names must be equal
-        //         return 0;
-        //       });    //pagination
-        //       console.log("sorted properties by price", this.state.price,properties_sort_price)
-        //       properties = properties_sort_price.slice(0,5);
-        //       console.log("sorted properties by price", properties)
-        //       finalProperty = this.state.Per_page_Property.length !== 0 ? this.state.Per_page_Property : properties; 
-              
-        // }
-        
-
-    //     let finalProperty = this.state.Per_page_Property.length !== 0 ? this.state.Per_page_Property : properties;   //pagination
-        
-    //    <td><button style={{backgroundColor:"#0067db",borderColor:"#0067db",fontSize:"18px"}} class="btn btn-primary button-search">Open</button></td>
-    //   console.log("final jobs",finalJobs)
-       
-    //   let details= _.map(finalProperty,property => { 
-    //        console.log("properties",this.props.property)
+        console.log("total--",this.state.total);
            
-       
     let details = Object.keys(this.props.Jobs).map(job => {
          var jobs=this.props.Jobs[job]
           // const imgurl = require(`../uploads/${property.img}`);
@@ -213,15 +162,15 @@ class Search extends Component {
         let redirectVar = null;
 
           
-       if(this.state.displayprop!==""){
-            this.props.history.push({
-                pathname : '/property',
-                state : {
-                    displayprops : this.state.displayprop
-                }
+    //    if(this.state.displayprop!==""){
+    //         this.props.history.push({
+    //             pathname : '/property',
+    //             state : {
+    //                 displayprops : this.state.displayprop
+    //             }
 
-            })
-        }
+    //         })
+    //     }
 
         
        
@@ -269,4 +218,3 @@ function mapStateToProps(state) {
   }
   
   export default connect(mapStateToProps, { fetchJobs })(Search);
-//export default Search;
