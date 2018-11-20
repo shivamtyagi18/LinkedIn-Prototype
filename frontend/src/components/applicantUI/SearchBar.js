@@ -10,6 +10,7 @@ import { connect } from "react-redux";
 import _ from "lodash";
 import { loginUser } from "../../actions";
 import { logoutUser } from "../../actions";
+import { searchJobs } from "../../actions";
 import { Field, reduxForm } from "redux-form";
 
 
@@ -70,8 +71,10 @@ class SearchBar extends Component {
 
       onSubmit(values) {
         console.log("search data",values);
-        this.props.loginUser(values, () => {
+        this.props.searchJobs(values, () => {
            //this.props.history.push("/applicant/applicantHome");
+          this.props.history.push("/applicant/fetchJobs");
+          //window.location.href="/applicant/fetchJobs";
           // window.location.reload(1); //refreshes the page so redux state is lost
            console.log("tested")
          });
@@ -105,7 +108,7 @@ class SearchBar extends Component {
                     <button class="btn btn-primary" style={{backgroundColor:"transparent",borderColor:"white",fontSize:"18px"}}>Search</button>
                     </div>
 
-                    <div class="col-sm-5" style={{marginTop:"2%"}}>
+                    <div class="col-sm-4" style={{marginTop:"2%"}}>
                     <Field
                     name="location"
                     component={this.renderFieldLocation}
@@ -113,7 +116,7 @@ class SearchBar extends Component {
                     />
                     </div>
 
-                    <div class="col-sm-5" style={{marginTop:"2%"}}>
+                    <div class="col-sm-4" style={{marginTop:"2%"}}>
                     <Field
                     name="jobtitle"
                     component={this.renderFieldTitle}
@@ -157,7 +160,7 @@ function validate(values) {
 export default reduxForm({
     validate,
     form: "NewLoginForm"
-  })(connect(mapStateToProps, { loginUser, logoutUser })(SearchBar));
+  })(connect(mapStateToProps, { loginUser, logoutUser, searchJobs })(SearchBar));
  
   
 //export default connect(mapStateToProps, { loginUser, logoutUser })(LoginNavbar);

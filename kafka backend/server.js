@@ -12,6 +12,9 @@ var connectionAccept = require("./services/applicantKafka/connections");
 var userUpdate = require("./services/applicantKafka/userupdate");
 var profileViews = require("./services/applicantKafka/profileViews");
 var clickCounts = require("./services/applicantKafka/clickCounts");
+var getprofile = require("./services/applicantKafka/getprofile");
+
+
 
 var addRecruiter = require("./services/recruiterKafka/addRecruiter");
 var addJob = require("./services/recruiterKafka/addJob");
@@ -65,6 +68,7 @@ handleTopicRequest("savejob_topic", saveJob);
 handleTopicRequest("viewconnections_topic", viewConnections);
 handleTopicRequest("profileviews_topic", profileViews);
 handleTopicRequest("clickcounts_topic", clickCounts);
+handleTopicRequest("getprofile_topic", getprofile);
 
 handleTopicRequest("addRecruiter_topic", addRecruiter);
 handleTopicRequest("addJob_topic", addJob);

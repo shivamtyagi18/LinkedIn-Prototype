@@ -10,10 +10,13 @@ import LoginRecruiter from "./recruiterUI/loginRecruiter";
 
 import LoginApplicant from "./applicantUI/loginApplicant";
 import ApplicantHome from "./applicantUI/Home"
+import FetchJobs from "./applicantUI/fetchJobs"
+import ProfilePage from "./applicantUI/profilePage"
 
 import RootReducer from "../reducers";
 
 import promise from "redux-promise";
+
 
 // //middleware settings
 // // To resolve promise to store we use apply
@@ -50,6 +53,18 @@ class Main extends Component {
         exact
         path="/applicant/applicantHome"
         component={ApplicantHome}
+      />
+
+      <Route
+        exact
+        path="/applicant/fetchJobs"
+        component={FetchJobs}
+      />
+
+      <Route
+        exact
+        path="/applicant/profile/getprofile"
+        component={ProfilePage}
       />
         </div>
       </Provider>

@@ -13,6 +13,8 @@ import ADDRECRUITERREDUCER from "./addRecruiter";
 import CREATEAPPLICANT from "./createApplicant";
 import LoginApplicantReducer from "./applicantLogin";
 import LoginRecruiterReducer from "./loginRecruiter";
+import SearchJobsReducer from "./searchJobs";
+import FetchJobsReducer from "./fetchJobs";
 
 const mainReducer = combineReducers({
   form: formReducer,
@@ -27,7 +29,9 @@ const mainReducer = combineReducers({
   addRecruiter: ADDRECRUITERREDUCER,
   createApplicant: CREATEAPPLICANT,
   loginApplicant: LoginApplicantReducer,
-  loginRecruiter: LoginRecruiterReducer
+  loginRecruiter: LoginRecruiterReducer,
+  searchJobs : SearchJobsReducer,
+  fetchJobs : FetchJobsReducer
 });
 
 const rootReducer = (state, action) => {

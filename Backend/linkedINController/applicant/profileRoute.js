@@ -224,7 +224,7 @@ app.get("/profileViews/:email", function(req, res) {
           res.writeHead(200, {
             "Content-Type": "application/json"
           });
-          console.log(JSON.stringify("value",result.value));
+          console.log(JSON.stringify("value", result.value));
           res.end(JSON.stringify(result.value));
 
           // done(null, { results: results.value });
@@ -239,11 +239,41 @@ app.get("/profileViews/:email", function(req, res) {
 
 app.put("/clickCounts/:email", function(req, res) {
   console.log("Inside Click Count Post Request");
-  //console.log("Req Body : ", username + "password : ",password);
-  console.log("Req Body : ", req.body);
   console.log("Req Params : ", req.params);
   kafka.make_request(
     "clickcounts_topic",
+    {
+      email: req.params.email
+    },
+    function(err, result) {
+      console.log("in result");
+      // console.log(res, err);
+      if (err) {
+        res.sendStatus(400).end();
+      } else {
+        if (result.code == 200) {
+          console.log(result);
+          res.writeHead(200, {
+            "Content-Type": "application/json"
+          });
+          console.log(JSON.stringify(result.value));
+          res.end(JSON.stringify(result.value));
+
+          // done(null, { results: results.value });
+        } else {
+          console.log("fail");
+          //done(null, false, { message: results.value });
+        }
+      }
+    }
+  );
+});
+
+app.get("/getprofile/:email", function(req, res) {
+  console.log("Inside get profile get Request");
+  console.log("Req Params : ", req.params);
+  kafka.make_request(
+    "getprofile_topic",
     {
       email: req.params.email
     },
