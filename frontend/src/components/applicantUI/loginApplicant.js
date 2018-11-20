@@ -175,29 +175,6 @@ class LoginApplicant extends Component {
     );
   }
 
-  //Removes the error meeage when inputs are focussed
-  // handleFocus = () => {
-  //   this.setState({ error: false });
-  // };
-  //Call the Will Mount to set the auth Flag to false
-  // componentWillMount() {
-  //   this.setState({
-  //     authFlag: false
-  //   });
-  // }
-  // //email change handler to update state variable with the text entered by the user
-  // emailChangeHandler = e => {
-  //   this.setState({
-  //     email: e.target.value
-  //   });
-  // };
-  // //password change handler to update state variable with the text entered by the user
-  // passwordChangeHandler = e => {
-  //   this.setState({
-  //     password: e.target.value
-  //   });
-  // };
-
   submitlogin(values) {
     console.log(values);
     //this.props.tlogin(values);
@@ -216,7 +193,7 @@ class LoginApplicant extends Component {
     let redirect = null;
     let nav = <LoginNavbar navdata={this.props.navdata}/>
 
-    if (this.props.register.code === 200) {
+    if (this.props.createApplicant.code === 200) {
       redirect = (
         <Redirect
           to={{
@@ -225,8 +202,10 @@ class LoginApplicant extends Component {
         />
       );
     }
+
+
     let errorMessage = null;
-    if (this.props.register.code == 402) {
+    if (this.props.createApplicant.code === 402) {
       errorMessage = (
         <div
           style={{
@@ -241,6 +220,15 @@ class LoginApplicant extends Component {
           <h5>User Already exists.</h5>
         </div>
       );
+    }
+
+    console.log("server error",this.props.createApplicant)
+
+    if (this.props.createApplicant === "Error") {
+      this.state.err = "Server not available, try again!!";
+      console.log("server error",this.props.createApplicant)
+      window.alert(this.state.err);
+      // redirectVar = <Redirect to= "/login"/>
     }
 
     return (
@@ -370,182 +358,6 @@ class LoginApplicant extends Component {
   }
 }
 
-//   render() {
-//     console.log(this.props.login);
-//     const { handleSubmit } = this.props;
-
-//     //redirect based on successful login
-//     let redirectVar = null;
-//     if (this.props.login.code == 200 && localStorage.getItem("email")) {
-//       redirectVar = (
-//         <Redirect
-//           to={{
-//             pathname: "/"
-//           }}
-//         />
-//       );
-//     }
-//     let errorMessage = null;
-//     if (this.props.login.code == 401) {
-//       errorMessage = (
-//         <div
-//           style={{
-//             backgroundColor: "orange",
-//             fontSize: "12px",
-//             color: "white",
-//             textAlign: "center",
-//             padding: "6px"
-//           }}
-//         >
-//           <h5>The username or password you entered is incorrect.</h5>
-//         </div>
-//       );
-//     }
-//     if (this.props.login.code == 404) {
-//       errorMessage = (
-//         <div
-//           style={{
-//             backgroundColor: "orange",
-//             fontSize: "12px",
-//             color: "white",
-//             textAlign: "center",
-//             padding: "6px"
-//           }}
-//         >
-//           <h5>User does not exist</h5>
-//         </div>
-//       );
-//     }
-//     return (
-//       <React.Fragment>
-//         <body id="login">
-//           <div>
-//             {redirectVar}
-
-//             <NavLoginApplicant navdata={this.props.navdata} />
-//             <div
-//               class="container-fluid"
-//               style={{
-//                 backgroundColor: "#dfdfdf",
-//                 WebkitBoxShadow:
-//                   "0 1px 1px rgba(0,0,0,0.15), -1px 0 0 rgba(0,0,0,0.03), 1px 0 0 rgba(0,0,0,0.03)"
-//               }}
-//             >
-//               <div class="login-top">
-//                 <h4
-//                   style={{
-//                     textAlign: "left",
-//                     color: "#333333",
-//                     fontWeight: "bold",
-//                     fontSize: "18px",
-//                     marginTop: "50px",
-//                     marginLeft: "27%"
-//                   }}
-//                 >
-//                   Sign in to LinkedIn Recruiter
-//                 </h4>
-
-//                 <span>
-//                   <hr style={{ margin: "0px", color: "grey" }} />
-//                 </span>
-//                 <br />
-//               </div>
-//               <div
-//                 className="text-center"
-//                 style={{
-//                   marginTop: "20px",
-
-//                   width: "35%",
-//                   marginLeft: "30%",
-//                   height: "auto",
-//                   backgroundColor: "white",
-//                   borderRadius: "8px"
-//                 }}
-//               >
-//                 <div>{errorMessage}</div>
-//                 <form onSubmit={handleSubmit(this.submitlogin.bind(this))}>
-//                   <Field
-//                     name="email"
-//                     placeholder="Email Address"
-//                     component={this.renderField}
-//                   />
-//                   <Field
-//                     name="password"
-//                     placeholder="Password"
-//                     component={this.renderField1}
-//                   />
-//                    <div class="form-group">
-//                       <input
-//                         type="text"
-//                         class="form-control"
-//                         name="email"
-//                         placeholder="email"
-//                         onChange={this.emailChangeHandler}
-//                         onFocus={this.handleFocus}
-//                         required
-//                       />
-//                       <br />
-//                       <input
-//                         type="password"
-//                         class="form-control"
-//                         name="password"
-//                         placeholder="Password"
-//                         onFocus={this.handleFocus}
-//                         onChange={this.passwordChangeHandler}
-//                       />
-//                     </div> 
-//                   <button
-//                     class="btn btn-primary"
-//                     style={{
-//                       fontWeight: "bold",
-//                       borderWidth: "1px",
-//                       borderStyle: "solid",
-//                       cursor: "pointer",
-//                       color: "white",
-//                       textAlign: "center",
-//                       textShadow: "0 1px 1px rgba(0,0,0,0.35)",
-//                       height: "auto",
-//                       width: "90%"
-//                       //  backgroundColor: "#3b7392"
-//                     }}
-//                   >
-//                     Log In
-//                   </button>
-//                   <br />
-//                   <h4
-//                     style={{
-//                       marginTop: "20px",
-//                       color: "#286695",
-//                       paddingBottom: "10px"
-//                     }}
-//                   >
-//                     {" "}
-//                     <span style={{ color: "black" }}> New to Linkedin? </span>
-//                     <Link to="/recruiter/addRecruiter">Sign Up</Link>
-//                   </h4>
-//                 </form>
-//               </div>
-//               <div
-//                 style={{
-//                   marginTop: "30px",
-//                   marginLeft: "20%",
-//                   marginBottom: "400px"
-//                 }}
-//               >
-//                 By using this site, you agree to LinkedIn's{" "}
-//                 <a href="">terms of use.</a>
-//                 Commercial use of this site without express authorization is
-//                 prohibited.
-//               </div>
-//               .
-//             </div>
-//           </div>
-//         </body>
-//       </React.Fragment>
-//     );
-//   }
-// }
-
 function validate(values) {
   const errors = {};
   if (!values.firstName) {
@@ -565,7 +377,7 @@ function validate(values) {
 
 function mapStateToProps(state) {
   return {
-    register: state.createApplicant
+    createApplicant: state.createApplicant
   };
 }
 export default reduxForm({
