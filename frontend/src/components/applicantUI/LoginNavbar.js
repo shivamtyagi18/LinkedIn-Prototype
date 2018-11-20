@@ -126,10 +126,12 @@ class LoginNavbar extends Component {
     if (this.props.loginApplicant.code == "401") {
       this.state.err = "Invalid Login";
       window.alert(this.state.err);
+      window.location.reload(1)
       // redirectVar = <Redirect to= "/login"/>
     } else if (this.props.loginApplicant == "Error") {
       this.state.err = "Server not available, try again!!";
       window.alert(this.state.err);
+      window.location.reload(1)
       // redirectVar = <Redirect to= "/login"/>
     }
     //<p>Please enter your username and password</p>
