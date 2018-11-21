@@ -2,7 +2,7 @@ const express = require("express");
 var kafka = require("../../kafka/client");
 var app = express.Router();
 
-
+var JobStore = [];
 app.post("/jobsearch", function(req, res) {
   console.log("Inside search post request");
   console.log("Search Criteria from user", req.body);
@@ -29,7 +29,8 @@ app.post("/jobsearch", function(req, res) {
           }
 
           // console.log("property store:", PropertyStore);
-           res.redirect("/applicant/search/searchresult");
+           //res.redirect("/applicant/search/searchresult");
+           res.end(JSON.stringify(JobStore));
           console.log("redirect successful");
           // done(null, { results: results.value });
         } else {
@@ -41,7 +42,7 @@ app.post("/jobsearch", function(req, res) {
   );
 });
 
-app.get("/searchresult", function(req, res) {
+app.get("/fetchJobs", function(req, res) {
   console.log("Results found");
   res.writeHead(200, {
     "Content-Type": "application/json"

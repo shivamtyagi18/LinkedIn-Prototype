@@ -88,7 +88,7 @@ app.post("/loginApplicant", function(req, res) {
 
 
 app.post("/registerApplicant", function(req, res) {
-  console.log("Inside Register Post Request");
+  console.log("Inside Register Applicant Post Request");
   console.log(req.body);
   kafka.make_request(
     "registerapplicant_topic",
@@ -113,7 +113,7 @@ app.post("/registerApplicant", function(req, res) {
           });
           console.log("successful user registered");
           // done(null, { results: results.value });
-        } else if (result.code == 404) {
+        } else if (result.code == 402) {
           res.json({
             success: false,
             code: result.code
