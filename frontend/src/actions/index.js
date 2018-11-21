@@ -132,6 +132,23 @@ export function fetchJobs() {
   };
 }
 
+export function tlogout() {
+  //middleware call
+  //receive response from backend
+  // localStorage.removeItem("name");
+  // localStorage.removeItem("type");
+  localStorage.removeItem("email");
+  localStorage.removeItem("token");
+  window.location.reload(1);
+
+  //Action dispatched
+  //console.log("Request", request);
+  return {
+    type: TLOGOUT,
+    payload: null
+  };
+}
+
 //----------------------------------------------------------------------------------//
 
 export function loginRecruiter(values, callback) {
@@ -258,22 +275,7 @@ export function fetchTravelDashboard(values, callback) {
   };
 }
 
-export function tlogout() {
-  //middleware call
-  //receive response from backend
-  localStorage.removeItem("name");
-  localStorage.removeItem("type");
-  localStorage.removeItem("email");
-  localStorage.removeItem("token");
-  window.location.reload(1);
 
-  //Action dispatched
-  //console.log("Request", request);
-  return {
-    type: TLOGOUT,
-    payload: null
-  };
-}
 
 export function booking(values, callback) {
   //middleware call

@@ -31,7 +31,7 @@ const mainReducer = combineReducers({
   loginApplicant: LoginApplicantReducer,
   loginRecruiter: LoginRecruiterReducer,
   searchJobs : SearchJobsReducer,
-  fetchJobs : FetchJobsReducer
+  Jobs : FetchJobsReducer
 });
 
 const rootReducer = (state, action) => {

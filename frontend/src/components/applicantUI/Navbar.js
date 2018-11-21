@@ -9,6 +9,8 @@ import { connect } from "react-redux";
 import _ from "lodash";
 import { loginUser } from "../../actions";
 import { logoutUser } from "../../actions";
+import { tlogout } from "../../actions";
+
 
 
 
@@ -37,7 +39,10 @@ class Navbar extends Component {
     //handle logout to destroy the cookie
     handleLogout = () => {
         cookie.remove('cookie', { path: '/' })
-        this.props.logoutUser(); 
+        //this.props.logoutUser(); 
+        this.props.tlogout();
+        
+        
             
     }
     
@@ -167,5 +172,5 @@ class Navbar extends Component {
      return { login: state.login };
    }
   
-   export default connect(mapStateToProps, { loginUser, logoutUser })(Navbar);
+   export default connect(mapStateToProps, { loginUser, logoutUser,tlogout })(Navbar);
 //export default Navbar;

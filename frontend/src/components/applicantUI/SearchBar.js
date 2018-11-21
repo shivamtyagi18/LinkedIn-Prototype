@@ -9,7 +9,6 @@ import { SplitButton,DropdownButton, MenuItem, Button, Image } from 'react-boots
 import { connect } from "react-redux";
 import _ from "lodash";
 import { loginUser } from "../../actions";
-import { logoutUser } from "../../actions";
 import { searchJobs } from "../../actions";
 import { Field, reduxForm } from "redux-form";
 
@@ -73,8 +72,8 @@ class SearchBar extends Component {
         console.log("search data",values);
         this.props.searchJobs(values, () => {
            //this.props.history.push("/applicant/applicantHome");
-          this.props.history.push("/applicant/fetchJobs");
-          //window.location.href="/applicant/fetchJobs";
+         // this.props.history.push("/applicant/fetchJobs");
+          window.location.href="/applicant/fetchJobs";
           // window.location.reload(1); //refreshes the page so redux state is lost
            console.log("tested")
          });
@@ -160,7 +159,7 @@ function validate(values) {
 export default reduxForm({
     validate,
     form: "NewLoginForm"
-  })(connect(mapStateToProps, { loginUser, logoutUser, searchJobs })(SearchBar));
+  })(connect(mapStateToProps, { loginUser, searchJobs })(SearchBar));
  
   
 //export default connect(mapStateToProps, { loginUser, logoutUser })(LoginNavbar);

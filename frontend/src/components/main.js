@@ -51,6 +51,12 @@ class Main extends Component {
 
         <Route
         exact
+        path="/"
+        component={LoginApplicant}
+      />
+
+        <Route
+        exact
         path="/applicant/applicantHome"
         component={ApplicantHome}
       />
