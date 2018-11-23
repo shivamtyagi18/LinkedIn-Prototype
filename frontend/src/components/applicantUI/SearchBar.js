@@ -96,7 +96,7 @@ class SearchBar extends Component {
             let redirectVar = null;
 
         return(
-            <div style={{backgroundColor:"#498dc5",marginTop:"4%",height:"0%"}}> 
+            <div style={{backgroundColor:"#5c6f7c",marginTop:"4%",height:"0%"}}> 
             {redirectVar}  
 
                     <div className="navbar" >

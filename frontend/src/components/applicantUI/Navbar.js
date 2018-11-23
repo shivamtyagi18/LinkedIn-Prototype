@@ -75,7 +75,7 @@ class Navbar extends Component {
                         <DropdownButton title={this.state.email} style={{backgroundColor:"transparent",font:"50%",color:"white",marginTop:"0px"}} >
                             <MenuItem eventKey="1" ><Link to="/mytrips">My Trips</Link></MenuItem>
                             <MenuItem divider />
-                            <MenuItem eventKey="2"><Link to="/userdisplay">My Profile</Link></MenuItem>
+                            <MenuItem eventKey="2"><Link to="/applicant/profile/getprofile">My Profile</Link></MenuItem>
                             <MenuItem divider />
                             <MenuItem eventKey="3" ><Link to="/account">Account</Link></MenuItem>
                             <MenuItem divider />

@@ -12,7 +12,7 @@ import { SplitButton,DropdownButton, MenuItem, Button, Image } from 'react-boots
 
 import Pagination from "../Pagination"  //pagination
 //import Footbar from '../LandingPage/Footbar';
-
+var moment = require("moment");
 
 class Search extends Component {
 
@@ -98,7 +98,9 @@ class Search extends Component {
        // let foot = <Footbar footrender={this.props.footrender}/>
 
        // const { page, total, Per_page_Jobs } = this.state;  //pagination
-
+       var date=moment().toDate();
+       date = new Date()
+      
         
         console.log("total 1",this.props.Jobs) 
         
@@ -108,30 +110,62 @@ class Search extends Component {
            
     let details = Object.keys(this.props.Jobs).map(job => {
          var jobs=this.props.Jobs[job]
+         var temp_date = new Date(jobs.postedOn)
+         var posted_date = temp_date.getDate()+1
+         var current_date = date.getDate()+1
+         var weeks = (current_date-posted_date)/7
           // const imgurl = require(`../uploads/${property.img}`);
            // const imgurl1 = require(`../uploads/${property.img}`);            // const imgurl2 = require(`../uploads/${property.img}`);
-           // const imgurl2 = `https://s3.us-east-2.amazonaws.com/homeawayuploads/${property.img}`;
+           const imgurl2 = `https://s3.us-east-2.amazonaws.com/homeawayuploads/noproperty`;
             console.log("jobs",jobs)
             return( 
         <div>
             
-            <div class="row">
-                <div class="col-sm-12">
-
+            <div class="row col-sm-7">
+                <div class="col-sm-4">
+                    <div><img src={imgurl2} width="100%"></img></div>
+                </div>
+                <div class="col-sm-8">
                 <div class="col-sm-10">
-                    <div class="col-sm-12" style={{height:"10%",marginTop:"10%"}}>
-                        <td onClick={this.jobsChangeHandler} name="displayprop" data-attr={jobs.jobId} style={{fontSize:"35px",fontFamily:"Courier New",fontWeight:"550"}}>
+                   
+                    <div class="col-sm-12" style={{fontSize:"2.2rem",fontWeight:"500",textAlign:"left"}}>{jobs.jobTitle}</div>
+                    
+                    <div class="col-sm-12">
+                        <div class="col-sm-4" ><div class="col-sm-12" style={{fontSize:"2rem",fontWeight:"500",textAlign:"left"}}>{jobs.companyName}</div></div>
+                        <div class="col-sm-4" ><div class="col-sm-12" style={{fontSize:"2rem",fontWeight:"500",textAlign:"left"}}>{jobs.location}</div></div>
+                        <div class="col-sm-4" ><div class="col-sm-12" style={{fontSize:"2rem",fontWeight:"500",textAlign:"left"}}>{jobs.jobFunction}</div></div>
+                    </div>
+                    
+                </div>
+               
+              
+                </div>
+            </div>
+
+            <div class="row col-sm-5">
+                <div class="col-sm-12">
+                <div class="col-sm-10">
+                <div class="col-sm-12" style={{height:"10%",marginTop:"10%"}}>
+                        <td name="displayprop" data-attr={jobs.jobId} style={{fontSize:"2rem",fontFamily:"Courier New",fontWeight:"550"}}>
                         {jobs.jobTitle}
                         </td>
                     </div>
+
                     <div class="col-sm-12" style={{height:"10%"}}>
-                    <div class="col-sm-3" ><div class="col-sm-12" style={{fontSize:"2rem",fontWeight:"500",textAlign:"left"}}>{jobs.companyName}</div></div>
-                    <div class="col-sm-3" ><div class="col-sm-12" style={{fontSize:"2rem",fontWeight:"500",textAlign:"left"}}>{jobs.employmentType}</div></div>
-                    <div class="col-sm-3" ><div class="col-sm-12" style={{fontSize:"2rem",fontWeight:"500",textAlign:"left"}}>{jobs.postedOn}</div></div>
+                    <div class="col-sm-12" ><div class="col-sm-12" style={{fontSize:"1.5rem",fontWeight:"500",textAlign:"left"}}>{jobs.companyName}.{jobs.location}.USA</div></div>
+                    </div>
+                    <div class="col-sm-12" style={{height:"10%"}}>
+                    <div class="col-sm-12" ><div class="col-sm-12" style={{fontSize:"1.5rem",fontWeight:"500",textAlign:"left"}}>Posted {weeks} weeks ago</div></div>
                     </div>
                     
                     <div class="col-sm-12" style={{backgroundColor:"#eee",marginLeft:"10%"}}>
-                    <div class="col-sm-12" style={{fontSize:"2rem",fontWeight:"500",textAlign:"left"}}>{jobs.jobDescription}</div>
+                    <div class="col-sm-12" style={{fontSize:"1.5rem",fontWeight:"500",textAlign:"left"}}>{jobs.jobDescription}</div>
+                    </div>
+
+                    <div class="col-sm-12" style={{height:"10%",marginTop:"10%"}}>
+                        <td onClick={this.jobsChangeHandler} name="displayprop" data-attr={jobs.jobId} style={{fontSize:"2rem",fontFamily:"Courier New",fontWeight:"550"}}>
+                            <button class="btn" style={{backgroundColor:"#0073b1",color:"white",fontSize:"1.5rem"}}>To Save, Apply & Easy Apply</button>
+                        </td>
                     </div>
                     
                 </div>
@@ -144,33 +178,18 @@ class Search extends Component {
     
             )
         })
-
-        // let filter = null;
-
-        // filter = (
-        //     <ul class="nav navbar-nav navbar-right navbar-brand" style={{marginTop:"20px"}}>
-        //     <DropdownButton title="Filter by" style={{backgroundColor:"transparent",font:"80%",color:"blue",marginTop:"0px"}} >
-        //         <MenuItem eventKey="1" onClick={this.handlePriceFilter}>Price</MenuItem>
-        //         <MenuItem divider />
-        //         <MenuItem eventKey="2" onClick={this.handleGuestsFilter}>Guests</MenuItem>
-        //         <MenuItem divider />
-        //         <MenuItem eventKey="3" onClick={this.handleBedroomsFilter}>Bedrooms</MenuItem>
-        //     </DropdownButton>
-        //     </ul>
-        // )
-
         let redirectVar = null;
 
           
-    //    if(this.state.displayprop!==""){
-    //         this.props.history.push({
-    //             pathname : '/property',
-    //             state : {
-    //                 displayprops : this.state.displayprop
-    //             }
+       if(this.state.displayprop!==""){
+            this.props.history.push({
+                pathname : '/applicant/job',
+                state : {
+                    displayprops : this.state.displayprop
+                }
 
-    //         })
-    //     }
+            })
+        }
 
         
        
@@ -183,10 +202,12 @@ class Search extends Component {
             {nav}
             
 
-            <div style={{marginLeft:"30px",marginTop:"100px",backgroundColor:"#eee"}}>
+            <div style={{marginLeft:"30px",marginTop:"100px",backgroundColor:"white"}}>
             {/*filter*/}     
             <p style={{fontSize:"30px",fontFamily:"Lato, Roboto !important"}}>
                     Total {this.state.total} Jobs found</p>
+
+
                 
                 <div>
                         <tbody>
