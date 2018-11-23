@@ -16,7 +16,7 @@ class ProfilePage extends Component {
   //WARNING! To be deprecated in React v17. Use componentDidMount instead.
   componentWillMount() {
     const data = {
-      email: "brarjasnoor1@gmail.com"
+      email: localStorage.getItem("email")
     };
     axios
       .get(`http://localhost:3001/applicant/profile/getprofile/${data.email}`)

@@ -12,6 +12,7 @@ import LoginApplicant from "./applicantUI/loginApplicant";
 import ApplicantHome from "./applicantUI/Home"
 import FetchJobs from "./applicantUI/fetchJobs"
 import ProfilePage from "./applicantUI/profilePage"
+import JobPage from "./applicantUI/JobPage"
 
 import RootReducer from "../reducers";
 
@@ -71,6 +72,12 @@ class Main extends Component {
         exact
         path="/applicant/profile/getprofile"
         component={ProfilePage}
+      />
+
+      <Route
+        exact
+        path="/applicant/job"
+        component={JobPage}
       />
         </div>
       </Provider>
