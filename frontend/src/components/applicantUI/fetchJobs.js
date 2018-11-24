@@ -115,8 +115,9 @@ class Search extends Component {
          var current_date = date.getDate()+1
          var weeks = (current_date-posted_date)/7
           // const imgurl = require(`../uploads/${property.img}`);
-           // const imgurl1 = require(`../uploads/${property.img}`);            // const imgurl2 = require(`../uploads/${property.img}`);
-           const imgurl2 = `https://s3.us-east-2.amazonaws.com/homeawayuploads/noproperty`;
+           // const imgurl1 = require(`../uploads/${property.img}`);            
+           // const imgurl2 = require(`../uploads/${property.img}`);
+                 const imgurl2 = `https://s3.us-east-2.amazonaws.com/homeawayuploads/noproperty`;
             console.log("jobs",jobs)
             return( 
         <div>
@@ -183,7 +184,7 @@ class Search extends Component {
           
        if(this.state.displayprop!==""){
             this.props.history.push({
-                pathname : '/applicant/job',
+                pathname : '/applicantion/job',
                 state : {
                     displayprops : this.state.displayprop
                 }
