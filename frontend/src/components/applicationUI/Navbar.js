@@ -102,7 +102,17 @@ class Navbar extends Component {
             )
         }
 
-       
+        help = (
+            <ul class="nav navbar-nav navbar-right navbar-brand" style={{marginTop:"20px"}}>
+            <DropdownButton title="Help" style={{backgroundColor:"transparent",font:"50%",color:"white",marginTop:"0px"}} >
+                <MenuItem eventKey="1" ><Link to="/help">Traveller Help</Link></MenuItem>
+                <MenuItem divider />
+                <MenuItem eventKey="2"><Link to="/help">Owner Help</Link></MenuItem>
+                <MenuItem divider />
+                <MenuItem eventKey="5" onClick={this.handleLogout}><Link to="/">Logout</Link></MenuItem>
+            </DropdownButton>
+            </ul>
+        )
         
 
         
@@ -140,7 +150,7 @@ class Navbar extends Component {
                     </div>
 
                     <div class="nav navbar-nav navbar-right navbar-brand">
-                    <Link to="/applicant/profile/viewConnections">
+                    <Link to="/applicant/myNetwork">
                         <p style={{ color: "white" }}>My Network</p>
                     </Link>
                     </div>

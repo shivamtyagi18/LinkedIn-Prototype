@@ -17,6 +17,14 @@ export const CREATEAPPLICANT = "create_applicant";
 export const SEARCH_JOBS = "search_jobs";
 export const FETCH_JOBS = "fetch_jobs";
 
+export const POST_APPLICATION = 'POST_APPLICATION';
+export const GET_APPLICATIONS = 'GET_APPLICATIONS';
+export const GET_APPLICANT = 'GET_APPLICANT';
+export const SAVE_JOB = 'SAVE_JOB';
+
+export const GET_PROFILE = "GET_PROFILE";
+export const MY_NETWORK = "MY_NETWORK";
+
 axios.defaults.headers.common["authorization"] = localStorage.getItem("token");
 //export const CREATE_BOOK = "create_book";
 
@@ -146,6 +154,65 @@ export function tlogout() {
   return {
     type: TLOGOUT,
     payload: null
+  };
+}
+
+export function getProfile(values, callback) {
+  const request = axios
+    .get(`${ROOT_URL}/applicant/profile/getprofile/${values.email}`)
+    .then(response => {
+      console.log("Status Code : ", response.status);
+      console.log(response);
+      //then((datafromreq) => {
+      if (callback) callback();
+      return response;
+    });
+  console.log("Request", request);
+  // console.log("Request",request);
+  // console.log("Request",request);
+  return {
+    type: GET_PROFILE,
+    payload: request
+  };
+}
+
+
+export function saveDetails(values, callback) {
+  console.log("Printing values in actions", values);
+  const request = axios
+    .put(`${ROOT_URL}/applicant/profile/userUpdate/${values.email}`, values)
+    .then(response => {
+      console.log("Status Code : ", response.status);
+      console.log(response);
+      //then((datafromreq) => {
+      if (callback) callback();
+      return response;
+    });
+  console.log("Request", request);
+  window.alert("Successfully updated the details");
+  window.location.reload(1);
+  return {
+    type: GET_PROFILE,
+    payload: request
+  };
+}
+
+export function myNetwork(values, callback) {
+  const request = axios
+    .get(`${ROOT_URL}/applicant/profile/viewConnections/${values.email}`)
+    .then(response => {
+      console.log("Status Code : ", response.status);
+      console.log("Connections Data is : ", response);
+      //then((datafromreq) => {
+      if (callback) callback();
+      return response;
+    });
+  console.log("Request", request);
+  // console.log("Request",request);
+  // console.log("Request",request);
+  return {
+    type: MY_NETWORK,
+    payload: request
   };
 }
 
@@ -290,4 +357,47 @@ export function booking(values, callback) {
     type: BOOKING,
     payload: request
   };
+}
+
+//-----------------------------------------Application-----------------------------------------//
+
+export const apply = data => dispatch => {
+  axios
+      .post(`${ROOT_URL}/applicationModule/apply`, data)
+      .then(res => {
+          if(res.status===200){
+              console.log('Successfully Applied');
+              dispatch({
+                  type: POST_APPLICATION,
+                  payload: res.data
+              })
+          }
+      })
+}
+
+export const easyApply = data => dispatch => {
+  axios
+      .post(`${ROOT_URL}/easyApply`, data)
+      .then(res => {
+          if(res.status===200){
+              console.log('Successfully Applied');
+              dispatch({
+                  type: POST_APPLICATION,
+                  payload: res.data
+              })
+          }
+      })
+}
+
+export const getApplicant = (applicantId) => dispatch => {
+  axios
+      .get(`${ROOT_URL}/getApplicant/${applicantId}`)
+      .then(res => {
+          if(res.status===200){
+              dispatch({
+                  type: GET_APPLICANT,
+                  payload: res.data
+              })
+          }
+      })
 }

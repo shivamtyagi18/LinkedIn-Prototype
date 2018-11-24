@@ -9,5 +9,10 @@ module.exports = {
   // Dashboard: require("../linkedINController/dashboardRoute"),
   ApplicantProfile: require("../linkedINController/applicant/profileRoute") ,//changed by shivam 14/11
   ApplicantMessages: require("../linkedINController/applicant/messagesRoute"),
-  Recruiter: require("../linkedINController/recruiterModule/Recruiter")  
+  Recruiter: require("../linkedINController/recruiterModule/Recruiter") ,
+  Apply: require("../linkedINController/applicationModule/Apply"),
+  JobDetails: require("../linkedINController/applicationModule/JobDetails"),
+  ApplicantAppliedJobs: require("../linkedINController/applicationModule/ApplicantAppliedJobs"),
+  ApplicationsForJob: require("../linkedINController/applicationModule/ApplicationsForJob")
+ 
 };

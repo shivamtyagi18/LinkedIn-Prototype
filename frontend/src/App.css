@@ -88,3 +88,39 @@
   font-size: 17px;
   font-weight: 500;
 }
+
+.row1 {
+  text-align: center;
+  text-decoration: underline;
+  margin-top: 100px;
+  border-style: solid;
+  border-radius: 5px;
+  }
+  .row2 {
+  text-align: left;
+  border-style: solid;
+  border-radius: 5px;
+  margin-top: 50px;
+  padding-left: 30px;
+  }
+  .btn {
+  border-radius: 12px;
+  width: 100px;
+  background-color: #99e6ff;
+  }
+
+  .row3 {
+    margin-left: 50px;
+    padding-left: 50px;
+    padding-right: 20px;
+    border-style: groove;
+    width: 900px;
+    padding-bottom: 10px;
+    }
+    .container-fluid1 {
+    margin-top: 80px;
+    }
+    .body {
+    background: navy;
+    }
+    
