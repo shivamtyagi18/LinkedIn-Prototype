@@ -14,7 +14,7 @@ const options = {
   poolSize: 1000
 };
 
-module.exports.Users = mongoose.model("Users", {
+var Users = mongoose.model("User", {
   firstName: {
     type: String,
     default: "firstname"
@@ -63,12 +63,24 @@ module.exports.Users = mongoose.model("Users", {
     type: String,
     default: "skills"
   },
+  headline: {
+    type: String,
+    default: "headline"
+  },
+  locationNearby: {
+    type: String
+  },
+  industry: {
+    type: String,
+    default: "Computer Software"
+  },
+  phoneType: {
+    type: String,
+    default: "WORK"
+  },
   profileSummary: {
     type: String,
     default: "profileSummary"
-  },
-  clickCounts: {
-    type: Number
   },
   resume: {
     type: String,
@@ -83,7 +95,9 @@ module.exports.Users = mongoose.model("Users", {
     default: "image"
   },
   connectionRequests: [String],
+
   connections: [String],
+
   savedJobs: [String],
   appliedJobs: {
     type: String,
@@ -91,18 +105,107 @@ module.exports.Users = mongoose.model("Users", {
   },
   email: {
     type: String,
-    required: true,
-    unique: true
+    unique: true,
+    required: true
   },
+
   password: {
-    type: String,
-    required : true
-  },
-  companyName: {
-    type: String,
-    default: "Company Name"
+    type: String
   }
+
 });
+
+module.exports = { Users };
+
+// module.exports.Users = mongoose.model("Users", {
+//   firstName: {
+//     type: String,
+//     default: "firstname"
+//   },
+//   lastName: {
+//     type: String,
+//     default: "lasttname"
+//   },
+//   type: {
+//     type: String,
+//     default: "traveller/owner"
+//   },
+//   phone: {
+//     type: String,
+//     default: "xxx-xxx-xxxx"
+//   },
+//   address: {
+//     type: String,
+//     default: "address"
+//   },
+//   city: {
+//     type: String,
+//     default: "city"
+//   },
+//   state: {
+//     type: String,
+//     default: "state"
+//   },
+//   zipcode: {
+//     type: String,
+//     default: "zipcode"
+//   },
+//   country: {
+//     type: String,
+//     default: "country"
+//   },
+//   experience: {
+//     type: String,
+//     default: "experience"
+//   },
+//   education: {
+//     type: String,
+//     default: "education"
+//   },
+//   skills: {
+//     type: String,
+//     default: "skills"
+//   },
+//   profileSummary: {
+//     type: String,
+//     default: "profileSummary"
+//   },
+//   clickCounts: {
+//     type: Number
+//   },
+//   resume: {
+//     type: String,
+//     default: "resume"
+//   },
+//   gender: {
+//     type: String,
+//     default: "gender"
+//   },
+//   img: {
+//     type: String,
+//     default: "image"
+//   },
+//   connectionRequests: [String],
+//   connections: [String],
+//   savedJobs: [String],
+//   appliedJobs: {
+//     type: String,
+//     default: "appliedJobs"
+//   },
+//   email: {
+//     type: String,
+//     required: true,
+//     unique: true
+//   },
+//   password: {
+//     type: String,
+//     required : true
+//   },
+//   companyName: {
+//     type: String,
+//     default: "Company Name"
+//   }
+// });
 
 // module.exports.Recruiter = mongoose.model("Recruiter", {
 //   // adminID: {
@@ -200,5 +303,46 @@ module.exports.AddedJobs = mongoose.model("AddedJobs", {
   }
 
 });
+
+
+module.exports.Applications = mongoose.model("Application", {
+    firstName: {
+        type: String
+    }, 
+    lastName: {
+        type: String
+    }, 
+    email: {
+        type: String
+    }, 
+    education: {
+        type: String
+    }, 
+    occupation: {
+        type: String
+    }, 
+    city: {
+        type: String
+    }, 
+    bio: {
+        type: String
+    }, 
+    about: {
+        type: String
+    }, 
+    sponsorship: {
+        type: String
+    }, 
+    disability: {
+        type: String
+    }, 
+    resume: {
+        type: String
+    }, 
+    coverLetter: {
+        type: String
+    }
+});
+
 
 

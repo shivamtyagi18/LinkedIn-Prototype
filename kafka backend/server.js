@@ -25,6 +25,11 @@ var recruiterDisplay = require("./services/recruiterKafka/displayRecruiter");
 var modifyRecruiterAccount = require("./services/recruiterKafka/modifyRecruiterAccount");
 
 
+var jobDetails = require("./services/applicationKafka/jobDetails");
+//var applicantAppliedJobs = require("./services/applicationKafka/");
+var apply = require("./services/applicationKafka/apply");
+
+
 function handleTopicRequest(topic_name, fname) {
   //var topic_name = 'root_topic';
   var consumer = connection.getConsumer(topic_name);
@@ -70,11 +75,16 @@ handleTopicRequest("profileviews_topic", profileViews);
 handleTopicRequest("clickcounts_topic", clickCounts);
 handleTopicRequest("getprofile_topic", getprofile);
 
-handleTopicRequest("addRecruiter_topic", addRecruiter);
-handleTopicRequest("addJob_topic", addJob);
-handleTopicRequest("getJobs_topic", getJobs);
-handleTopicRequest("editJob_topic", editJob);
-handleTopicRequest("loginRecruiter_topic", loginRecruiter);
-handleTopicRequest("recruiterDisplay_topic", recruiterDisplay);
-handleTopicRequest("modifyRecruiterAccount_topic", modifyRecruiterAccount);
+handleTopicRequest("apply_topic", apply);
+//handleTopicRequest("applicantAppliedJobs_topic", applicantAppliedJobs);
+handleTopicRequest("jobDetails_topic", jobDetails);
+//handleTopicRequest("applicationsForJob_topic", applicationsForJob);
+
+// handleTopicRequest("addRecruiter_topic", addRecruiter);
+// handleTopicRequest("addJob_topic", addJob);
+// handleTopicRequest("getJobs_topic", getJobs);
+// handleTopicRequest("editJob_topic", editJob);
+// handleTopicRequest("loginRecruiter_topic", loginRecruiter);
+// handleTopicRequest("recruiterDisplay_topic", recruiterDisplay);
+// handleTopicRequest("modifyRecruiterAccount_topic", modifyRecruiterAccount);
 
