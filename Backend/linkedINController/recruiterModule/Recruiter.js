@@ -19,18 +19,33 @@ app.use(passport.initialize());
 //require("../configDB/passport")(passport);
 //var requireAuth = passport.authenticate("jwt", { session: false });
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, `../homeaway-frontend/src/components/uploads`);
-  },
-  filename: (req, file, cb) => {
-    //const newFilename = `${req.body.description}${path.extname(file.originalname)}`;
-    const newFilename = `${req.body.description}`;
-    cb(null, newFilename);
-  }
+var aws = require("aws-sdk"),
+ bodyParser = require("body-parser"),
+ multerS3 = require("multer-s3");
+
+aws.config.update({
+ secretAccessKey: "VsifjJSNpg+E0UNNOJkOUAE5akhYpcBpfcwyKJtY",
+ accessKeyId: "AKIAJENLH4HMV3E56RTQ",
+ region: "us-east-2",
+ ACL: "public-read"
+});
+s3 = new aws.S3();
+var upload = multer({
+ storage: multerS3({
+   s3: s3,
+   bucket: "linkedin-shivam",
+   key: function(req, file, cb) {
+     console.log("S3", file);
+     cb(null, req.body.companyLogo); //use Date.now() for unique file keys
+   }
+ })
 });
 
-const upload = multer({ storage });
+app.post("/addLogo", upload.array("selectedFile", 4), (req, res) => {
+  //console.log("Req : ",req);
+  console.log("Res : Darryl", req.body);
+  res.send();
+ });
 
 app.post("/addRecruiter", function(req, res) {
   console.log("Inside Add recruiter Post Request");
@@ -125,6 +140,52 @@ app.post("/loginRecruiter", function(req, res) {
 });
 
 
+app.post("/searchPostedJob", function(req, res) {
+  console.log("Inside search post request");
+  console.log("Search Criteria from recruiter", req.body);
+  console.log("check authenticastion", req.headers["authorization"]);
+
+  kafka.make_request(
+    "searchPostedJob_topic",
+    {
+      jobTitle : req.body.jobTitle,
+      companyName : req.body.companyName
+    },
+    function(err, result) {
+      console.log("in result");
+      // console.log(res, err);
+      if (err) {
+        res.sendStatus(400).end();
+      } else {
+        if (result.code == 200) {
+          console.log("result is ", result);
+          JobPosted = [];
+
+          for (var i = 0; i < result.value.length; i++) {
+            JobPosted[i] = result.value[i];
+          }
+
+          // console.log("property store:", PropertyStore);
+           res.redirect("/recruiter/searchresult");
+          console.log("redirect successful");
+          // done(null, { results: results.value });
+        } else {
+          console.log("fail");
+          //done(null, false, { message: results.value });
+        }
+      }
+    }
+  );
+});
+
+app.get("/searchresult", function(req, res) {
+  console.log("Results found");
+  res.writeHead(200, {
+    "Content-Type": "application/json"
+  });
+  res.end(JSON.stringify(JobPosted));
+});
+
 
 app.get("/recruiterDisplay/:email", function(req, res) {
   console.log("Inside Recruiter Display Post Request");
@@ -143,11 +204,11 @@ app.get("/recruiterDisplay/:email", function(req, res) {
       } else {
         if (result.code == 200) {
           console.log(result);
-          res.writeHead(200, {
-            "Content-Type": "application/json"
-          });
-          console.log(JSON.stringify(result.value));
-          res.end(JSON.stringify(result.value));
+          res.json({
+            success: true,
+            value: result.value,
+            code: result.code
+          })
 
           // done(null, { results: results.value });
         } else if (result.code == 401) {
@@ -164,6 +225,44 @@ app.get("/recruiterDisplay/:email", function(req, res) {
 });
 
 
+app.get("/displayJob/:jobId/:email", function(req, res) {
+  console.log("Inside Job Display Get Request");
+  console.log("Req Body : ", req.body);
+  console.log("Req Params : ", req.params);
+  kafka.make_request(
+    "jobDisplay_topic",
+    {
+      jobId: req.params.jobId,
+      email: req.params.email
+    },
+    function(err, result) {
+      console.log("in result");
+      // console.log(res, err);
+      if (err) {
+        res.sendStatus(400).end();
+      } else {
+        if (result.code == 200) {
+          console.log(result);
+          res.json({
+            success: true,
+            value: result.value,
+            code: result.code
+          })
+
+          // done(null, { results: results.value });
+        } else if (result.code == 401) {
+          res.json({
+            success: false,
+            code: result.code
+          });
+          console.log("Recruiter does not exist");
+          //done(null, false, { message: results.value });
+        }
+      }
+    }
+  );
+});
+
 app.put("/modifyRecruiterAccount/:email", function(req, res) {
   console.log("Inside Recruiter Update Post Request");
   //console.log("Req Body : ", username + "password : ",password);
@@ -177,11 +276,11 @@ app.put("/modifyRecruiterAccount/:email", function(req, res) {
       address: req.body.address,
       city: req.body.city,
       state: req.body.state,
-      zipcode: req.body.zipcode,
+      zipcode: req.body.zipCode,
       phoneNumber: req.body.phoneNumber,
       Email:req.params.email,
       email: req.body.email,
-      companyName: req.body.companyName
+      companyName: req.body.company
     },
     function(err, result) {
       console.log("in result");
@@ -214,7 +313,7 @@ app.post("/addJob", function(req, res) {
 
   kafka.make_request(
     "addJob_topic",
-    {
+    {   email:req.body.recruiterEmail,
         jobId: req.body.jobId,
         jobTitle: req.body.jobTitle,
         jobDescription: req.body.jobDescription,
@@ -249,14 +348,14 @@ app.post("/addJob", function(req, res) {
   );
 });
 
-app.get("/getPostedJob/:companyName", function(req, res) {
+app.get("/getPostedJob/:email", function(req, res) {
   console.log("Inside Getting Jobs Get Request");
   console.log("Req Body : ", req.body);
   console.log("Req Params : ", req.params);
   kafka.make_request(
     "getJobs_topic",
     {
-      companyName: req.params.companyName
+      email: req.params.email
     },
     function(err, result) {
       console.log("in getJobs result");
@@ -283,7 +382,7 @@ app.get("/getPostedJob/:companyName", function(req, res) {
 
 
  
- app.put("/editJob/:jobId/:companyName", function(req, res) {
+ app.put("/editJob/:jobId/:email", function(req, res) {
   console.log("Inside Edit Job Update Put Request");
   //console.log("Req Body : ", username + "password : ",password);
   console.log("Req Body : ", req.body);
@@ -292,18 +391,13 @@ app.get("/getPostedJob/:companyName", function(req, res) {
     "editJob_topic",
     {
       jobId: req.params.jobId,
-      jobID:req.body.jobId,
+      email:req.params.email,
       jobTitle: req.body.jobTitle,
       jobDescription: req.body.jobDescription,
       industry: req.body.industry,
       employmentType: req.body.employmentType,
-      location: req.body.location,
-      companyName:req.params.companyName,
-      companyname:req.body.companyName,
       jobFunction: req.body.jobFunction,
-      companyLogo: req.body.companyLogo,
-      jobOpenings:req.body.jobOpenings,
-      postedOn: req.body.postedOn
+      jobOpenings:req.body.jobOpenings
     },
     function(err, result) {
       console.log("in result");
