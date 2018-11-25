@@ -7,6 +7,11 @@ import { Provider } from "react-redux";
 //import Inbox from "./inbox";
 import RegisterRecruiter from "./recruiterUI/registerRecruiter";
 import LoginRecruiter from "./recruiterUI/loginRecruiter";
+import HomeRecruiter from "./recruiterUI/recruiterHome";
+import PostJob from "./recruiterUI/recruiterPostJob";
+import NavbarHome from "./recruiterUI/navbarHome";
+import editJob from "./recruiterUI/editJob";
+import RecruiterProfile from "./recruiterUI/recruiterProfile";
 
 
 import LoginApplicant from "./applicantUI/loginApplicant";
@@ -53,15 +58,42 @@ class Main extends Component {
     return (
       <Provider store={store}>
         <div>
-          <Route
+        <Route
             exact
             path="/recruiter/addRecruiter"
             component={RegisterRecruiter}
           />
           <Route
             exact
+            path="/recruiter/editJob"
+            component={editJob}
+          />
+           <Route
+            exact
+            path="/recruiter/navbarHome"
+            component={NavbarHome}
+          />
+          <Route
+            exact
             path="/recruiter/loginRecruiter"
             component={LoginRecruiter}
+          />
+
+           <Route
+            exact
+            path="/recruiter/home"
+            component={HomeRecruiter}
+          />
+
+           <Route
+            exact
+            path="/recruiter/post"
+            component={PostJob}
+          />
+          <Route
+          exact
+          path="/recruiter/profile"
+          component={RecruiterProfile}
           />
 
         <Route

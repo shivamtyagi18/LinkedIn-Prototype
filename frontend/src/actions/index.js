@@ -11,6 +11,9 @@ export const FETCH_TRAVElDASHBOARD = "FETCH_TRAVElDASHBOARD";
 export const TLOGOUT = "tlogout";
 export const BOOKING = "booking";
 
+export const GETJOBSOFRECRUITER = "GETJOBSOFRECRUITER";
+export const SEARCHPOSTEDJOB = "searchPostedJob";
+
 export const LOGIN_APPLICANT = "login_applicant";
 export const LOGOUT_APPLICANT = "logout_applicant";
 export const CREATEAPPLICANT = "create_applicant";
@@ -421,3 +424,42 @@ export const getApplicant = (applicantId) => dispatch => {
           }
       })
 }
+
+export function getRecruiterJobs(values, callback) {
+  axios.defaults.withCredentials = true;
+  const data = {
+    email:localStorage.getItem("email")
+  };
+  const request = 
+  axios
+    .get(`${ROOT_URL}/recruiter/getPostedJob/${data.email}`)
+    .then(datarequested => {
+      if (callback) callback();
+      return datarequested;
+    });
+    console.log(request);
+  return {
+    type: GETJOBSOFRECRUITER,
+    payload: request
+  };
+}
+
+//target action
+export function searchPostedJob(values, callback) {
+  axios.defaults.withCredentials = true;
+  //middleware call
+  //receive response from backend
+  console.log(values)
+  values.email = localStorage.getItem("email");
+  console.log(values);
+  const request = axios.post(`${ROOT_URL}/recruiter/searchPostedJob`,values).then((datarequested) => {
+    if (callback) callback();
+    return datarequested;
+  });
+  //Action dispatched
+  console.log(request);
+  return {
+    type: SEARCHPOSTEDJOB,
+    payload: request
+  };
+ }

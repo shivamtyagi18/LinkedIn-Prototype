@@ -149,7 +149,7 @@ class LoginRecruiter extends Component {
       redirectVar = (
         <Redirect
           to={{
-            pathname: "/"
+            pathname: "/recruiter/home"
           }}
         />
       );
