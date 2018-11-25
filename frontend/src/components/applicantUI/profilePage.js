@@ -183,7 +183,7 @@ class ProfilePage extends Component {
     console.log(this.state.firstName);
     console.log("Usr is: ", this.props.user);
     const { profileInfo } = this.state;
-
+    const imgurl2 = `https://s3.us-east-2.amazonaws.com/linkedin-shivam/noprofile.png`;
     let modalDisplay = (
       <div className="col-md-12">
         <div style={{ textAlign: "right" }}>
@@ -1115,7 +1115,7 @@ class ProfilePage extends Component {
                 }}
               >
                 <img
-                  src="/images/profile_img.jpg"
+                  src={imgurl2}
                   style={{
                     width: "152px",
                     height: "152px",
