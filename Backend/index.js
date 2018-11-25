@@ -8,6 +8,45 @@ var cookieParser = require("cookie-parser");
 var cors = require("cors");
 const routes = require("./routeHandler/routes");
 var { mongoose } = require("./configDB/db");
+const multer = require('multer');
+
+
+//----------------------------------------S3----------------------------------------------
+
+var aws = require('aws-sdk'),
+    bodyParser = require('body-parser'),
+    multerS3 = require('multer-s3');
+
+aws.config.update({
+    secretAccessKey: 'VsifjJSNpg+E0UNNOJkOUAE5akhYpcBpfcwyKJtY',
+    accessKeyId: 'AKIAJENLH4HMV3E56RTQ',
+    region: 'us-east-2',
+    ACL:'public-read'
+
+});
+
+var app = express(),
+    s3 = new aws.S3();
+
+app.use(bodyParser.json());
+
+var upload = multer({
+    storage: multerS3({
+        s3: s3,
+        bucket: 'linkedin-shivam',
+        key: function (req, file, cb) {
+            console.log("file",file);
+            console.log("req",req.body,req.body.applicantEmail+file.fieldname);
+            //var name = req.body.applicantEmail+file.fieldname
+           // console.log("filename is",name)
+            //cb(null, file.originalname); //use Date.now() for unique file keys
+            cb(null, file.fieldname); //use Date.now() for unique file keys
+        }
+    })
+});
+
+
+//---------------------------------------------------------------------------------------
 
 //require("./configDB/passport")(passport);
 
@@ -65,6 +104,12 @@ app.use("/applicationModule", routes.Apply);
 app.use("/applicationModule", routes.ApplicantAppliedJobs);
 app.use("/applicationModule", routes.JobDetails);
 app.use("/applicationModule", routes.ApplicationsForJob);
+
+app.post('/image', upload.array('resume',4), (req, res) => {
+  //console.log("Req : ",req);
+  console.log("Res Image : ",req.body);
+  res.send();
+});
 
 app.listen(3001);
 console.log("Server Listening on port 3001");

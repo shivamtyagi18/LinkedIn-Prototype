@@ -15,6 +15,7 @@ import MuiThemeProvider from
 import RaisedButton from 'material-ui/RaisedButton';
 import { connect } from 'react-redux';
 import { easyApply } from '../../actions'
+import { getProfile } from '../../actions'
 
 class EasyApplyModal extends Component {
     state = {
@@ -28,15 +29,45 @@ class EasyApplyModal extends Component {
     }
 
     componentWillMount() {
-        const applicantEmail = localStorage.getItem('applicantEmail');
-        this.props.getApplicant(applicantEmail);
-        const { applicant } = this.props.applicant;
-        this.setState({
-            firstName: applicant.firstName,
-            lastName: applicant.lastName,
-            email: applicant.email
-        })
+        const data = {
+            email: localStorage.getItem("email")
+          };
+          this.props.getProfile(data);
+
+        // const { applicant } = this.props.applicant;
+        // console.log("applicant",applicant)
+        // this.setState({
+        //     firstName: applicant.firstName,
+        //     lastName: applicant.lastName,
+        //     email: applicant.email
+        // })
     }
+
+    // componentWillReceiveProps(nextProps) {
+    //     if (nextProps.profileInfo !== undefined) {
+    //         console.log("applicant",this.props.profileInfo)
+    //       this.setState({
+    //         firstName: nextProps.profileInfo.firstName,
+    //         lastName: nextProps.profileInfo.lastName,
+    //         headline: nextProps.profileInfo.headline,
+    //         profileSummary: nextProps.profileInfo.profileSummary,
+    //         country: nextProps.profileInfo.country,
+    //         zipcode: nextProps.profileInfo.zipcode,
+    //         state: nextProps.profileInfo.state,
+    //         locationNearby: nextProps.profileInfo.locationNearby,
+    //         industry: nextProps.profileInfo.industry,
+    //         city: nextProps.profileInfo.city,
+    //         phone: nextProps.profileInfo.phone,
+    //         phoneType: nextProps.profileInfo.phoneType,
+    //         address: nextProps.profileInfo.address,
+    //         skills: nextProps.profileInfo.skills,
+    //         experience: nextProps.profileInfo.experience,
+    //         education: nextProps.profileInfo.education
+    //       });
+    //     }
+
+        
+    //   }
 
     toggle = () => {
         this.setState({
@@ -87,7 +118,7 @@ class EasyApplyModal extends Component {
                 })
         }
         else {
-            const applicantEmail = localStorage.getItem('applicantEmail')
+            const applicantEmail = localStorage.getItem('email')
             // Multipart Formdata
             const formData = new FormData();
             formData.append('applicantEmail', applicantEmail)
@@ -105,6 +136,7 @@ class EasyApplyModal extends Component {
     };
 
     render() {
+        console.log("applicant1",this.props.profileInfo)
         return(
             <MuiThemeProvider>
                 <Button
@@ -140,7 +172,7 @@ class EasyApplyModal extends Component {
                                 id="firstName"
                                 placeholder="First Name"
                                 onChange={this.onChange}
-                                value={this.state.firstName}
+                                value={this.props.profileInfo.firstName}
                             />
                             <br/>
                             <Input 
@@ -149,7 +181,7 @@ class EasyApplyModal extends Component {
                                 id="lastName"
                                 placeholder="Last Name"
                                 onChange={this.onChange}
-                                value={this.state.lastName}
+                                value={this.props.profileInfo.lastName}
                             />
                             <br/>
                             <Input 
@@ -158,7 +190,7 @@ class EasyApplyModal extends Component {
                                 id="email"
                                 placeholder="Email"
                                 onChange={this.onChange}
-                                value={this.state.email}
+                                value={this.props.profileInfo.email}
                             />
                             <br/>
                             <RaisedButton
@@ -189,13 +221,13 @@ class EasyApplyModal extends Component {
     }
 }
 
-EasyApplyModal.propTypes = {
-    getApplicant: PropTypes.func.isRequired,
-    applicant: PropTypes.object.isRequired,
-};
+// EasyApplyModal.propTypes = {
+//     getApplicant: PropTypes.func.isRequired,
+//     applicant: PropTypes.object.isRequired,
+// };
 
 const mapStateToProps = (state) => ({
-    applicant: state.applicant
+    profileInfo: state.getProfileInfo
 });
 
-export default connect(mapStateToProps, { easyApply })(EasyApplyModal);
+export default connect(mapStateToProps, { easyApply , getProfile })(EasyApplyModal);

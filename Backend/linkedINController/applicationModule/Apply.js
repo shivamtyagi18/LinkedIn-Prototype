@@ -16,18 +16,18 @@ console.log("Apply for Job");
 
 //Upload resume + cover letter
 
-const storage = multer.diskStorage({
-destination: (req, file, cb) => {
-cb(null, `../public/uploads`);
-},
-filename: (req, file, cb) => {
-cb(
-null,
-file.originalname + "-" + Date.now() + path.extname(file.originalname)
-);
-}
-});
-const upload = multer({ storage: storage });
+// const storage = multer.diskStorage({
+// destination: (req, file, cb) => {
+// cb(null, `../public/uploads`);
+// },
+// filename: (req, file, cb) => {
+// cb(
+// null,
+// file.originalname + "-" + Date.now() + path.extname(file.originalname)
+// );
+// }
+// });
+// const upload = multer({ storage: storage });
 
 app.post("/apply", function(req, res) {
 console.log("Inside Apply Post Request");
@@ -37,14 +37,19 @@ kafka.make_request(
 "apply_topic",
 {
 //getJobID (Recruiter Model) + applicantID(Applicant Model)
-applicationId: req.body.applicationId,
+//applicationId: req.body.applicationId,
+applicantId : req.body.email,
 jobId: req.body.jobId,
-fname: req.body.fname,
-lname: req.body.lname,
-address: req.body.address,
-source: req.body.source,
-diversity: req.body.diversity,
-disability: req.body.disability
+firstName: req.body.firstName,
+lastName: req.body.lastName,
+education: req.body.education,
+city: req.body.city,
+bio : req.body.bio,
+about: req.body.about,
+sponsership:req.body.sponsership,
+disability: req.body.disability,
+resume:req.body.resume, 
+coverLetter:req.body.coverLetter
 },
 function(err, result) {
 console.log("in result for apply");

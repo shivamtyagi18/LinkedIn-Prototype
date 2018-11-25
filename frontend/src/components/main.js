@@ -14,6 +14,7 @@ import ApplicantHome from "./applicantUI/Home"
 import FetchJobs from "./applicantUI/fetchJobs"
 import ProfilePage from "./applicantUI/profilePage"
 import MyNetwork from "./applicantUI/myNetwork";
+import MyJobs from "./applicantUI/myJobs";
 
 
 
@@ -97,6 +98,12 @@ class Main extends Component {
       exact
       path="/applicant/profile/viewConnections"
       component={MyNetwork}
+      />
+
+      <Route
+      exact
+      path="/applicant/profile/myJobs"
+      component={MyJobs}
       />
 
       <Route 

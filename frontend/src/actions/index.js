@@ -24,6 +24,7 @@ export const SAVE_JOB = 'SAVE_JOB';
 
 export const GET_PROFILE = "GET_PROFILE";
 export const MY_NETWORK = "MY_NETWORK";
+export const MY_JOBS = "MY_JOBS";
 
 axios.defaults.headers.common["authorization"] = localStorage.getItem("token");
 //export const CREATE_BOOK = "create_book";
@@ -216,6 +217,25 @@ export function myNetwork(values, callback) {
   };
 }
 
+export function myJobs(values, callback) {
+  const request = axios
+    .get(`${ROOT_URL}/applicationModule/applicantAppliedJobs/${values.email}`)
+    .then(response => {
+      console.log("Status Code : ", response.status);
+      console.log("Connections Data is : ", response);
+      //then((datafromreq) => {
+      if (callback) callback();
+      return response;
+    });
+  console.log("Request", request);
+  // console.log("Request",request);
+  // console.log("Request",request);
+  return {
+    type: MY_JOBS,
+    payload: request
+  };
+}
+
 //----------------------------------------------------------------------------------//
 
 export function loginRecruiter(values, callback) {
@@ -391,7 +411,7 @@ export const easyApply = data => dispatch => {
 
 export const getApplicant = (applicantId) => dispatch => {
   axios
-      .get(`${ROOT_URL}/getApplicant/${applicantId}`)
+      .get(`${ROOT_URL}/applicant/profile/getprofile/${applicantId}`)
       .then(res => {
           if(res.status===200){
               dispatch({

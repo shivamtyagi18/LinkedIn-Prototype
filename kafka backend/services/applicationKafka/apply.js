@@ -1,5 +1,5 @@
 var mongoose = require("../mongoose");
- 
+
 function handle_request(msg, callback) {
 var res = {};
 console.log("In apply handle kafka request:" + JSON.stringify(msg));
@@ -7,15 +7,18 @@ console.log(msg.jobId);
 var application = new mongoose.Applications({
 // applicationId: DataCue.applicationId,
 //applicantId: req.body.applicantId,
-applicationId: msg.applicationId,
+applicantId : msg.email,
 jobId: msg.jobId,
-fname: msg.fname,
-lname: msg.lname,
-//lname: msg.lname,
-address: msg.address,
-source: msg.source,
-diversity: msg.diversity,
-disability: msg.disability
+firstName: msg.firstName,
+lastName: msg.lastName,
+education: msg.education,
+city: msg.city,
+bio : msg.bio,
+about: msg.about,
+sponsership:msg.sponsership,
+disability: msg.disability,
+resume:msg.resume, 
+coverLetter:msg.coverLetter
 });
 console.log(msg);
 application.save().then(
@@ -32,5 +35,5 @@ res.value = "Error";
 }
 );
 }
- 
+
 exports.handle_request = handle_request;
