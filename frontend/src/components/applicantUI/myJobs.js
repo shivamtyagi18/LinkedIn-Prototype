@@ -7,10 +7,10 @@ import { Field, reduxForm } from "redux-form";
 import { Redirect } from "react-router";
 import { withRouter } from "react-router";
 import Pagination from "../Pagination";
-import { myNetwork } from "../../actions/index";
+import { myJobs } from "../../actions/index";
 import Navbar from './Navbar';
 
-class MyNetwork extends Component {
+class MyJobs extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -46,7 +46,7 @@ class MyNetwork extends Component {
     const data = {
       email: localStorage.getItem("email")
     };
-    this.props.myNetwork(data);
+    this.props.myJobs(data);
   }
 
   render() {
@@ -151,7 +151,7 @@ class MyNetwork extends Component {
                 position: "relative"
               }}
             >
-              Your Connections
+              Your Jobs
             </h2>
             <section
               className="profile-block-introduction"
@@ -177,11 +177,11 @@ class MyNetwork extends Component {
 }
 const mapStateToProps = state => {
   return {
-    connectionsInfo: state.myNetwork
+    connectionsInfo: state.myJobs
   };
 };
 
 export default connect(
   mapStateToProps,
-  { myNetwork }
-)(withRouter(MyNetwork));
+  { myJobs }
+)(withRouter(MyJobs));
