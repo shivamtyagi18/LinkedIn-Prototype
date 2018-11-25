@@ -12,6 +12,7 @@ import {Link} from 'react-router-dom';
 import { connect } from "react-redux";
 import _ from "lodash";
 import { loginUser } from "../../actions";
+import { getProfile} from "../../actions";
 
 class Home extends Component {
     
@@ -25,6 +26,16 @@ class Home extends Component {
         //Bind the handlers to this class
     }
     //get the books data from backend  
+
+    componentWillMount() {
+        console.log("user email in will mount is: ", localStorage.getItem("email"));
+        const data = {
+          email: localStorage.getItem("email")
+        };
+        this.props.getProfile(data);
+      }
+
+      
 
     render(){
 
@@ -69,28 +80,34 @@ class Home extends Component {
                 {nav}
                 {searchbar} 
                 
-                <div class="col-sm-3" style={{marginLeft:"5%",marginTop:"5%",backgroundColor:"#eee"}}>
-                
-                
-                <div class="col-sm-12" style={{marginTop:"5%"}}>
+                <div class="col-sm-3" style={{marginLeft:"5%",marginTop:"5%"}}>
                     <div><img src={imgurl2} width="100%"></img></div>
                 </div>
-                <div class="col-sm-8">
-                    <div class="col-sm-12" style={{fontSize:"1.5rem",fontWeight:"500",textAlign:"centre"}}>{this.state.login}</div>
+        
+            <div class="col-sm-6" style={{marginLeft:"5%",marginTop:"5%"}}>
+
+            <h3 class="hit-headline"><a><div>{this.props.profileInfo.firstName} {this.props.profileInfo.lastName}</div></a></h3>
+               
+                <div class="col-sm-12">
+                    <div class="col-sm-12" style={{fontSize:"1.5rem",fontWeight:"500",textAlign:"left"}}>Location : {this.props.profileInfo.city}</div>
                 </div>
-           
+                <div class="col-sm-12">
+                    <div class="col-sm-12" style={{fontSize:"1.5rem",fontWeight:"500",textAlign:"centre"}}>Connections : {this.props.profileInfo.connections}</div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="col-sm-12" style={{fontSize:"1.5rem",fontWeight:"500",textAlign:"centre"}}>Profile Views : {this.props.profileInfo.clickCounts}</div>
+                </div>
 
-
-        </div> 
+            </div> 
         </div>
         )
     }
 }
 
 function mapStateToProps(state) {
-    return { login: state.loginApplicant };
+    return { login: state.loginApplicant, profileInfo: state.getProfileInfo };
   }
  
-  export default connect(mapStateToProps, { loginUser })(Home);
+  export default connect(mapStateToProps, { loginUser,getProfile })(Home);
 //export Home Component
 //export default Home;

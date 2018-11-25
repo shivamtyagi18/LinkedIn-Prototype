@@ -9,7 +9,7 @@ import { fetchJobs } from "../../actions";
 import { connect } from "react-redux";
 import _ from "lodash";
 import { SplitButton,DropdownButton, MenuItem, Button, Image } from 'react-bootstrap';
-
+import SearchBar from './SearchBar';
 import Pagination from "../Pagination"  //pagination
 //import Footbar from '../LandingPage/Footbar';
 var moment = require("moment");
@@ -25,16 +25,20 @@ class Search extends Component {
             Per_page_Property : [],  //pagination
             page : 1,   //pagination
             total : "",   //pagination
-            price : "",
-            name : false,
-            bedroom : false,
-            guests : false,
+            searchJobName:"",
+            error: false,
+            jobs: [],
+            searchedJobs :[],
+            searchFlag: false,
+            divClickFlag: false
         }  
         this.jobsChangeHandler = this.jobsChangeHandler.bind(this);
+        this.searchChangeHandler = this.searchChangeHandler.bind(this);
+        this.submitSearch = this.submitSearch.bind(this);
        // this.handlePageChange = this.handlePageChange.bind(this);
-        this.handlePriceFilter = this.handlePriceFilter.bind(this)
-        this.handleGuestsFilter = this.handleGuestsFilter.bind(this)
-        this.handleBedroomsFilter = this.handleBedroomsFilter.bind(this)
+        //this.handlePriceFilter = this.handlePriceFilter.bind(this)
+        //this.handleGuestsFilter = this.handleGuestsFilter.bind(this)
+        //this.handleBedroomsFilter = this.handleBedroomsFilter.bind(this)
     } 
     
     componentWillMount(){
@@ -43,40 +47,31 @@ class Search extends Component {
         })   
     }
 
-    handlePriceFilter = (e) => {
+    // jobsChangeHandler = (e) => {
+    //     this.setState({
+    //         displayprop : e.target.dataset.attr,
+    //     })
+    //     console.log("Successful test - ", e.target.dataset.attr)
+    // }
+
+    jobsChangeHandler=(e)=> {
         this.setState({
-            price : true,
-            guests : false,
-            bedrooms : false,
-            
+            displayprop : e.target.value,
         })
-        console.log("Filter by price results")
+        console.log("Successful test - ", this.state.displayprop)
     }
 
-    handleGuestsFilter = (e) => {
+    onDivClick = (e) => {
+        e.preventDefault();
+        console.log(e.target.dataset.value)
         this.setState({
-            price : false,
-            guests : true,
-            bedrooms : false,
+            displayprop : e.target.dataset.value,
         })
-        console.log("Filter by guests results")
-    }
-
-    handleBedroomsFilter = (e) => {
+        localStorage.setItem("jobId",e.target.dataset.value)
         this.setState({
-            price :false,
-            guests : false,
-            bedrooms : true,
+          divClickFlag: true
         })
-        console.log("Filter by bedrooms results")
-    }
-
-    jobsChangeHandler = (e) => {
-        this.setState({
-            displayprop : e.target.dataset.attr,
-        })
-        console.log("Successful test - ",this.state.displayprop)
-    }
+      }
 
     // handlePageChange(page) {                            //pagination
     //     // console.log(`active page is ${pageNumber}`);
@@ -92,8 +87,24 @@ class Search extends Component {
         this.props.fetchJobs();             
     }
 
+    searchChangeHandler = (e) => {
+        e.preventDefault();
+        this.setState({
+            searchJobName : e.target.value
+        })
+    }
+
+    submitSearch = (e) => {
+        e.preventDefault();
+        this.setState({
+          searchFlag : true
+      })
+      }
+
     render(){
+
         //let finalProperty = null;
+        let searchbar = <SearchBar searchrender={this.props.searchrender}/>
         let nav = <Navbar navdata={this.props.navdata}/>
        // let foot = <Footbar footrender={this.props.footrender}/>
 
@@ -113,69 +124,79 @@ class Search extends Component {
          var temp_date = new Date(jobs.postedOn)
          var posted_date = temp_date.getDate()+1
          var current_date = date.getDate()+1
-         var weeks = (current_date-posted_date)/7
+         var weeks = Math.floor((current_date-posted_date)/7)
           // const imgurl = require(`../uploads/${property.img}`);
            // const imgurl1 = require(`../uploads/${property.img}`);            
            // const imgurl2 = require(`../uploads/${property.img}`);
-                 const imgurl2 = `https://s3.us-east-2.amazonaws.com/homeawayuploads/noproperty`;
+                 const imgurl2 = `https://s3.us-east-2.amazonaws.com/linkedin-shivam/${jobs.companyLogo}`;
             console.log("jobs",jobs)
             return( 
-        <div>
-            
-            <div class="row col-sm-7">
+    <React.Fragment>
+
+       
+             
+    <div class="row col-sm-7">
+    <div class="displayjobinfo container-fluid"> 
+    
                 <div class="col-sm-4">
                     <div><img src={imgurl2} width="100%"></img></div>
                 </div>
-                <div class="col-sm-8">
-                <div class="col-sm-10">
+    <div class="col-sm-8">
+        <div class="col-sm-10">  
+                  
+                <div class="headline">
+                    <h3 class="hit-headline"><a><div name="displayjob" data-value={jobs.jobId} onClick={this.onDivClick}>{jobs.jobTitle}</div></a></h3>
+                    <h4 class="hit-companynameheadline"><div name="displaycompanyname">{jobs.companyName}</div></h4>
+                    <h5 class="hit-locationheadline"><div name="location">
+                    <i class="fa fa-location-arrow" aria-hidden="true"></i>
+                    {/* <li-icon aria-hidden="true" type="map-marker-icon" class="job-card-search__exact-location-icon mr1" size="small"><svg viewBox="0 0 24 24" width="24px" height="24px" x="0" y="0" preserveAspectRatio="xMinYMin meet" class="artdeco-icon" focusable="false"><path d="M8,4a2,2,0,1,0,2,2A2,2,0,0,0,8,4ZM8,7.13A1.13,1.13,0,1,1,9.13,6,1.13,1.13,0,0,1,8,7.13ZM8,1A5,5,0,0,0,3,6a5.37,5.37,0,0,0,.41,2S5.91,13,7.22,15.52A0.86,0.86,0,0,0,8,16H8a0.86,0.86,0,0,0,.78-0.48C10.09,13,12.59,8,12.59,8A5.37,5.37,0,0,0,13,6,5,5,0,0,0,8,1Zm2.88,6.24L8,12.92,5.12,7.24A3.49,3.49,0,0,1,4.88,6a3.13,3.13,0,0,1,6.25,0A3.49,3.49,0,0,1,10.88,7.24Z" class="small-icon" style="fill-opacity: 1"></path></svg></li-icon> */}
+                    {jobs.location}</div></h5>
+                    <div class="hit-jobdescriptionheadline"><p class="displayjobdescription">{jobs.jobDescription}</p></div>
                    
-                    <div class="col-sm-12" style={{fontSize:"2.2rem",fontWeight:"500",textAlign:"left"}}>{jobs.jobTitle}</div>
-                    
-                    <div class="col-sm-12">
-                        <div class="col-sm-4" ><div class="col-sm-12" style={{fontSize:"2rem",fontWeight:"500",textAlign:"left"}}>{jobs.companyName}</div></div>
-                        <div class="col-sm-4" ><div class="col-sm-12" style={{fontSize:"2rem",fontWeight:"500",textAlign:"left"}}>{jobs.location}</div></div>
-                        <div class="col-sm-4" ><div class="col-sm-12" style={{fontSize:"2rem",fontWeight:"500",textAlign:"left"}}>{jobs.jobFunction}</div></div>
-                    </div>
-                    
+                    <div class="postedOn">
+                   <p class="displayjobdescription"> 
+                   Posted {weeks} weeks ago
+                </p></div>
                 </div>
-               
-              
-                </div>
+              </div>   
             </div>
+        </div>
+        </div>
 
             <div class="row col-sm-5">
+            <div class="displayjobinfo container-fluid"> 
                 <div class="col-sm-12">
                 <div class="col-sm-10">
-                <div class="col-sm-12" style={{height:"10%",marginTop:"10%"}}>
-                        <td name="displayprop" data-attr={jobs.jobId} style={{fontSize:"2rem",fontFamily:"Courier New",fontWeight:"550"}}>
-                        {jobs.jobTitle}
-                        </td>
-                    </div>
-
-                    <div class="col-sm-12" style={{height:"10%"}}>
-                    <div class="col-sm-12" ><div class="col-sm-12" style={{fontSize:"1.5rem",fontWeight:"500",textAlign:"left"}}>{jobs.companyName}.{jobs.location}.USA</div></div>
-                    </div>
-                    <div class="col-sm-12" style={{height:"10%"}}>
-                    <div class="col-sm-12" ><div class="col-sm-12" style={{fontSize:"1.5rem",fontWeight:"500",textAlign:"left"}}>Posted {weeks} weeks ago</div></div>
-                    </div>
                     
-                    <div class="col-sm-12" style={{backgroundColor:"#eee",marginLeft:"10%"}}>
-                    <div class="col-sm-12" style={{fontSize:"1.5rem",fontWeight:"500",textAlign:"left"}}>{jobs.jobDescription}</div>
+                    <div class="col-sm-12">
+                    <div class="hit-jobdescriptionheadline"><p class="displayjobdescription">Type : {jobs.employmentType}</p></div>
+                    </div>
+                    <div class="col-sm-12">
+                    <div class="hit-jobdescriptionheadline"><p class="displayjobdescription">Industry : {jobs.industry}</p></div>
+                    </div>
+                    <div class="col-sm-12">
+                    <div class="hit-jobdescriptionheadline"><p class="displayjobdescription">Vacancies : {jobs.jobOpenings}</p></div>
+                    </div>
+                    <div class="col-sm-12">
+                    <div class="hit-jobdescriptionheadline"><p class="displayjobdescription">Location : {jobs.location}</p></div>
+                    </div>
+                    <div class="col-sm-12">
+                    <div class="hit-jobdescriptionheadline"><p class="displayjobdescription">Job Profile : {jobs.jobFunction}</p></div>
                     </div>
 
-                    <div class="col-sm-12" style={{height:"10%",marginTop:"10%"}}>
-                        <td onClick={this.jobsChangeHandler} name="displayprop" data-attr={jobs.jobId} style={{fontSize:"2rem",fontFamily:"Courier New",fontWeight:"550"}}>
-                            <button class="btn" style={{backgroundColor:"#0073b1",color:"white",fontSize:"1.5rem"}}>To Save, Apply & Easy Apply</button>
-                        </td>
-                    </div>
+                   {/*<div class="col-sm-12" style={{height:"10%",marginTop:"10%"}}>
+                        
+                            <button class="btn" name="displayprop" id="displayprop" onClick={this.jobsChangeHandler} value={jobs.jobId} style={{backgroundColor:"#0073b1",color:"white",fontSize:"1.5rem"}}>To Save, Apply & Easy Apply</button>
+                    
+                    </div> */} 
                     
                 </div>
                
-              
+                </div>
                 </div>
             </div>
-
-        </div>
+            
+    </React.Fragment>
     
             )
         })
@@ -191,16 +212,13 @@ class Search extends Component {
 
             })
         }
-
-        
-       
-        
-           
+     
         return(
 
             <div>
             {redirectVar}
             {nav}
+            {searchbar} 
             
 
             <div style={{marginLeft:"30px",marginTop:"100px",backgroundColor:"white"}}>
@@ -218,14 +236,6 @@ class Search extends Component {
                         </tbody>
                         
                 </div> 
-
-                <Pagination   
-                   margin={2}
-                   page={this.state.page}
-                   count={Math.ceil(this.state.total / 5)}
-                   onPageChange={this.handlePageChange}
-
-                 />
             </div> 
             
             </div>    

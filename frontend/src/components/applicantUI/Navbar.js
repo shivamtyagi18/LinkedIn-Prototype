@@ -71,35 +71,20 @@ class Navbar extends Component {
             this.state.email=localStorage.getItem("email")
             
             navLogin = (
-                <ul class="nav navbar-nav navbar-right navbar-brand" style={{marginTop:"-1%"}}>
-                        <DropdownButton title={this.state.email} style={{backgroundColor:"transparent",font:"50%",color:"white",marginTop:"0px"}} >
-                            <MenuItem eventKey="1" ><Link to="/mytrips">My Trips</Link></MenuItem>
+                <ul class="nav navbar-nav navbar-right navbar-brand" style={{marginTop:"-1%",marginRight:"1%"}}>
+                        <DropdownButton title={this.state.email} style={{backgroundColor:"transparent",font:"50%",color:"white",marginTop:"0px",width:"100%"}} >
+                            <MenuItem eventKey="1" ><Link to="/applicant/profile/myJobs">My Jobs</Link></MenuItem>
                             <MenuItem divider />
                             <MenuItem eventKey="2"><Link to="/applicant/profile/getprofile">My Profile</Link></MenuItem>
                             <MenuItem divider />
                             <MenuItem eventKey="3" ><Link to="/account">Account</Link></MenuItem>
                             <MenuItem divider />
-                            <MenuItem eventKey="4"><Link to="/myproperties">Owner Dashboard</Link></MenuItem>
+                            <MenuItem eventKey="4"><Link to="/applicant/profile/getprofile">Dashboard</Link></MenuItem>
                             <MenuItem divider />
                             <MenuItem eventKey="5" onClick={this.handleLogout}><Link to="/">Logout</Link></MenuItem>
                         </DropdownButton>
                 </ul>
             );
-        }else{
-            
-            //Else display login button
-            console.log("Not Able to read cookie");
-            navLogin = (
-                <ul class="nav navbar-nav navbar-right navbar-brand" style={{marginTop:"20px"}}>
-                <DropdownButton title="Login" style={{backgroundColor:"transparent",font:"50%",color:"white",marginTop:"0px"}} >
-                    <MenuItem eventKey="1" ><Link to="/login">Traveller</Link></MenuItem>
-                    <MenuItem divider />
-                    <MenuItem eventKey="2"><Link to="/ownerlogin">Owner</Link></MenuItem>
-                    <MenuItem divider />
-                    <MenuItem eventKey="3" onClick={this.handleLogout}><Link to="/">Logout</Link></MenuItem>
-                </DropdownButton>
-                </ul>
-            )
         }
 
        
@@ -134,7 +119,7 @@ class Navbar extends Component {
                     </div>
 
                     <div class="nav navbar-nav navbar-right navbar-brand">
-                    <Link to="/applicant/jobs">
+                    <Link to="/applicant/profile/myJobs">
                         <p style={{ color: "white" }}>Jobs</p>
                     </Link>
                     </div>
