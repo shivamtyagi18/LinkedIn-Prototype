@@ -42,7 +42,7 @@ class JobDetails extends Component {
   
   // For Easy Apply Modal
   state = {
-    modal: true,
+    modal: false,
     firstName: '',
     lastName: '',
     email: '',

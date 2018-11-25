@@ -16,6 +16,7 @@ var getprofile = require("./services/applicantKafka/getprofile");
 
 
 
+
 var addRecruiter = require("./services/recruiterKafka/addRecruiter");
 var addJob = require("./services/recruiterKafka/addJob");
 var getJobs = require("./services/recruiterKafka/getJobs");
@@ -26,7 +27,7 @@ var modifyRecruiterAccount = require("./services/recruiterKafka/modifyRecruiterA
 
 
 var jobDetails = require("./services/applicationKafka/jobDetails");
-//var applicantAppliedJobs = require("./services/applicationKafka/");
+var applicantAppliedJobs = require("./services/applicationKafka/applicantAppliedJobs");
 var apply = require("./services/applicationKafka/apply");
 
 
@@ -76,7 +77,7 @@ handleTopicRequest("clickcounts_topic", clickCounts);
 handleTopicRequest("getprofile_topic", getprofile);
 
 handleTopicRequest("apply_topic", apply);
-//handleTopicRequest("applicantAppliedJobs_topic", applicantAppliedJobs);
+handleTopicRequest("applicantAppliedJobs_topic", applicantAppliedJobs);
 handleTopicRequest("jobDetails_topic", jobDetails);
 //handleTopicRequest("applicationsForJob_topic", applicationsForJob);
 

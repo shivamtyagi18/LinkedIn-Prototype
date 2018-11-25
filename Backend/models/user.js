@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
 
-var User = mongoose.model("User", {
+var Users = mongoose.model("User", {
   firstName: {
     type: String,
     default: "firstname"
@@ -53,6 +53,10 @@ var User = mongoose.model("User", {
     type: String,
     default: "profileSummary"
   },
+  clickCounts: {
+    type: Number,
+    default: 0
+  },
   resume: {
     type: String,
     default: "resume"
@@ -80,7 +84,12 @@ var User = mongoose.model("User", {
 
   password: {
     type: String
+  },
+  companyName: {
+    type: String,
+    default:"Company Name"
   }
+
 
   // Credentials :[{
   //     email :{
@@ -93,4 +102,4 @@ var User = mongoose.model("User", {
   // }]
 });
 
-module.exports = { User };
+module.exports = { Users };

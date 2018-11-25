@@ -123,4 +123,252 @@
     .body {
     background: navy;
     }
+
+    .navbar-right .dropdown .dropdown-toggle:hover{
+      background-color: transparent;
+    }
+    .navbar-right .dropdown .dropdown-toggle:focus{
+      background-color: transparent;
+    }
+    
+    .navbar-right .messaging .dropdown .messaging .dropdown-toggle{
+      cursor : pointer;
+      background-color: transparent;
+      margin-top:-45px;
+      margin-right: 0px;
+    }
+    .navbar-right .dropdown .dropdown-toggle {
+      cursor : pointer;
+      background-color: transparent;
+      color: white;
+      font-size: 15px;
+      margin-top:-40px;
+    }
+    
+    .navbar-right .dropdown .dropdown-menu{
+      background-color: white;
+      width: 230px;
+      height: auto;
+      margin-right: 30px;
+    }
+    
+    .navbar-right .dropdown .dropdown-menu li {
+      background-color: white;
+      font-size: 1.4rem;
+      line-height: 1.42857;
+      font-weight: 600;
+      padding: 2px;
+      text-align: left;
+      overflow: hidden;
+    }
+    
+    .navbar-right .dropdown .dropdown-menu li .test:hover{
+      color:#665ed0;
+    }
+    
+    .navbar-right .dropdown .dropdown-menu li .test1:hover{
+      color:#006097;
+    }
+    .navbar-right .dropdown .dropdown-menu li .test1{
+      color:black;
+      font-size: 1.6rem;
+        line-height: 1.5;
+        font-weight: 600;
+    }
+    
+    .navbar-btn1 {
+    background: transparent;
+    color: #fff;
+    height: 50px;
+    width: 120px;
+    margin-top: -45px;
+    margin-right: 220px;
+    text-align: center;
+    }
+    
+    .navbar-btn2 {
+      background: transparent;
+      color: #fff;
+      height: 50px;
+      width: 120px;
+      margin-top: -45px;
+      text-align: center;
+      }
+    
+      .navbar-btn3 {
+        background: transparent;
+        color: #fff;
+        height: 50px;
+        width: 120px;
+        margin-top: -45px;
+        text-align: center;
+        }
+    
+        .navbar-btn3:hover {
+          background: rgba(240, 224, 224, 0.103);
+          color: #fff;
+          height: 50px;
+          width: 120px;
+          margin-top: -45px;
+          text-align: center;
+          }
+    
+          .navbar-btn2:hover {
+            background: rgba(240, 224, 224, 0.103);
+            color: #fff;
+            height: 50px;
+            width: 120px;
+            margin-top: -45px;
+            text-align: center;
+            }
+    
+            .navbar-btn1:hover {
+              background: rgba(240, 224, 224, 0.103);
+              color: #fff;
+              height: 50px;
+              width: 120px;
+              margin-top: -45px;
+              text-align: center;
+              }
+    
+    .footerdata {
+      font-size: 1.2rem;
+      line-height: 1.33333;
+      font-weight: 400;
+      color: rgba(0,0,0,.9);
+      text-align: center;
+      border-top: 1 px solid lightgray;
+    }
+    
+    .footerdata1 {
+      font-size: 1.2rem;
+      line-height: 1.33333;
+      font-weight: 400;
+      color: rgba(0,0,0,.9);
+      text-align: center;
+    }
+    
+    .home-left {
+      border: 1px solid lightgray;
+      background-color: white;
+      height:100%;
+    }
+    
+    .home-right {
+      border: 1px solid lightgray;
+      background-color: white;
+      padding:10px;
+    }
+    
+    .projects-actions-bar__title-bar{
+      border-bottom: 1px solid rgba(0,0,0,.15);
+        padding: 10px;
+    }
+    
+    .projects-actions-bar__title{
+      font-size: 2rem;
+        line-height: 1.4;
+        font-weight: 400;
+        color: rgba(0,0,0,.9);
+    }
+    
+    .projects-actions-bar__title1{
+      font-size: 2.5rem;
+        line-height: 1.4;
+        font-weight: 400;
+        color: rgba(0,0,0,.9);
+        text-align: center;
+    }
+    
+    .form-inline .btn{
+    background-color: #004b7c;
+    color:white;
+    margin-left: 5px;
+    }
+    
+    .home-right .postjob .btn{
+      background-color: #004b7c;
+      color:white;
+      font-weight: 600;
+      width: 100%;
+      height: 40px;
+      padding: 10px;
+      text-align: center;
+      border-bottom: 1px solid rgba(0,0,0,.15);
+      }
+    
+      .postjob {
+        border-bottom: 1px solid rgba(0,0,0,.15);
+      }
+    .form-inline {
+      border-bottom: 1px solid rgba(0,0,0,.15);
+      padding: 15px;
+    }
+    
+    .manageaccount {
+      text-align: center;
+    }
+    
+    .headline .hit-headline{
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 1.5;
+      color: #0073b1;
+      margin: 0;
+    }
+    
+    .headline .hit-companynameheadline{
+      font-weight: bolder;
+      font-size: 14px;
+      line-height: 1.42857;
+      color: rgba(0,0,0,.9);
+      margin: 0;
+    }
+    
+    .headline .hit-locationheadline{
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(0,0,0,.6);
+      margin: 0;
+    }
+    
+    .headline .jobdescriptionheadline{
+      font-size: 1.2rem;
+      line-height: 1.33333;
+      font-weight: 400;
+      color: rgba(0,0,0,.75);
+      padding-right: 8px;
+      margin: 4px 0;
+    }
+    
+    .displayjobdescription{
+      font-size: 1.2rem;
+      line-height: 1.33333;
+      font-weight: 400;
+      color: rgba(0,0,0,.75);
+      padding-right: 8px;
+      margin: 4px 0;
+    }
+    
+    .displayjobinfo{
+      width:95%;
+      border-radius: 0;
+      cursor: pointer;
+      overflow: hidden;
+      transition: width .2s,padding .2s,margin .2s,background .2s;
+      padding: 8px 48px 8px 24px;
+      border-top: 1px solid lightgray;
+      padding: 10px;
+      padding-left: 0;
+      background-color: #fff;
+      margin: 20px;
+      margin-left: 10px;
+    }
+    .postedOn{
+      margin-top: 10px;
+    }
+    .mainWindow
+    .textpostedjobs{
+      padding: 10px;
+    }
     

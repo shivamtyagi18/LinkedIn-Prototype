@@ -2,33 +2,48 @@ import React, { Component } from 'react';
 import MuiThemeProvider from 
   'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
+import axios from 'axios';
 import { List, ListItem } from 'material-ui/List';
 import RaisedButton from 'material-ui/RaisedButton';
 import { apply } from '../../actions'
 import { connect } from "react-redux";
-
+const ROOT_URL = "http://localhost:3001";
 export class Confirm extends Component {
+  
   continue = (e) => {
     e.preventDefault();
-    const { values } = this.props;
-    console.log(values.firstName)
+   // const { values: { firstName, lastName, email, education, occupation, city, bio, about, sponsorship, disability, resume, coverLetter } } = this.props;
+    const data= { 
+      jobId:localStorage.getItem("jobId"),
+      firstName: this.props.values.firstName, 
+      lastName: this.props.values.lastName, 
+      email: this.props.values.email, 
+      education:this.props.values.education,
+      occupation: this.props.values.occupation, 
+      city:this.props.values.city, 
+      bio:this.props.values.bio, 
+      about:this.props.values.about, 
+      sponsership:this.props.values.sponsorship, 
+      disability:this.props.values.disability, 
+      resume:"resume"+this.props.values.email,
+      coverLetter:"coverLetter"+this.props.values.email 
+    }  
+    console.log("values",data)
     const applicantEmail = localStorage.getItem('email')
     const formData = new FormData();
     formData.append('applicantEmail', applicantEmail)
-    formData.append('firstName', values.firstName)
-    formData.append('lastName', values.lastName)
-    formData.append('email', values.email)
-    formData.append('education', values.education)
-    formData.append('occupation', values.occupation)
-    formData.append('city', values.city)
-    formData.append('bio', values.bio)
-    formData.append('about', values.about)
-    formData.append('sponsorship', values.sponsorship)
-    formData.append('disability', values.disability)
-    formData.append('resume', values.resume)
+    formData.append('resume', this.props.values.resume)
+    formData.append('coverLetter', this.props.values.coverLetter)
+
     // Send request to backend
-    console.log("formdata",formData)
-    this.props.apply(formData);
+    
+    this.props.apply(data);
+    console.log("formData")
+    axios.post(`${ROOT_URL}/image`, formData)
+                            .then((result) => {
+                              // access results...
+                              console.log("Successfull image upload")
+                            });
 
     this.props.nextStep();
   }

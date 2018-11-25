@@ -1,5 +1,5 @@
 var mongoose = require("../mongoose");
- 
+
 function handle_request(msg, callback) {
 console.log("In Applicant Applied Jobs Request");
 var res = {};
@@ -30,5 +30,5 @@ res.value = Applications;
 callback(null, res);
 });
 }
- 
+
 exports.handle_request = handle_request;

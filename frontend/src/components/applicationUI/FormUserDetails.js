@@ -23,6 +23,8 @@ export class FormUserDetails extends Component {
     }
   }
 
+ 
+
   render() {
     let nav = <Navbar navdata={this.props.navdata}/>
     const { values, handleChange, handleCL, handleResume } = this.props;

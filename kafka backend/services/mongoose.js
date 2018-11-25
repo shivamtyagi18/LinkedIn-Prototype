@@ -14,7 +14,7 @@ const options = {
   poolSize: 1000
 };
 
-var Users = mongoose.model("User", {
+var Users = mongoose.model("Users", {
   firstName: {
     type: String,
     default: "firstname"
@@ -25,7 +25,7 @@ var Users = mongoose.model("User", {
   },
   type: {
     type: String,
-    default: "traveller/owner"
+    default: "type"
   },
   phone: {
     type: String,
@@ -82,6 +82,10 @@ var Users = mongoose.model("User", {
     type: String,
     default: "profileSummary"
   },
+  clickCounts: {
+    type: Number,
+    default: 0
+  },
   resume: {
     type: String,
     default: "resume"
@@ -111,6 +115,10 @@ var Users = mongoose.model("User", {
 
   password: {
     type: String
+  },
+  companyName: {
+    type: String,
+    default:"Company Name"
   }
 
 });

@@ -22,7 +22,9 @@ export class UserForm extends Component {
     disability: "",
     resume: "",
     coverLetter: "",
-    fileTypeErr: false
+    fileTypeErr: false,
+    companyName:"",
+    jobId:" "
   }
 
   // Proceed to the next step
@@ -88,9 +90,11 @@ export class UserForm extends Component {
 
   render() {
     let nav = <Navbar navdata={this.props.navdata}/>
+    const jobId = localStorage.getItem("jobId")
     const { step } = this.state;
     const { firstName, lastName, email, education, occupation, city, bio, about, sponsorship, disability, resume, coverLetter, fileTypeErr } = this.state;
     const values = { firstName, lastName, email, education, occupation, city, bio, about, sponsorship, disability, resume, coverLetter, fileTypeErr }
+   
     switch (step) {
         case 1: 
           return (

@@ -25,7 +25,7 @@ res.writeHead(200, {
 });
 console.log(JSON.stringify(result.value));
 res.end(JSON.stringify(result.value));
- 
+
 // done(null, { results: results.value });
 } else {
 console.log("No applications were found");

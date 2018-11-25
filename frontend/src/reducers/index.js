@@ -17,6 +17,7 @@ import SearchJobsReducer from "./searchJobs";
 import FetchJobsReducer from "./fetchJobs";
 import GET_PROFILE from "./getProfile";
 import myNetwork from "./myNetwork";
+import myJobs from "./myJobs";
 
 import userReducer from './userReducer';
 
@@ -38,7 +39,9 @@ const mainReducer = combineReducers({
   Jobs : FetchJobsReducer,
   user: userReducer,
   getProfileInfo: GET_PROFILE,
-  myNetwork: myNetwork
+  myNetwork: myNetwork,
+  myJobs:myJobs
+
 });
 
 const rootReducer = (state, action) => {
