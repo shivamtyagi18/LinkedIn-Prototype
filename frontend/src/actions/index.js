@@ -19,6 +19,7 @@ export const LOGOUT_APPLICANT = "logout_applicant";
 export const CREATEAPPLICANT = "create_applicant";
 export const SEARCH_JOBS = "search_jobs";
 export const FETCH_JOBS = "fetch_jobs";
+export const SAVE_JOBS = "save_jobs";
 
 export const POST_APPLICATION = 'POST_APPLICATION';
 export const GET_APPLICATIONS = 'GET_APPLICATIONS';
@@ -235,6 +236,24 @@ export function myJobs(values, callback) {
   // console.log("Request",request);
   return {
     type: MY_JOBS,
+    payload: request
+  };
+}
+
+export function saveJobs(values, callback) {
+  axios.defaults.withCredentials=true;
+  const request = axios
+    .post(`${ROOT_URL}/saveJob`, values)
+    .then((response) =>  {
+      console.log("Status Code : ",response.status);
+      console.log(response); 
+  //then((datafromreq) => {
+    if(callback) callback();
+    return response
+  });
+    console.log("Request",request);
+  return {
+    type: SAVE_JOBS,
     payload: request
   };
 }
