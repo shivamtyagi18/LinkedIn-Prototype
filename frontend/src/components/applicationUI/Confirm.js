@@ -30,20 +30,32 @@ export class Confirm extends Component {
     }  
     console.log("values",data)
     const applicantEmail = localStorage.getItem('email')
-    const formData = new FormData();
-    formData.append('applicantEmail', applicantEmail)
-    formData.append('resume', this.props.values.resume)
-    formData.append('coverLetter', this.props.values.coverLetter)
+    const formDataResume = new FormData();
+    const formDataCoverLetter = new FormData();
+    
+    formDataResume.append('applicantEmail',applicantEmail)
+    formDataResume.append('resume', this.props.values.resume)
+
+    formDataCoverLetter.append('applicantEmail',applicantEmail)
+    formDataCoverLetter.append('coverLetter', this.props.values.coverLetter)
 
     // Send request to backend
     
     this.props.apply(data);
+
     console.log("formData")
-    axios.post(`${ROOT_URL}/image`, formData)
+
+    axios.post(`${ROOT_URL}/resume`, formDataResume)
                             .then((result) => {
                               // access results...
                               console.log("Successfull image upload")
                             });
+
+    axios.post(`${ROOT_URL}/coverletter`, formDataCoverLetter)
+                            .then((result) => {
+                              // access results...
+                              console.log("Successfull image upload")
+                            });                        
 
     this.props.nextStep();
   }
