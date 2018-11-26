@@ -178,44 +178,98 @@ module.exports.AddedJobs = mongoose.model("AddedJobs", {
 });
 
 
-module.exports.Applications = mongoose.model("Application", {
-    firstName: {
-        type: String
-    }, 
-    lastName: {
-        type: String
-    }, 
-    email: {
-        type: String
-    }, 
-    education: {
-        type: String
-    }, 
-    occupation: {
-        type: String
-    }, 
-    city: {
-        type: String
-    }, 
-    bio: {
-        type: String
-    }, 
-    about: {
-        type: String
-    }, 
-    sponsorship: {
-        type: String
-    }, 
-    disability: {
-        type: String
-    }, 
-    resume: {
-        type: String
-    }, 
-    coverLetter: {
-        type: String
-    }
-});
+// module.exports.Applications = mongoose.model("Application", {
+//     firstName: {
+//         type: String
+//     }, 
+//     lastName: {
+//         type: String
+//     }, 
+//     email: {
+//         type: String
+//     }, 
+//     education: {
+//         type: String,
+//         default: ''
+//     }, 
+//     occupation: {
+//         type: String,
+//         default: ''
+//     }, 
+//     city: {
+//         type: String,
+//         default: ''
+//     }, 
+//     bio: {
+//         type: String,
+//         default: ''
+//     }, 
+//     about: {
+//         type: String,
+//         default: ''
+//     }, 
+//     sponsorship: {
+//         type: String,
+//         default: ''
+//     }, 
+//     disability: {
+//         type: String,
+//         default: ''
+//     }, 
+//     resume: {
+//         type: String
+//     }, 
+//     coverLetter: {
+//         type: String,
+//         default: ''
+//     }
+// });
 
+module.exports.Applications = mongoose.model("Application", {
+  firstName: {
+      type: String
+  }, 
+  lastName: {
+      type: String
+  }, 
+  email: {
+      type: String
+  }, 
+  education: {
+      type: String,
+      default: ''
+  }, 
+  occupation: {
+      type: String,
+      default: ''
+  }, 
+  city: {
+      type: String,
+      default: ''
+  }, 
+  bio: {
+      type: String,
+      default: ''
+  }, 
+  about: {
+      type: String,
+      default: ''
+  }, 
+  sponsorship: {
+      type: String,
+      default: ''
+  }, 
+  disability: {
+      type: String,
+      default: ''
+  }, 
+  resume: {
+      type: String
+  }, 
+  coverLetter: {
+      type: String,
+      default: ''
+  }
+});
 
 
