@@ -19,7 +19,9 @@ var aws = require('aws-sdk'),
 
 aws.config.update({
     secretAccessKey: '',
+  
     accessKeyId: '',
+   
     region: 'us-east-2',
     ACL:'public-read'
 
@@ -35,12 +37,12 @@ var upload = multer({
         s3: s3,
         bucket: 'linkedin-shivam',
         key: function (req, file, cb) {
-            console.log("file",file);
-            console.log("req",req.body,req.body.applicantEmail+file.fieldname);
-            //var name = req.body.applicantEmail+file.fieldname
+            console.log("file---",file);
+            console.log("req----",req.body.applicantEmail);
+            var name = file.fieldname+req.body.applicantEmail
            // console.log("filename is",name)
             //cb(null, file.originalname); //use Date.now() for unique file keys
-            cb(null, file.fieldname); //use Date.now() for unique file keys
+            cb(null,name); //use Date.now() for unique file keys
         }
     })
 });
@@ -105,9 +107,15 @@ app.use("/applicationModule", routes.ApplicantAppliedJobs);
 app.use("/applicationModule", routes.JobDetails);
 app.use("/applicationModule", routes.ApplicationsForJob);
 
-app.post('/image', upload.array('resume',4), (req, res) => {
+app.post('/resume', upload.array('resume',4), (req, res) => {
   //console.log("Req : ",req);
-  console.log("Res Image : ",req.body);
+  console.log("Resume Image : ",req.body);
+  res.send();
+});
+
+app.post('/coverletter', upload.array('coverLetter',4), (req, res) => {
+  //console.log("Req : ",req);
+  console.log("Cover Letter Image : ",req.body);
   res.send();
 });
 
