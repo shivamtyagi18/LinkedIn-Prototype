@@ -24,6 +24,8 @@ var editJob = require("./services/recruiterKafka/editJob");
 var loginRecruiter = require("./services/recruiterKafka/loginRecruiter");
 var recruiterDisplay = require("./services/recruiterKafka/displayRecruiter");
 var modifyRecruiterAccount = require("./services/recruiterKafka/modifyRecruiterAccount");
+var jobDisplay = require("./services/recruiterKafka/displayJob");
+var searchPostedJob = require("./services/recruiterKafka/searchPostedJob");
 
 
 var jobDetails = require("./services/applicationKafka/jobDetails");
@@ -87,5 +89,7 @@ handleTopicRequest("jobDetails_topic", jobDetails);
 // handleTopicRequest("editJob_topic", editJob);
 // handleTopicRequest("loginRecruiter_topic", loginRecruiter);
 // handleTopicRequest("recruiterDisplay_topic", recruiterDisplay);
+// handleTopicRequest("jobDisplay_topic", jobDisplay);
+// handleTopicRequest("searchPostedJob_topic", searchPostedJob);
 // handleTopicRequest("modifyRecruiterAccount_topic", modifyRecruiterAccount);
 

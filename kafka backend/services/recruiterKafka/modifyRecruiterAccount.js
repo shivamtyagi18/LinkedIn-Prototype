@@ -10,14 +10,13 @@ function handle_request(msg, callback) {
     },
     {
       $set: {
-        email: msg.email,  
         firstName: msg.firstName,
         lastName: msg.lastName,
         address: msg.address,
         city: msg.city,
         state: msg.state,
         zipcode: msg.zipcode,
-        phoneNumber: msg.phoneNumber,
+        phone: msg.phoneNumber,
         companyName: msg.companyName
       }
     },

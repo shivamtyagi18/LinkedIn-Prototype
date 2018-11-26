@@ -4,6 +4,7 @@ function handle_request(msg, callback){
     var res = {};
     console.log("In addJob request:"+ JSON.stringify(msg));
          var recruiter = new mongoose.AddedJobs({
+            email:msg.email,
             jobId : msg.jobId,
             jobTitle : msg.jobTitle,
             jobDescription:msg.jobDescription,

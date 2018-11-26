@@ -5,22 +5,15 @@ function handle_request(msg, callback){
     console.log("In check handle update -----request:"+ JSON.stringify(msg));
     mongoose.AddedJobs.findOneAndUpdate({
         jobId : msg.jobId,
-        companyName : msg.companyName
+        email : msg.email
     },{
         $set:{
-            jobId : msg.jobID,
             jobTitle : msg.jobTitle,
             jobDescription:msg.jobDescription,
-            location : msg.location,
             industry : msg.industry,
             employmentType : msg.employmentType,
             jobFunction : msg.jobFunction,
-            companyLogo : msg.companyLogo,
-            companyName: msg.companyname,
-            jobOpenings:msg.jobOpenings,
-            numberOfApplicants:msg.numberOfApplicants,
-            numberOfViews:msg.numberOfViews,
-            postedOn:msg.postedOn
+            jobOpenings:msg.jobOpenings
             }
     },function(err,user){
         console.log(err);

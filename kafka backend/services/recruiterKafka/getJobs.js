@@ -4,7 +4,7 @@ function handle_request(msg, callback){
     var res = {};
     console.log("In getJobs request:"+ JSON.stringify(msg));
     mongoose.AddedJobs.find({
-       companyName:msg.companyName,
+       email:msg.email,
     }, function(err,jobs){
         console.log(err);
         console.log(jobs);
