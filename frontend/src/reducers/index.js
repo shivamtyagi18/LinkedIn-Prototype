@@ -7,8 +7,10 @@ import TravelReducer from "./traveldash";
 import LogoutReducer from "./tlogout";
 import LoginOwnerReducer from "./authloginowner";
 import TravelRegisterReducer from "./travelregister";
+import SEARCHPOSTEDJOB from "./searchPostedJob";
 import OwnerRegisterReducer from "./ownerregister";
 import ADDRECRUITERREDUCER from "./addRecruiter";
+import GETJOBSOFRECRUITER from "./getRecruiterJobs";
 
 import CREATEAPPLICANT from "./createApplicant";
 import LoginApplicantReducer from "./applicantLogin";
@@ -32,6 +34,8 @@ const mainReducer = combineReducers({
   travelregister: TravelRegisterReducer,
   ownerregister: OwnerRegisterReducer,
   addRecruiter: ADDRECRUITERREDUCER,
+  getJobs : GETJOBSOFRECRUITER,
+  searchRecruiterJob: SEARCHPOSTEDJOB,
   createApplicant: CREATEAPPLICANT,
   loginApplicant: LoginApplicantReducer,
   loginRecruiter: LoginRecruiterReducer,
