@@ -11,12 +11,14 @@ export const FETCH_TRAVElDASHBOARD = "FETCH_TRAVElDASHBOARD";
 export const TLOGOUT = "tlogout";
 export const BOOKING = "booking";
 
+export const GETJOBSOFRECRUITER = "GETJOBSOFRECRUITER";
+export const SEARCHPOSTEDJOB = "searchPostedJob";
+
 export const LOGIN_APPLICANT = "login_applicant";
 export const LOGOUT_APPLICANT = "logout_applicant";
 export const CREATEAPPLICANT = "create_applicant";
 export const SEARCH_JOBS = "search_jobs";
 export const FETCH_JOBS = "fetch_jobs";
-export const SAVE_JOBS = "save_jobs";
 
 export const POST_APPLICATION = 'POST_APPLICATION';
 export const GET_APPLICATIONS = 'GET_APPLICATIONS';
@@ -237,24 +239,6 @@ export function myJobs(values, callback) {
   };
 }
 
-export function saveJobs(values, callback) {
-  axios.defaults.withCredentials=true;
-  const request = axios
-    .post(`${ROOT_URL}/saveJob`, values)
-    .then((response) =>  {
-      console.log("Status Code : ",response.status);
-      console.log(response); 
-  //then((datafromreq) => {
-    if(callback) callback();
-    return response
-  });
-    console.log("Request",request);
-  return {
-    type: SAVE_JOBS,
-    payload: request
-  };
-}
-
 //----------------------------------------------------------------------------------//
 
 export function loginRecruiter(values, callback) {
@@ -440,3 +424,42 @@ export const getApplicant = (applicantId) => dispatch => {
           }
       })
 }
+
+export function getRecruiterJobs(values, callback) {
+  axios.defaults.withCredentials = true;
+  const data = {
+    email:localStorage.getItem("email")
+  };
+  const request = 
+  axios
+    .get(`${ROOT_URL}/recruiter/getPostedJob/${data.email}`)
+    .then(datarequested => {
+      if (callback) callback();
+      return datarequested;
+    });
+    console.log(request);
+  return {
+    type: GETJOBSOFRECRUITER,
+    payload: request
+  };
+}
+
+//target action
+export function searchPostedJob(values, callback) {
+  axios.defaults.withCredentials = true;
+  //middleware call
+  //receive response from backend
+  console.log(values)
+  values.email = localStorage.getItem("email");
+  console.log(values);
+  const request = axios.post(`${ROOT_URL}/recruiter/searchPostedJob`,values).then((datarequested) => {
+    if (callback) callback();
+    return datarequested;
+  });
+  //Action dispatched
+  console.log(request);
+  return {
+    type: SEARCHPOSTEDJOB,
+    payload: request
+  };
+ }
