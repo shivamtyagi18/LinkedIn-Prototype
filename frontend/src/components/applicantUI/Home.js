@@ -97,6 +97,9 @@ class Home extends Component {
                 <div class="col-sm-12">
                     <div class="col-sm-12" style={{fontSize:"1.5rem",fontWeight:"500",textAlign:"centre"}}>Profile Views : {this.props.profileInfo.clickCounts}</div>
                 </div>
+                <div class="col-sm-12">
+                    <div class="col-sm-12" style={{fontSize:"1.5rem",fontWeight:"500",textAlign:"centre"}}>Jobs Saved : {this.props.profileInfo.savedJobs}</div>
+                </div>
 
             </div> 
         </div>

@@ -27,6 +27,7 @@ import MyJobs from "./applicantUI/myJobs";
 import JobDetails from "./applicationUI/JobDetails";
 import ApplicationsForJob from "./applicationUI/ApplicationsForJob";
 import Application from "./applicationUI/Userform";
+import EasyApply from "./applicationUI/EasyApply";
 import RootReducer from "../reducers";
 //import ApplicationNavbar from "./applicationUI/ApplicationNavbar";
 
@@ -146,6 +147,11 @@ class Main extends Component {
       <Route 
       exact path="/Application" 
       component={Application} 
+      />
+
+      <Route 
+      exact path="/EasyApply" 
+      component={EasyApply} 
       />
 
       <Route

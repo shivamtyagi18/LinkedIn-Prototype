@@ -175,7 +175,7 @@ class JobDetails extends Component {
       jobFetch =
        (
         <div>
-          <Navbar /> // <Navbar />
+          
           <div>
             <div class="container-fluid">
               <div class="container1">
@@ -450,9 +450,9 @@ class JobDetails extends Component {
                     style={{ marginBottom: '2rem' }}
                     onClick={this.toggle}
                 >
-                    Easy Apply
+                  <a href="/EasyApply">Easy Apply</a>
                 </Button>
-                <Modal
+               {/*} <Modal
                     isOpen={this.state.modal}
                     toggle={this.toggle}
                 >
@@ -521,7 +521,7 @@ class JobDetails extends Component {
                             </Button>
                         </FormGroup>
                     </ModalBody>
-                </Modal>
+                        </Modal>*/}
                 </MuiThemeProvider>
               </div>
             </div>
@@ -529,7 +529,12 @@ class JobDetails extends Component {
         </div>
       );
     }
-    return  <div>{jobFetch}</div>;
+    return  (
+      <div>
+      <Navbar /> // <Navbar />
+    {jobFetch}
+    </div>
+    )
   }
 }
 

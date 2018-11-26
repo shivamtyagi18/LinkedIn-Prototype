@@ -6,10 +6,12 @@ function handle_request(msg, callback) {
 
   console.log("In search request:" + JSON.stringify(msg));
   var location = msg.location;
-  mongoose.AddedJobs.find({ location: location }, function(err, job) {
+  var jobTitle = msg.jobTitle;
+
+  mongoose.AddedJobs.find({ location: location, jobTitle:{$regex: jobTitle}}, function(err, job) {
     // console.log("Properties : ",property);
     // console.log("Properties : ",property.length,property[0].location);
-    console.log("Error : ", err);
+    console.log("Error : ", err,job);
 
     // console.log("date : ",typeof(property[0].checkin),typeof(tempin),typeof(tempguest));
     // console.log("date : ",property[0].location==req.body.location, property[0].checkin <= tempin, property[0].checkout >= tempout, property[0].guests>=tempguest);
@@ -24,7 +26,7 @@ function handle_request(msg, callback) {
     } else {
       Jobs = []; //Nullifying the value of Properties array
       if (job.length) {
-        for (var i = 0; i < job.length; i++) {
+        for (var i = 0; i < job.length && i<5; i++) {
           //  if(property[i].location == req.body.location && property[i].checkin<= req.body.checkin && property[i].checkout>= req.body.checkout && property[i].guests == req.body.guests){
           if (job[i].location == msg.location) {
             Jobs[i] = job[i]; //Inserting values from result to Properties array

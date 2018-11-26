@@ -117,7 +117,7 @@ class SearchBar extends Component {
 
                     <div class="col-sm-4" style={{marginTop:"2%"}}>
                     <Field
-                    name="jobtitle"
+                    name="jobTitle"
                     component={this.renderFieldTitle}
                     placeholder="Job Title"
                     />
