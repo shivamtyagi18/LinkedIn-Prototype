@@ -31,6 +31,7 @@ var searchPostedJob = require("./services/recruiterKafka/searchPostedJob");
 var jobDetails = require("./services/applicationKafka/jobDetails");
 var applicantAppliedJobs = require("./services/applicationKafka/applicantAppliedJobs");
 var apply = require("./services/applicationKafka/apply");
+var applySQL = require("./services/applicationKafka/applySQL");
 
 
 function handleTopicRequest(topic_name, fname) {
@@ -81,15 +82,16 @@ handleTopicRequest("getprofile_topic", getprofile);
 handleTopicRequest("apply_topic", apply);
 handleTopicRequest("applicantAppliedJobs_topic", applicantAppliedJobs);
 handleTopicRequest("jobDetails_topic", jobDetails);
-//handleTopicRequest("applicationsForJob_topic", applicationsForJob);
+handleTopicRequest("applySQL_topic", applySQL);
+handleTopicRequest("applicationsForJob_topic", applicationsForJob);
 
-// handleTopicRequest("addRecruiter_topic", addRecruiter);
-// handleTopicRequest("addJob_topic", addJob);
-// handleTopicRequest("getJobs_topic", getJobs);
-// handleTopicRequest("editJob_topic", editJob);
-// handleTopicRequest("loginRecruiter_topic", loginRecruiter);
-// handleTopicRequest("recruiterDisplay_topic", recruiterDisplay);
-// handleTopicRequest("jobDisplay_topic", jobDisplay);
-// handleTopicRequest("searchPostedJob_topic", searchPostedJob);
-// handleTopicRequest("modifyRecruiterAccount_topic", modifyRecruiterAccount);
+handleTopicRequest("addRecruiter_topic", addRecruiter);
+handleTopicRequest("addJob_topic", addJob);
+handleTopicRequest("getJobs_topic", getJobs);
+handleTopicRequest("editJob_topic", editJob);
+handleTopicRequest("loginRecruiter_topic", loginRecruiter);
+handleTopicRequest("recruiterDisplay_topic", recruiterDisplay);
+handleTopicRequest("jobDisplay_topic", jobDisplay);
+handleTopicRequest("searchPostedJob_topic", searchPostedJob);
+handleTopicRequest("modifyRecruiterAccount_topic", modifyRecruiterAccount);
 

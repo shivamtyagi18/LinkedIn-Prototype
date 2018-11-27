@@ -152,6 +152,7 @@ export class EasyApply extends Component {
                 </button>
                 <p id="displayResume"></p>
             </div>
+            
             <br/>
             <button  onClick={this.onSubmit} className="btn btn-primary" style={{backgroundColor:"grey",borderColor:"black",fontSize:"2rem"}}>Submit</button>
         </div>

@@ -403,33 +403,56 @@ export function booking(values, callback) {
 
 //-----------------------------------------Application-----------------------------------------//
 
-export const apply = data => dispatch => {
-  axios
-      .post(`${ROOT_URL}/applicationModule/apply`, data)
-      .then(res => {
-          if(res.status===200){
-              console.log('Successfully Applied');
-              dispatch({
-                  type: POST_APPLICATION,
-                  payload: res.data
-              })
-          }
-      })
-}
+// export const apply = data => dispatch => {
+//   axios
+//       .post(`${ROOT_URL}/applicationModule/apply`, data)
+//       .then(res => {
+//           if(res.status===200){
+//               console.log('Successfully Applied');
+//               dispatch({
+//                   type: POST_APPLICATION,
+//                   payload: res.data
+//               })
+//           }
+//       })
+// }
 
-export const easyApply = data => dispatch => {
-  axios
-      .post(`${ROOT_URL}/easyApply`, data)
-      .then(res => {
-          if(res.status===200){
-              console.log('Successfully Applied');
-              dispatch({
-                  type: POST_APPLICATION,
-                  payload: res.data
-              })
-          }
-      })
-}
+// export const easyApply = data => dispatch => {
+//   axios
+//       .post(`${ROOT_URL}/easyApply`, data)
+//       .then(res => {
+//           if(res.status===200){
+//               console.log('Successfully Applied');
+//               dispatch({
+//                   type: POST_APPLICATION,
+//                   payload: res.data
+//               })
+//           }
+//       })
+// }
+
+export const apply = data => dispatch => {
+  axios.post(`${ROOT_URL}/applicationModule/apply`, data).then(res => {
+  if (res.status === 200) {
+  console.log("Successfully Applied");
+  dispatch({
+  type: POST_APPLICATION,
+  payload: res.data
+  });
+  }
+  });
+
+  axios.post("http://localhost:3001/applySQL", data).then(response => {
+  console.log("Status : ", response.status);
+  if (response.status === 200) {
+  console.log("Successfully Applied");
+  }
+  dispatch({
+  type: POST_APPLICATION,
+  payload: response.data
+  });
+  });
+  };
 
 export const getApplicant = (applicantId) => dispatch => {
   axios

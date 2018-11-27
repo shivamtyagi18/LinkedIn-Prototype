@@ -13,6 +13,7 @@ module.exports = {
   Apply: require("../linkedINController/applicationModule/Apply"),
   JobDetails: require("../linkedINController/applicationModule/JobDetails"),
   ApplicantAppliedJobs: require("../linkedINController/applicationModule/ApplicantAppliedJobs"),
-  ApplicationsForJob: require("../linkedINController/applicationModule/ApplicationsForJob")
+  ApplicationsForJob: require("../linkedINController/applicationModule/ApplicationsForJob"),
+  ApplySQL: require("../linkedINController/applicationModule/ApplySQL")
  
 };
