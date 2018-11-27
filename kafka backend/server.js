@@ -32,6 +32,7 @@ var jobDetails = require("./services/applicationKafka/jobDetails");
 var applicantAppliedJobs = require("./services/applicationKafka/applicantAppliedJobs");
 var apply = require("./services/applicationKafka/apply");
 var applySQL = require("./services/applicationKafka/applySQL");
+var applicationsForJob = require("./services/applicationKafka/applicationsForJob");
 
 
 function handleTopicRequest(topic_name, fname) {
