@@ -80,7 +80,7 @@ renderJobResults() {
     // .filter(jobs => jobs.jobTitle <= this.state.searchJobName);
   return _.map(searchedJobs, jobs => {
     console.log("frontend job name->"+jobs.jobTitle);
-    const imgurl = `https://s3.us-east-2.amazonaws.com/linkedin-shivam/${jobs.companyLogo}`;
+    const imgurl = `https://s3.us-east-2.amazonaws.com/linkedin-images/${jobs.companyLogo}`;
     var date=new Date();
     let temp_date = new Date(jobs.postedOn);
     var posted_date = temp_date.getDate();

@@ -128,7 +128,7 @@ class Search extends Component {
           // const imgurl = require(`../uploads/${property.img}`);
            // const imgurl1 = require(`../uploads/${property.img}`);            
            // const imgurl2 = require(`../uploads/${property.img}`);
-                 const imgurl2 = `https://s3.us-east-2.amazonaws.com/linkedin-shivam/${jobs.companyLogo}`;
+                 const imgurl2 = `https://s3.us-east-2.amazonaws.com/linkedin-images/${jobs.companyLogo}`;
             console.log("jobs",jobs)
             return( 
     <React.Fragment>
