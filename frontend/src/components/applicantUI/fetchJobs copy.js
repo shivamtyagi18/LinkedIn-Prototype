@@ -92,7 +92,7 @@ class Search extends Component {
           // const imgurl = require(`../uploads/${property.img}`);
            // const imgurl1 = require(`../uploads/${property.img}`);            
            // const imgurl2 = require(`../uploads/${property.img}`);
-                 const imgurl2 = `https://s3.us-east-2.amazonaws.com/linkedin-shivam/noprofile.png`;
+                 const imgurl2 = `https://s3.us-east-2.amazonaws.com/linkedin-images/noprofile.png`;
             console.log("jobs",jobs)
             return( 
         <div>
