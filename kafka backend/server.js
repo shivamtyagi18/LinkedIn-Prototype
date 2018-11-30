@@ -5,6 +5,7 @@ var login = require("./services/applicantKafka/login");
 var registerapplicant = require("./services/applicantKafka/registerapplicant");
 var saveJob = require("./services/applicantKafka/saveJob");
 var jobsearch = require("./services/applicantKafka/jobsearch");
+var usersearch = require("./services/applicantKafka/usersearch");
 var userdisplay = require("./services/applicantKafka/userdisplay");
 var viewConnections = require("./services/applicantKafka/viewConnections");
 var connectionRequest = require("./services/applicantKafka/connectionRequest");
@@ -70,6 +71,7 @@ function handleTopicRequest(topic_name, fname) {
 handleTopicRequest("login_topic", login);
 handleTopicRequest("registerapplicant_topic", registerapplicant);
 handleTopicRequest("jobsearch_topic", jobsearch);
+handleTopicRequest("usersearch_topic", usersearch);
 handleTopicRequest("userdisplay_topic", userdisplay);
 handleTopicRequest("connrequest_topic", connectionRequest);
 handleTopicRequest("connectionaccept_topic", connectionAccept);
