@@ -24,7 +24,7 @@ import MuiThemeProvider from
   'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import { connect } from 'react-redux';
-import { easyApply } from '../../actions/'
+import { Apply } from '../../actions/'
 // import EasyApplyModal from './EasyApplyModal';
 //jobID from job search list applicantID as well
 
@@ -148,7 +148,7 @@ class JobDetails extends Component {
             formData.append('resume', this.state.resume);
 
             // Call easyApply action
-            this.props.easyApply(formData);
+            this.props.apply(formData);
 
             // Close modal
             this.toggle();
@@ -452,7 +452,76 @@ class JobDetails extends Component {
                 >
                   <a href="/EasyApply">Easy Apply</a>
                 </Button>
-               
+               {/*} <Modal
+                    isOpen={this.state.modal}
+                    toggle={this.toggle}
+                >
+                    <ModalHeader toggle={this.toggle}>Apply in a few seconds using easy apply!</ModalHeader>
+                    <ModalBody>
+                        <Alert
+                            isOpen={this.state.danger}
+                            color='danger'
+                        >
+                            All fields are required!
+                        </Alert>
+                        <Alert
+                            isOpen={this.state.warning}
+                            color='warning'
+                        >
+                            Only pdf and doc/docx files are allowed
+                        </Alert>
+                        <FormGroup>
+                            <Label for="item">Item</Label>
+                            <Input 
+                                type="text"
+                                name="firstName"
+                                id="firstName"
+                                placeholder="First Name"
+                                onChange={this.onChange}
+                                value={this.state.firstName}
+                            />
+                            <br/>
+                            <Input 
+                                type="text"
+                                name="lastName"
+                                id="lastName"
+                                placeholder="Last Name"
+                                onChange={this.onChange}
+                                value={this.state.lastName}
+                            />
+                            <br/>
+                            <Input 
+                                type="text"
+                                name="email"
+                                id="email"
+                                placeholder="Email"
+                                onChange={this.onChange}
+                                value={this.state.email}
+                            />
+                            <br/>
+                            <RaisedButton
+                                containerElement="label"
+                                label="Add a Resume"
+                            >
+                                <input
+                                    name="resume"
+                                    type="file" 
+                                    onChange={this.handleResume}
+                                    hidden 
+                                />
+                            </RaisedButton>
+                            <p id="displayResume"></p>
+                            <br/>
+                            <Button
+                                color="dark"
+                                style={{marginTop: '2rem'}}
+                                onClick={this.onSubmit}
+                                block     
+                            >Add Item
+                            </Button>
+                        </FormGroup>
+                    </ModalBody>
+                        </Modal>*/}
                 </MuiThemeProvider>
               </div>
             </div>

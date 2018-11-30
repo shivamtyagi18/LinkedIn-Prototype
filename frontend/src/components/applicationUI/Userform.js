@@ -4,7 +4,7 @@ import FormPersonalDetails from './FormPersonalDetails';
 import FormQuestions from './FormQuestions';
 import Confirm from './Confirm';
 import Success from './Success';
-
+import EasyApplyModal from './EasyApplyModal';
 import Navbar from './Navbar';
 
 export class UserForm extends Component {
