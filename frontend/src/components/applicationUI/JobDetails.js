@@ -6,7 +6,7 @@ import "../../App.css";
 import { Redirect } from "react-router";
 import cookie from "react-cookies";
 import axios from "axios";
-import { getProfile } from '../../actions'
+import { getProfile,apply } from '../../actions'
 //import validator from "validator";
 //import ApplicationNavbar from "./ApplicationNavbar";
 import Navbar from "./Navbar";
@@ -452,76 +452,7 @@ class JobDetails extends Component {
                 >
                   <a href="/EasyApply">Easy Apply</a>
                 </Button>
-               {/*} <Modal
-                    isOpen={this.state.modal}
-                    toggle={this.toggle}
-                >
-                    <ModalHeader toggle={this.toggle}>Apply in a few seconds using easy apply!</ModalHeader>
-                    <ModalBody>
-                        <Alert
-                            isOpen={this.state.danger}
-                            color='danger'
-                        >
-                            All fields are required!
-                        </Alert>
-                        <Alert
-                            isOpen={this.state.warning}
-                            color='warning'
-                        >
-                            Only pdf and doc/docx files are allowed
-                        </Alert>
-                        <FormGroup>
-                            <Label for="item">Item</Label>
-                            <Input 
-                                type="text"
-                                name="firstName"
-                                id="firstName"
-                                placeholder="First Name"
-                                onChange={this.onChange}
-                                value={this.state.firstName}
-                            />
-                            <br/>
-                            <Input 
-                                type="text"
-                                name="lastName"
-                                id="lastName"
-                                placeholder="Last Name"
-                                onChange={this.onChange}
-                                value={this.state.lastName}
-                            />
-                            <br/>
-                            <Input 
-                                type="text"
-                                name="email"
-                                id="email"
-                                placeholder="Email"
-                                onChange={this.onChange}
-                                value={this.state.email}
-                            />
-                            <br/>
-                            <RaisedButton
-                                containerElement="label"
-                                label="Add a Resume"
-                            >
-                                <input
-                                    name="resume"
-                                    type="file" 
-                                    onChange={this.handleResume}
-                                    hidden 
-                                />
-                            </RaisedButton>
-                            <p id="displayResume"></p>
-                            <br/>
-                            <Button
-                                color="dark"
-                                style={{marginTop: '2rem'}}
-                                onClick={this.onSubmit}
-                                block     
-                            >Add Item
-                            </Button>
-                        </FormGroup>
-                    </ModalBody>
-                        </Modal>*/}
+               
                 </MuiThemeProvider>
               </div>
             </div>
@@ -542,6 +473,6 @@ const mapStateToProps = (state) => ({
   profileInfo: state.getProfileInfo
 });
 
-export default connect(mapStateToProps, { easyApply , getProfile })(JobDetails);
+export default connect(mapStateToProps, { apply , getProfile })(JobDetails);
 
 //export default JobDetails;
