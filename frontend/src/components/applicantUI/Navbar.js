@@ -7,11 +7,10 @@ import { SplitButton,DropdownButton, MenuItem, Button, Image } from 'react-boots
 //import { createUser } from "../../actions";
 import { connect } from "react-redux";
 import _ from "lodash";
+import UserSearchBar from './UserSearchBar';
 import { loginUser } from "../../actions";
 import { logoutUser } from "../../actions";
 import { tlogout } from "../../actions";
-
-
 
 
 //create the Navbar Component
@@ -53,7 +52,7 @@ class Navbar extends Component {
         let help = null;
         let listyourproperty = null;
         
-       
+        let searchbar1 = <UserSearchBar searchrender={this.props.searchrender}/>
         let redirectVar = null;
 
         // let details= _.map(this.props.login.email, login => { 
@@ -71,7 +70,7 @@ class Navbar extends Component {
             this.state.email=localStorage.getItem("email")
             
             navLogin = (
-                <ul class="nav navbar-nav navbar-right navbar-brand" style={{marginTop:"-1%",marginRight:"1%"}}>
+                <ul class="nav navbar-nav navbar-right navbar-brand" style={{marginTop:"-7px",marginRight:"1%"}}>
                         <DropdownButton title={this.state.email} style={{backgroundColor:"transparent",font:"50%",color:"white",marginTop:"0px",width:"100%"}} >
                             <MenuItem eventKey="1" ><Link to="/applicant/profile/myJobs">My Jobs</Link></MenuItem>
                             <MenuItem divider />
@@ -125,15 +124,19 @@ class Navbar extends Component {
                     </div>
 
                     <div class="nav navbar-nav navbar-right navbar-brand">
-                    <Link to="/applicant/profile/viewConnections">
+                    <a href="/applicant/profile/viewConnections">
                         <p style={{ color: "white" }}>My Network</p>
-                    </Link>
+                    </a>
                     </div>
 
                     <div class="nav navbar-nav navbar-right navbar-brand">
                     <Link to="/applicant/applicantHome">
                     <svg viewBox="0 0 24 24" width="24px" height="24px" x="0" y="0" preserveAspectRatio="xMinYMin meet" class="nav-icon" focusable="false" style={{color:"white"}} xmlns="http://www.w3.org/2000/svg"><path d="M22,8.45L12.85,2.26a1.5,1.5,0,0,0-1.69,0L2,8.45,3.06,10,4,9.37V19a1,1,0,0,0,1,1h5V15h4v5h5a1,1,0,0,0,1-1V9.37L20.94,10Z" class="active-item" style={{fillOpacity: "1"}}></path><path d="M22,9.45L12.85,3.26a1.5,1.5,0,0,0-1.69,0L2,9.45,3.06,11,4,10.37V20a1,1,0,0,0,1,1h6V16h2v5h6a1,1,0,0,0,1-1V10.37L20.94,11ZM18,19H15V15a1,1,0,0,0-1-1H10a1,1,0,0,0-1,1v4H6V8.89l6-4,6,4V19Z" class="inactive-item" style={{fill:"currentColor"}}></path></svg>
                     </Link>
+                    </div>
+
+                     <div class="nav navbar-nav navbar-right navbar-brand">
+                    {searchbar1}
                     </div>
                       
                 </div>

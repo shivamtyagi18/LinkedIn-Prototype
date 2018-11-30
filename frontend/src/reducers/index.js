@@ -16,7 +16,9 @@ import CREATEAPPLICANT from "./createApplicant";
 import LoginApplicantReducer from "./applicantLogin";
 import LoginRecruiterReducer from "./loginRecruiter";
 import SearchJobsReducer from "./searchJobs";
+import SearchUsersReducer from "./searchUsers";
 import FetchJobsReducer from "./fetchJobs";
+import FetchUsersReducer from "./fetchUsers";
 import GET_PROFILE from "./getProfile";
 import myNetwork from "./myNetwork";
 import myJobs from "./myJobs";
@@ -41,7 +43,9 @@ const mainReducer = combineReducers({
   loginApplicant: LoginApplicantReducer,
   loginRecruiter: LoginRecruiterReducer,
   searchJobs : SearchJobsReducer,
+  searchUsers : SearchUsersReducer,
   Jobs : FetchJobsReducer,
+  Users : FetchUsersReducer,
   user: userReducer,
   getProfileInfo: GET_PROFILE,
   myNetwork: myNetwork,

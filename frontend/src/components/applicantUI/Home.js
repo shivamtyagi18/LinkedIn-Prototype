@@ -40,7 +40,6 @@ class Home extends Component {
     render(){
 
         let searchbar = <SearchBar searchrender={this.props.searchrender}/>
-
        //let foot = <Footbar footrender={this.props.footrender}/>
 
         let nav = <Navbar navdata={this.props.navdata}/>
@@ -79,30 +78,30 @@ class Home extends Component {
                 {redirectVar}
                 {nav}
                 {searchbar} 
-                
-                <div class="col-sm-3" style={{marginLeft:"5%",marginTop:"5%"}}>
-                    <div><img src={imgurl2} width="100%"></img></div>
-                </div>
-        
-            <div class="col-sm-6" style={{marginLeft:"5%",marginTop:"5%"}}>
+
+        <div class="displayjobinfo container-fluid">
+        <div class="companypic  col-md-2" style={{marginTop:"5px",borderRadius:"15px"}}>
+        <img src={imgurl2} height="130px" width="150px" style={{borderRadius:"15px"}}></img>
+        </div>
+            <div class="headline col-md-10" style={{}}>
 
             <h3 class="hit-headline"><a><div>{this.props.profileInfo.firstName} {this.props.profileInfo.lastName}</div></a></h3>
+                
+                    <div class="" style={{fontSize:"1.5rem",fontWeight:"500",textAlign:"left"}}>Location : {this.props.profileInfo.city}</div>
+                
                
-                <div class="col-sm-12">
-                    <div class="col-sm-12" style={{fontSize:"1.5rem",fontWeight:"500",textAlign:"left"}}>Location : {this.props.profileInfo.city}</div>
-                </div>
-                <div class="col-sm-12">
-                    <div class="col-sm-12" style={{fontSize:"1.5rem",fontWeight:"500",textAlign:"centre"}}>Connections : {this.props.profileInfo.connections}</div>
-                </div>
-                <div class="col-sm-12">
-                    <div class="col-sm-12" style={{fontSize:"1.5rem",fontWeight:"500",textAlign:"centre"}}>Profile Views : {this.props.profileInfo.clickCounts}</div>
-                </div>
-                <div class="col-sm-12">
-                    <div class="col-sm-12" style={{fontSize:"1.5rem",fontWeight:"500",textAlign:"centre"}}>Jobs Saved : {this.props.profileInfo.savedJobs}</div>
-                </div>
+                    <div class="" style={{fontSize:"1.5rem",fontWeight:"500",textAlign:"centre"}}>Connections : {this.props.profileInfo.connections}</div>
+                
+              
+                    <div class="" style={{fontSize:"1.5rem",fontWeight:"500",textAlign:"centre"}}>Profile Views : {this.props.profileInfo.clickCounts}</div>
+                
+               
+                    <div class="" style={{fontSize:"1.5rem",fontWeight:"500",textAlign:"centre"}}>Jobs Saved : {this.props.profileInfo.savedJobs}</div>
+             
 
             </div> 
-        </div>
+            </div>
+            </div>
         )
     }
 }

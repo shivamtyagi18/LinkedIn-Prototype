@@ -5,7 +5,7 @@ import cookie from 'react-cookies';
 import {Redirect} from 'react-router';
 import {Link} from 'react-router-dom';
 import Navbar from './Navbar';
-import { fetchJobs } from "../../actions";
+import { fetchJobs,saveJobs } from "../../actions";
 import { connect } from "react-redux";
 import _ from "lodash";
 import { SplitButton,DropdownButton, MenuItem, Button, Image } from 'react-bootstrap';
@@ -22,6 +22,7 @@ class Search extends Component {
             authFlag : false,
             imageView : [],
             displayprop :"",
+            savjobprop:"",
             Per_page_Property : [],  //pagination
             page : 1,   //pagination
             total : "",   //pagination
@@ -59,6 +60,22 @@ class Search extends Component {
             displayprop : e.target.value,
         })
         console.log("Successful test - ", this.state.displayprop)
+    }
+
+    jobsSaveHandler=(e)=> {
+        localStorage.setItem("jobId",e.target.value)
+            this.state.savjobprop =localStorage.getItem("jobId") 
+        console.log("Successful test - ", this.state.savjobprop)
+        const data = {
+            email : localStorage.getItem("email"),
+            jobId : this.state.savjobprop,
+            companyName: e.target.dataset.attr
+        }
+
+        console.log("Successful data - ", data)
+        this.props.saveJobs(data);
+        window.alert("Saved...!!!")
+
     }
 
     onDivClick = (e) => {
@@ -127,8 +144,8 @@ class Search extends Component {
          var weeks = Math.floor((current_date-posted_date)/7)
           // const imgurl = require(`../uploads/${property.img}`);
            // const imgurl1 = require(`../uploads/${property.img}`);            
-           // const imgurl2 = require(`../uploads/${property.img}`);
-                 const imgurl2 = `https://s3.us-east-2.amazonaws.com/linkedin-images/${jobs.companyLogo}`;
+           const imgurl2 = `https://s3.us-east-2.amazonaws.com/linkedin-images/${jobs.companyLogo}`;
+                // const imgurl2 = `https://s3.us-east-2.amazonaws.com/linkedin-shivam/${jobs.companyLogo}`;
             console.log("jobs",jobs)
             return( 
     <React.Fragment>
@@ -184,11 +201,11 @@ class Search extends Component {
                     <div class="hit-jobdescriptionheadline"><p class="displayjobdescription">Job Profile : {jobs.jobFunction}</p></div>
                     </div>
 
-                   {/*<div class="col-sm-12" style={{height:"10%",marginTop:"10%"}}>
+                   <div class="col-sm-12" style={{height:"10%",marginTop:"10%"}}>
                         
-                            <button class="btn" name="displayprop" id="displayprop" onClick={this.jobsChangeHandler} value={jobs.jobId} style={{backgroundColor:"#0073b1",color:"white",fontSize:"1.5rem"}}>To Save, Apply & Easy Apply</button>
+                            <button class="btn" name="savejobprop" id="savejobprop" onClick={this.jobsSaveHandler} value={jobs.jobId} data-attr={jobs.companyName} style={{backgroundColor:"#0073b1",color:"white",fontSize:"1.5rem"}}>Save</button>
                     
-                    </div> */} 
+                    </div>  
                     
                 </div>
                
@@ -212,6 +229,9 @@ class Search extends Component {
 
             })
         }
+
+
+
      
         return(
 
@@ -249,4 +269,4 @@ function mapStateToProps(state) {
     return { Jobs: state.Jobs };
   }
   
-  export default connect(mapStateToProps, { fetchJobs })(Search);
+  export default connect(mapStateToProps, { fetchJobs,saveJobs })(Search);

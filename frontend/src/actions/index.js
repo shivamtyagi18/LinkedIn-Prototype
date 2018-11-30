@@ -18,7 +18,9 @@ export const LOGIN_APPLICANT = "login_applicant";
 export const LOGOUT_APPLICANT = "logout_applicant";
 export const CREATEAPPLICANT = "create_applicant";
 export const SEARCH_JOBS = "search_jobs";
+export const SEARCH_USERS = "search_users";
 export const FETCH_JOBS = "fetch_jobs";
+export const FETCH_USERS = "fetch_users";
 export const SAVE_JOBS = "save_jobs";
 
 export const POST_APPLICATION = 'POST_APPLICATION';
@@ -133,6 +135,24 @@ export function searchJobs(values, callback) {
   };
 }
 
+export function searchUsers(values, callback) {
+  axios.defaults.withCredentials=true;
+  const request = axios
+    .post(`${ROOT_URL}/applicant/search/usersearch`, values)
+    .then((response) =>  {
+      console.log("Status Code : ",response.status);
+      console.log(response); 
+  //then((datafromreq) => {
+    if(callback) callback();
+    return response
+  });
+    console.log("Request",request);
+  return {
+    type: SEARCH_USERS,
+    payload: request
+  };
+}
+
 export function fetchJobs() {
   //middleware call
   //receive response from backend
@@ -141,6 +161,18 @@ export function fetchJobs() {
   console.log("Response",response);
   return {
     type: FETCH_JOBS,
+    payload: response
+  };
+}
+
+export function fetchUsers() {
+  //middleware call
+  //receive response from backend
+  const response = axios.get(`${ROOT_URL}/applicant/search/fetchUsers`);
+  //Action dispatched
+  console.log("Response",response);
+  return {
+    type: FETCH_USERS,
     payload: response
   };
 }
