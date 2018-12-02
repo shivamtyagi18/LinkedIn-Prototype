@@ -15,6 +15,7 @@ export default function(state = {}, action) {
         // localStorage.setItem("type", action.payload.data.type);
         localStorage.setItem("email", action.payload.data.email);
         localStorage.setItem("token", action.payload.data.token);
+        localStorage.setItem("type",action.payload.data.type);
         localStorage.setItem("firstName", action.payload.data.firstName);
       }
 

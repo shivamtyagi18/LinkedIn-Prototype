@@ -56,7 +56,7 @@ class Navbar extends Component {
         let redirectVar = null;
 
         // let details= _.map(this.props.login.email, login => { 
-            
+           
            // console.log("User flag Page:",login.token);
        // })
         if(localStorage.getItem('token')){
@@ -124,7 +124,7 @@ class Navbar extends Component {
                     </div>
 
                     <div class="nav navbar-nav navbar-right navbar-brand">
-                    <a href="/applicant/profile/viewConnections">
+                    <a href="/profile/viewConnections">
                         <p style={{ color: "white" }}>My Network</p>
                     </a>
                     </div>

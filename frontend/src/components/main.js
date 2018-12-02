@@ -21,6 +21,7 @@ import FetchUsers from "./applicantUI/fetchUsers"
 import ProfilePage from "./applicantUI/profilePage"
 import SearchProfilePage from "./applicantUI/searchProfilePage"
 import MyNetwork from "./applicantUI/myNetwork";
+import RecruiterNetwork from "./applicantUI/RecruiterNetwork";
 import MyJobs from "./applicantUI/myJobs";
 
 
@@ -39,6 +40,7 @@ import RootReducer from "../reducers";
 import promise from "redux-promise";
 
 import thunk from 'redux-thunk';
+import fetchUsersRecruiter from "./applicantUI/fetchUsersRecruiter";
 const initialState = {};
 const middleware = [thunk];
 
@@ -131,6 +133,12 @@ class Main extends Component {
 
       <Route
         exact
+        path="/recruiter/fetchUsers"
+        component={fetchUsersRecruiter}
+      />
+
+      <Route
+        exact
         path="/applicant/profile/getprofile"
         component={ProfilePage}
       />
@@ -143,8 +151,14 @@ class Main extends Component {
 
       <Route
       exact
-      path="/applicant/profile/viewConnections"
+      path="/profile/viewConnections"
       component={MyNetwork}
+      />
+
+       <Route
+      exact
+      path="/recruiter/profile/viewConnections"
+      component={RecruiterNetwork}
       />
 
       <Route

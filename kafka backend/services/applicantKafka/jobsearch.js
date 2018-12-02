@@ -26,7 +26,7 @@ function handle_request(msg, callback) {
     } else {
       Jobs = []; //Nullifying the value of Properties array
       if (job.length) {
-        for (var i = 0; i < job.length && i<5; i++) {
+        for (var i = 0; i < job.length && i<10; i++) {
           //  if(property[i].location == req.body.location && property[i].checkin<= req.body.checkin && property[i].checkout>= req.body.checkout && property[i].guests == req.body.guests){
           if (job[i].location == msg.location) {
             Jobs[i] = job[i]; //Inserting values from result to Properties array

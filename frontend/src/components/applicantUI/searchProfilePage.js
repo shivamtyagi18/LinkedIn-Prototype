@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
-import Navbar from "./Navbar";
+import Navbar1 from "./Navbar1";
 import { getProfile, saveDetails, sendConnectionRequest } from "../../actions";
 import {Link} from 'react-router-dom';
 
@@ -215,7 +215,7 @@ class SearchProfilePage extends Component {
     );
   }
     console.log(this.props.ConnectionRequest.firstName);
-    let nav = <Navbar navdata={this.props.navdata} />;
+    let nav = <Navbar1 navdata={this.props.navdata} />;
     console.log(this.state.firstName);
     console.log("Usr is: ", this.props.user);
     const { profileInfo } = this.state;

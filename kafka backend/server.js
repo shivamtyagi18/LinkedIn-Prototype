@@ -8,14 +8,13 @@ var jobsearch = require("./services/applicantKafka/jobsearch");
 var usersearch = require("./services/applicantKafka/usersearch");
 var userdisplay = require("./services/applicantKafka/userdisplay");
 var viewConnections = require("./services/applicantKafka/viewConnections");
+var viewConnectionRequests = require("./services/applicantKafka/viewConnectionRequests");
 var connectionRequest = require("./services/applicantKafka/connectionRequest");
 var connectionAccept = require("./services/applicantKafka/connections");
 var userUpdate = require("./services/applicantKafka/userupdate");
 var profileViews = require("./services/applicantKafka/profileViews");
 var clickCounts = require("./services/applicantKafka/clickCounts");
 var getprofile = require("./services/applicantKafka/getprofile");
-
-
 
 
 var addRecruiter = require("./services/recruiterKafka/addRecruiter");
@@ -78,6 +77,7 @@ handleTopicRequest("connectionaccept_topic", connectionAccept);
 handleTopicRequest("userupdate_topic", userUpdate);
 handleTopicRequest("savejob_topic", saveJob);
 handleTopicRequest("viewconnections_topic", viewConnections);
+handleTopicRequest("viewconnectionrequests_topic", viewConnectionRequests);
 handleTopicRequest("profileviews_topic", profileViews);
 handleTopicRequest("clickcounts_topic", clickCounts);
 handleTopicRequest("getprofile_topic", getprofile);

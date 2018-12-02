@@ -21,9 +21,11 @@ import FetchJobsReducer from "./fetchJobs";
 import FetchUsersReducer from "./fetchUsers";
 import GET_PROFILE from "./getProfile";
 import myNetwork from "./myNetwork";
+import myNetworkRequests from "./myNetworkRequests";
 import myJobs from "./myJobs";
 import saveJobs from "./saveJobs";
 import sendConnectionRequestReducer from './sendConnectionRequest';
+import acceptConnectionRequestReducer from './acceptConnectionRequest';
 
 import userReducer from './userReducer';
 
@@ -50,9 +52,11 @@ const mainReducer = combineReducers({
   user: userReducer,
   getProfileInfo: GET_PROFILE,
   myNetwork: myNetwork,
+  myNetworkRequests: myNetworkRequests,
   myJobs:myJobs,
   saveJobs:saveJobs,
-  sendConnectionRequest:sendConnectionRequestReducer
+  sendConnectionRequest:sendConnectionRequestReducer,
+  acceptConnectionRequest:acceptConnectionRequestReducer
 });
 
 const rootReducer = (state, action) => {

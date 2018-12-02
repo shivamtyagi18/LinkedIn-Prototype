@@ -15,6 +15,8 @@ export default function(state = { error: false }, action) {
           // localStorage.setItem("type", action.payload.data.type);
           localStorage.setItem("email", action.payload.data.email);
           localStorage.setItem("token", action.payload.data.token);
+          localStorage.setItem("type", action.payload.data.type);
+          localStorage.setItem("firstName",action.payload.data.firstName);
           return action.payload.data;
         }else if (action.payload.data.code == 401) {
         return action.payload.data;

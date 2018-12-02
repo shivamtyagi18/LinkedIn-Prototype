@@ -40,6 +40,7 @@ class LoginRecruiter extends Component {
       <div className={className}>
         <input
           className=""
+          
           type="email"
           {...field.input}
           placeholder="Email address"

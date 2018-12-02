@@ -6,6 +6,7 @@ import { Redirect } from "react-router";
 import { tlogout } from "../../actions";
 import { loginRecruiter } from "../../actions";
 import { connect } from "react-redux";
+import RecruiterUserSearchBar from "../applicantUI/RecruiterUserSearchBar";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 //create the Navbar Component
 class NavRecruiterHome extends Component {
@@ -40,6 +41,8 @@ handleClick2 = () => {
   })
 }
   render() {
+
+    let searchbar1 = <RecruiterUserSearchBar searchrender={this.props.searchrender}/>;
     let redirectVar = null;
     if(this.state.homeFlag){
    
@@ -70,7 +73,7 @@ if(this.state.profileFlag){
    
   redirectVar=<Redirect to= {
     {
-        pathname: '/recruiter/profile',
+        pathname: '/recruiter/profile/viewConnections',
        
         
     }
@@ -119,12 +122,15 @@ window.location.reload(1);
           <ul class="nav navbar-nav navbar-right">
           <li><button class="btn navbar-btn3" onClick={this.handleClick} style={{textDecoration:"none",fontWeight: "600"}}>HOME</button></li>
           <li><button class="btn navbar-btn2" onClick={this.handleClick1} style={{textDecoration:"none",fontWeight: "600"}}>POST A JOB</button></li>
-          <li><button class="btn navbar-btn1" onClick={this.handleClick2} style={{textDecoration:"none",fontWeight: "600"}}>MY ACCOUNT</button></li>
+          <li><button class="btn navbar-btn1" onClick={this.handleClick2} style={{textDecoration:"none",fontWeight: "600"}}>MY NETWORK</button></li>
           <li class="messaging dropdown">
           <a class="messaging dropdown-toggle" data-toggle="dropdown"><i class="far fa-envelope fa-lg" style={{marginTop:"6px"}}></i> </a>
                         <ul class="dropdown-menu message">
                            <li><Link to="#" class="test1" >MESSAGES <i class="fas fa-caret-right"></i></Link></li>
                          </ul>
+          </li>
+          <li class="usersearch">
+          {searchbar1}
           </li>
           <li class="dropdown">
                        <a class="dropdown-toggle" data-toggle="dropdown">{localStorage.getItem("email")} <span class="caret"></span></a>

@@ -23,6 +23,7 @@ export const FETCH_JOBS = "fetch_jobs";
 export const FETCH_USERS = "fetch_users";
 export const SAVE_JOBS = "save_jobs";
 export const SENDCONNECTIONREQUEST = "sendConnectionRequest";
+export const ACCEPTCONNECTIONREQUEST = "acceptConnectionRequest";
 
 export const POST_APPLICATION = 'POST_APPLICATION';
 export const GET_APPLICATIONS = 'GET_APPLICATIONS';
@@ -31,6 +32,7 @@ export const SAVE_JOB = 'SAVE_JOB';
 
 export const GET_PROFILE = "GET_PROFILE";
 export const MY_NETWORK = "MY_NETWORK";
+export const MY_NETWORK_REQUESTS = "MY_NETWORK_REQUESTS";
 export const MY_JOBS = "MY_JOBS";
 
 axios.defaults.headers.common["authorization"] = localStorage.getItem("token");
@@ -185,6 +187,8 @@ export function tlogout() {
   // localStorage.removeItem("type");
   localStorage.removeItem("email");
   localStorage.removeItem("token");
+  localStorage.removeItem("firstName");
+  localStorage.removeItem("type");
   window.location.reload(1);
 
   //Action dispatched
@@ -236,7 +240,7 @@ export function saveDetails(values, callback) {
 
 export function myNetwork(values, callback) {
   const request = axios
-    .get(`${ROOT_URL}/applicant/profile/viewConnections/${values.email}`)
+    .get(`${ROOT_URL}/connections/viewConnections/${values.email}`)
     .then(response => {
       console.log("Status Code : ", response.status);
       console.log("Connections Data is : ", response);
@@ -249,6 +253,25 @@ export function myNetwork(values, callback) {
   // console.log("Request",request);
   return {
     type: MY_NETWORK,
+    payload: request
+  };
+}
+
+export function myNetworkRequests(values, callback) {
+  const request = axios
+    .get(`${ROOT_URL}/connections/viewConnectionRequests/${values.email}`)
+    .then(response => {
+      console.log("Status Code : ", response.status);
+      console.log("Connections Data is : ", response);
+      //then((datafromreq) => {
+      if (callback) callback();
+      return response;
+    });
+  console.log("Request", request);
+  // console.log("Request",request);
+  // console.log("Request",request);
+  return {
+    type: MY_NETWORK_REQUESTS,
     payload: request
   };
 }
@@ -549,6 +572,21 @@ export function searchPostedJob(values, callback) {
   console.log(request);
   return {
     type: SENDCONNECTIONREQUEST,
+    payload: request
+  };
+ }
+
+ export function acceptConnectionRequest(values, callback){
+  axios.defaults.withCredentials = true;
+  console.log(values);
+  const request = axios.post(`${ROOT_URL}/connections/accept`,values).then((datarequested) => {
+    if (callback) callback();
+    return datarequested;
+  });
+  //Action dispatched
+  console.log(request);
+  return {
+    type: ACCEPTCONNECTIONREQUEST,
     payload: request
   };
  }
