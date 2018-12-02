@@ -23,6 +23,7 @@ import GET_PROFILE from "./getProfile";
 import myNetwork from "./myNetwork";
 import myJobs from "./myJobs";
 import saveJobs from "./saveJobs";
+import sendConnectionRequestReducer from './sendConnectionRequest';
 
 import userReducer from './userReducer';
 
@@ -50,8 +51,8 @@ const mainReducer = combineReducers({
   getProfileInfo: GET_PROFILE,
   myNetwork: myNetwork,
   myJobs:myJobs,
-  saveJobs:saveJobs
-
+  saveJobs:saveJobs,
+  sendConnectionRequest:sendConnectionRequestReducer
 });
 
 const rootReducer = (state, action) => {

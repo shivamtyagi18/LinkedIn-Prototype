@@ -2,7 +2,7 @@ var kafka = require("kafka-node");
 
 function ConnectionProvider() {
   this.getConsumer = function(topic_name) {
-    this.client = new kafka.Client("localhost:2181");
+    this.client = new kafka.Client("localhost:2180");
     this.kafkaConsumerConnection = new kafka.Consumer(this.client, [
       { topic: topic_name, partition: 0 }
     ]);
@@ -17,7 +17,7 @@ function ConnectionProvider() {
   this.getProducer = function() {
     console.log("this", this);
     if (!this.kafkaProducerConnection) {
-      this.client = new kafka.Client("localhost:2181");
+      this.client = new kafka.Client("localhost:2180");
       var HighLevelProducer = kafka.HighLevelProducer;
       this.kafkaProducerConnection = new HighLevelProducer(this.client);
       //this.kafkaConnection = new kafka.Producer(this.client);

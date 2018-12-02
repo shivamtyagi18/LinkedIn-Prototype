@@ -18,6 +18,13 @@ import bkg from "./linkedin_login_bkg_applicant.jpeg";
 //Define a SignUp Component
 class LoginApplicant extends Component {
 
+  constructor(props){
+    super(props);
+    this.state = {  
+        redirectFlag : false,
+    }  
+} 
+
   renderField(field) {
     const {
       meta: { touched, error }
@@ -210,19 +217,28 @@ class LoginApplicant extends Component {
     this.props.createApplicant(values);
   }
 
+  
+
 
   render() {
     const { handleSubmit } = this.props;
     let redirect = null;
     let nav = <LoginNavbar navdata={this.props.navdata}/>
-
-    if (this.props.register.code === 200) {
-      redirect = (
-        <Redirect
-          to={{
-            pathname: "/applicant/loginApplicant"
+    let redirectMessage = null;
+    if (this.props.register.code == 200) {
+      redirectMessage = (
+        <div
+          style={{
+            backgroundColor: "green",
+            fontSize: "12px",
+            color: "white",
+            textAlign: "center",
+            padding: "6px",
+            marginTop: "10px"
           }}
-        />
+        >
+          <h5>Registration Successful.Proceed to Sign In.</h5>
+        </div>
       );
     }
 
@@ -244,9 +260,10 @@ class LoginApplicant extends Component {
       );
     }
 
+
+
     return (
       <React.Fragment>
-        {redirect}
         {nav}
         <div
           className="container-fluid"
@@ -282,6 +299,8 @@ class LoginApplicant extends Component {
         </p>
 
             <div>{errorMessage}</div>
+            <div>{redirectMessage}</div>
+
             <form
               onSubmit={handleSubmit(this.submitregister.bind(this))}
               className="form-group form-group-lg recruiter"

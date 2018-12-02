@@ -22,6 +22,7 @@ export const SEARCH_USERS = "search_users";
 export const FETCH_JOBS = "fetch_jobs";
 export const FETCH_USERS = "fetch_users";
 export const SAVE_JOBS = "save_jobs";
+export const SENDCONNECTIONREQUEST = "sendConnectionRequest";
 
 export const POST_APPLICATION = 'POST_APPLICATION';
 export const GET_APPLICATIONS = 'GET_APPLICATIONS';
@@ -226,7 +227,6 @@ export function saveDetails(values, callback) {
       return response;
     });
   console.log("Request", request);
-  window.alert("Successfully updated the details");
   window.location.reload(1);
   return {
     type: GET_PROFILE,
@@ -534,6 +534,21 @@ export function searchPostedJob(values, callback) {
   console.log(request);
   return {
     type: SEARCHPOSTEDJOB,
+    payload: request
+  };
+ }
+
+ export function sendConnectionRequest(values, callback){
+  axios.defaults.withCredentials = true;
+  console.log(values);
+  const request = axios.post(`${ROOT_URL}/connections/request`,values).then((datarequested) => {
+    if (callback) callback();
+    return datarequested;
+  });
+  //Action dispatched
+  console.log(request);
+  return {
+    type: SENDCONNECTIONREQUEST,
     payload: request
   };
  }

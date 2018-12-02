@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
 import Navbar from "./Navbar";
-import { getProfile, saveDetails } from "../../actions";
+import { getProfile, saveDetails, sendConnectionRequest } from "../../actions";
 import {Link} from 'react-router-dom';
 
 class SearchProfilePage extends Component {
@@ -29,6 +29,20 @@ class SearchProfilePage extends Component {
       city: "",
       flag: false
     };
+  }
+
+  connectButton = e => {
+    const data = {
+      receiver: this.props.profileInfo.email,
+      sender:localStorage.getItem("email")
+    };
+    console.log("Connect Button Works")
+    console.log(data);
+    this.props.sendConnectionRequest(data);
+  }
+
+  messageButton = e => {
+    console.log("Message Button Works")
   }
 
   handleFirstName = e => {
@@ -183,6 +197,24 @@ class SearchProfilePage extends Component {
   }
 
   render() {
+    let successmessage = null;
+  if(this.props.ConnectionRequest.firstName){
+    successmessage = (
+      <div
+        style={{
+          backgroundColor: "green",
+          fontSize: "12px",
+          color: "white",
+          textAlign: "center",
+          padding: "6px",
+          marginTop: "10px"
+        }}
+      >
+        <h5>Connection Request sent to {this.props.ConnectionRequest.firstName}.</h5>
+      </div>
+    );
+  }
+    console.log(this.props.ConnectionRequest.firstName);
     let nav = <Navbar navdata={this.props.navdata} />;
     console.log(this.state.firstName);
     console.log("Usr is: ", this.props.user);
@@ -1172,6 +1204,7 @@ class SearchProfilePage extends Component {
                   <div className="row col-md-12">
                     <div className="col-md-8">
                       <div class="dropdown">
+                      
                         <button
                           class="btn btn-secondary dropdown-toggle"
                           type="button"
@@ -1186,7 +1219,7 @@ class SearchProfilePage extends Component {
                             display: "inline-block",
                             textAlign: "center",
                             height: "43px",
-                            width: "230px",
+                            width: "200px",
                             marginTop: "10px",
                             backgroundColor: "#0073b1",
                             borderColor: "transparent",
@@ -1194,47 +1227,17 @@ class SearchProfilePage extends Component {
                             color: "white"
                           }}
                         >
-                          Add profile section
-                          {/* <span
-                            style={{
-                              marginLeft: "5px",
-                              top: "30px",
-                              verticalAlign: "top"
-                            }}
-                          >
-                            <svg
-                              viewBox="0 0 24 24"
-                              width="24px"
-                              height="24px"
-                              x="0"
-                              y="0"
-                              preserveAspectRatio="xMinYMin meet"
-                              class="artdeco-icon"
-                              focusable="false"
-                              style={{
-                                color: "white"
-                              }}
-                            >
-                              <path
-                                d="M8.8,10.66L14,5.12A0.07,0.07,0,0,0,13.93,5H2.07A0.07,0.07,0,0,0,2,5.12L7.2,10.66A1.1,1.1,0,0,0,8.8,10.66Z"
-                                class="small-icon"
-                                style={{
-                                  fillOpacity: "1",
-                                  fill: "currentColor"
-                                }}
-                              />
-                            </svg>
-                          </span> */}
+                          Connect
                         </button>
+                        {successmessage}
                         <div class="dropdown-menu">
                           <div className="col-md-12">
                             <div style={{ textAlign: "right" }}>
                               <button
                                 type="button"
-                                data-toggle="modal"
-                                data-target="#exampleModal4"
                                 class="btn btn-primary"
                                 role="menuitem"
+                                onClick={this.connectButton}
                                 style={{
                                   width: "275px",
                                   color: "black",
@@ -1243,7 +1246,7 @@ class SearchProfilePage extends Component {
                                   fontSize: "18px"
                                 }}
                               >
-                                Edit Information
+                                Send Connection Request
                               </button>
                               <div
                                 class="modal fade"
@@ -2462,29 +2465,27 @@ class SearchProfilePage extends Component {
                     </div>
                     <div className="col-md-4">
                       <div class="dropdown">
-                        <button
-                          class="btn btn-secondary bg-light dropdown-toggle"
+                      <button
+                          class="btn btn-secondary dropdown-toggle"
                           type="button"
-                          id="dropdownMenu1"
-                          data-toggle="dropdown"
-                          aria-haspopup="true"
+                          onClick={this.messageButton}
                           aria-expanded="false"
                           style={{
-                            margin: "center",
+                            margin: "center ",
                             position: "relative",
                             verticalAlign: "middle",
                             display: "inline-block",
                             textAlign: "center",
                             height: "43px",
-                            width: "100px",
+                            width: "200px",
                             marginTop: "10px",
-                            backgroundColor: "transparent",
-                            borderColor: "Grey",
-                            borderRadius: "2px",
-                            color: "Grey"
+                            backgroundColor: "#0073b1",
+                            borderColor: "transparent",
+                            borderRadius: "0px",
+                            color: "white"
                           }}
                         >
-                          More...
+                          Message
                         </button>
                         <div
                           class="dropdown-menu dropdown-menu-center"
@@ -5515,10 +5516,10 @@ class SearchProfilePage extends Component {
 }
 
 function mapStateToProps(state) {
-  return { profileInfo: state.getProfileInfo, user: state.loginApplicant };
+  return { profileInfo: state.getProfileInfo, user: state.loginApplicant , ConnectionRequest: state.sendConnectionRequest };
 }
 
 export default connect(
   mapStateToProps,
-  { getProfile, saveDetails }
+  { getProfile, saveDetails,sendConnectionRequest }
 )(SearchProfilePage);
