@@ -58,7 +58,7 @@ app.post("/loginApplicant", function(req, res) {
                 success: true,
                 token: "Bearer " + token,
                 email: result.value.email,
-                name: result.value.name,
+                firstName: result.value.firstName,
                 type: result.value.type,
                 code: result.code
               });

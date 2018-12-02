@@ -113,6 +113,7 @@ app.post("/loginRecruiter", function(req, res) {
                 token: "Bearer " + token,
                 email: result.value.email,
                 firstName: result.value.firstName,
+                type:result.value.type,
                 code: result.code
               });
             }
