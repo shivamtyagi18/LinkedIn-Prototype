@@ -24,6 +24,7 @@ class PostJob extends Component {
       jobFunction: "",
       jobOpenings: 0,
       companyName: "",
+      easyApply:"",
       selectedFile: "",
       authFlag: false,
       errorMessage: ""
@@ -79,6 +80,12 @@ class PostJob extends Component {
       industry: e.target.value
     });
   };
+
+  easyApplyChangeHandler = e => {
+    this.setState({
+      easyApply: e.target.value
+    })
+  }
 
   employmentTypeChangeHandler = e => {
     this.setState({
@@ -149,6 +156,7 @@ class PostJob extends Component {
         location: this.state.location,
         jobFunction: this.state.jobFunction,
         jobOpenings: this.state.jobOpenings,
+        easyApply:this.state.easyApply,
         postedOn: date,
         companyName: this.state.companyName,
         companyLogo: logo,
@@ -461,7 +469,31 @@ class PostJob extends Component {
                     />
                   </div>{" "}
                 </div>
-
+                <div className="row">
+                  <div
+                    style={{
+                      textAlign: "center",
+                      color: "rgba(0,0,0,.9)",
+                      paddingTop: "6px",
+                      fontWeight: "bold",
+                      fontSize: "1.5rem"
+                    }}
+                    class="form-group form-group-lg col-md-2"
+                  >
+                    <label for="currentpassword">Easy Apply Option:</label>
+                  </div>
+                  <div className="left col-md-10 ">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="easyApply"
+                      placeholder="Do you want applicant to have Easy Apply option?"
+                      name="easyApply"
+                      onChange={this.easyApplyChangeHandler}
+                      style={{ marginBottom: "20px" }}
+                    />
+                  </div>{" "}
+                </div>
                 <div className="row">
                   <div
                     style={{

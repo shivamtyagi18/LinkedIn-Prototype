@@ -18,6 +18,7 @@ function handle_request(msg, callback){
             numberOfApplicants:msg.numberOfApplicants,
             numberOfViews:msg.numberOfViews,
             postedOn:msg.postedOn,
+            easyApply:msg.easyApply
         });
         console.log(msg);
         recruiter.save().then (

@@ -325,7 +325,8 @@ app.post("/addJob", function(req, res) {
         jobFunction: req.body.jobFunction,
         companyLogo: req.body.companyLogo,
         jobOpenings:req.body.jobOpenings,
-        postedOn: req.body.postedOn
+        postedOn: req.body.postedOn,
+        easyApply: req.body.easyApply
     },
     function(err, result) {
       console.log("in result");

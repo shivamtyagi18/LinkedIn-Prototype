@@ -173,6 +173,9 @@ module.exports.AddedJobs = mongoose.model("AddedJobs", {
   },
   postedOn: {
     type:Date
+  },
+  easyApply:{
+    type:String
   }
 
 });
