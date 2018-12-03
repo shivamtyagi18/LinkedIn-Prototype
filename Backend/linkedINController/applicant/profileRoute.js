@@ -67,7 +67,7 @@ app.get("/userDisplay/:email", function(req, res) {
 app.put("/userUpdate/:email", function(req, res) {
   console.log("Inside User Update Post Request");
   //console.log("Req Body : ", username + "password : ",password);
-  console.log("Req Body : ", req.body);
+
   console.log("Req Params : ", req.params);
   kafka.make_request(
     "userupdate_topic",
@@ -87,6 +87,10 @@ app.put("/userUpdate/:email", function(req, res) {
       resume: req.body.resume,
       gender: req.body.gender,
       img: req.body.img,
+      headline: req.body.headline,
+      industry: req.body.industry,
+      locationNearby: req.body.locationNearby,
+      phoneType: req.body.phoneType,
       email: req.params.email
     },
     function(err, result) {
@@ -107,32 +111,6 @@ app.put("/userUpdate/:email", function(req, res) {
         } else {
           console.log("fail");
           //done(null, false, { message: results.value });
-        }
-      }
-    }
-  );
-});
-
-app.post("/updateEmail", function(req, res) {
-  console.log("Inside User Update Post Request");
-  console.log("Req Body : ", req.body);
-  kafka.make_request(
-    "updateEmail_topic",
-    { email: req.body.email, currentEmail: req.body.currentEmail },
-    function(err, result) {
-      if (err) {
-        res.sendStatus(400).end();
-      } else {
-        if (result.code == 200) {
-          console.log("inside accountupdate branch", result.value);
-          res
-            .status(200)
-            .json(result.value)
-            .end("Account Updated");
-        } else {
-          res.value = "An Error occured";
-          console.log(res.value);
-          res.sendStatus(400).end();
         }
       }
     }

@@ -17,9 +17,12 @@ import RecruiterProfile from "./recruiterUI/recruiterProfile";
 import LoginApplicant from "./applicantUI/loginApplicant";
 import ApplicantHome from "./applicantUI/Home"
 import FetchJobs from "./applicantUI/fetchJobs"
+import newFetchJobs from "./applicantUI/newFetchJobs"
 import FetchUsers from "./applicantUI/fetchUsers"
 import ProfilePage from "./applicantUI/profilePage"
+import newProfilePage from "./applicantUI/newProfilePage"
 import SearchProfilePage from "./applicantUI/searchProfilePage"
+import newSearchProfilePage from "./applicantUI/newSearchProfilePage"
 import MyNetwork from "./applicantUI/myNetwork";
 import RecruiterNetwork from "./applicantUI/RecruiterNetwork";
 import MyJobs from "./applicantUI/myJobs";
@@ -122,7 +125,7 @@ class Main extends Component {
       <Route
         exact
         path="/applicant/fetchJobs"
-        component={FetchJobs}
+        component={newFetchJobs}
       />
 
       <Route
@@ -140,13 +143,13 @@ class Main extends Component {
       <Route
         exact
         path="/applicant/profile/getprofile"
-        component={ProfilePage}
+        component={newProfilePage}
       />
 
        <Route
         exact
         path="/applicant/profile/getSearchProfile"
-        component={SearchProfilePage}
+        component={newSearchProfilePage}
       />
 
       <Route
