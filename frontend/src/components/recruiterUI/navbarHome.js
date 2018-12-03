@@ -126,7 +126,7 @@ window.location.reload(1);
           <li class="messaging dropdown">
           <a class="messaging dropdown-toggle" data-toggle="dropdown"><i class="far fa-envelope fa-lg" style={{marginTop:"6px"}}></i> </a>
                         <ul class="dropdown-menu message">
-                           <li><Link to="#" class="test1" >MESSAGES <i class="fas fa-caret-right"></i></Link></li>
+                           <li><Link to="/messaging" class="test1" >MESSAGES <i class="fas fa-caret-right"></i></Link></li>
                          </ul>
           </li>
           <li class="usersearch">

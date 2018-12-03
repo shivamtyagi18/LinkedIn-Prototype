@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import FormUserDetails from './FormUserDetails';
 import FormPersonalDetails from './FormPersonalDetails';
 import FormQuestions from './FormQuestions';
-import Confirm from './Confirm';
+import newConfirm from './newConfirm';
+import Confirm from './Confirm'
 import Success from './Success';
 import EasyApplyModal from './EasyApplyModal';
 import Navbar from './Navbar';

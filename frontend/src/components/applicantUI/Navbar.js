@@ -112,7 +112,7 @@ class Navbar extends Component {
                     </div>
 
                     <div class="nav navbar-nav navbar-right navbar-brand">
-                    <Link to="/applicant/messagin">
+                    <Link to="/messaging">
                         <p style={{ color: "white" }}>Messaging</p>
                     </Link>
                     </div>

@@ -7,7 +7,7 @@ console.log(msg.jobId);
 var application = new mongoose.Applications({
 // applicationId: DataCue.applicationId,
 //applicantId: req.body.applicantId,
-applicantId : msg.email,
+applicantId : msg.applicantId,
 jobId: msg.jobId,
 firstName: msg.firstName,
 lastName: msg.lastName,
@@ -15,7 +15,8 @@ education: msg.education,
 city: msg.city,
 bio : msg.bio,
 about: msg.about,
-sponsership:msg.sponsership,
+occupation: msg.occupation,
+sponsorship:msg.sponsorship,
 disability: msg.disability,
 resume:msg.resume, 
 coverLetter:msg.coverLetter

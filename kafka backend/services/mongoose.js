@@ -180,7 +180,18 @@ module.exports.AddedJobs = mongoose.model("AddedJobs", {
 
 });
 
-
+module.exports.Inbox = mongoose.model("Inbox", {
+  senderemail: {
+    type: String
+  },
+ 
+  receiveremail: {
+    type: String
+  },
+  message: {
+    type: String
+  }
+ });
 // module.exports.Applications = mongoose.model("Application", {
 //     firstName: {
 //         type: String
@@ -235,7 +246,7 @@ module.exports.Applications = mongoose.model("Application", {
   lastName: {
       type: String
   }, 
-  email: {
+  applicantId: {
       type: String
   }, 
   education: {
@@ -272,6 +283,9 @@ module.exports.Applications = mongoose.model("Application", {
   coverLetter: {
       type: String,
       default: ''
+  },
+  jobId: {
+    type: Number
   }
 });
 

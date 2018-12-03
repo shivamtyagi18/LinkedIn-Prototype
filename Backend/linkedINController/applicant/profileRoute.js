@@ -151,6 +151,66 @@ app.post("/updatePassword", function(req, res) {
   );
 });
 
+app.post("/deleteAccount", function(req, res) {
+  console.log("Inside Account Delete Post Request");
+  console.log("Req Body : ", req.body);
+  kafka.make_request("deleteAccount_topic", { email: req.body.email }, function(
+    err,
+    result
+  ) {
+    if (err) {
+      res.sendStatus(400).end();
+    } else {
+      if (result.code == 200) {
+        console.log("inside delete account branch", result.value);
+        res
+          .status(200)
+          .json(result.value)
+          .end("Account Deleted");
+      } else {
+        res.value = "An Error occured";
+        console.log(res.value);
+        res.sendStatus(400).end();
+      }
+    }
+  });
+ });
+ 
+ app.post("/changePassword", function(req, res) {
+  console.log("Inside User Update Post Request");
+  console.log("Req Body : ", req.body);
+  kafka.make_request(
+    "changePassword",
+    {
+      email: req.body.email,
+      oldpassword: req.body.oldpassword,
+      confirmpassword: req.body.confirmpassword
+    },
+    function(err, result) {
+      console.log("in kafka passwordupdate result");
+      console.log(result.code);
+      if (err) {
+        console.log("Function not executed!");
+      } else {
+        if (result.code == 200) {
+          console.log("inside passwordupdate branch", result.value);
+          res.json({
+            success: true,
+            code: result.code
+          });
+        } else if (result.code == 401) {
+          res.value = "Password not matching";
+          res.json({
+            success: false,
+            code: result.code
+          });
+        }
+      }
+    }
+  );
+ });
+
+ 
 app.get("/viewConnections/:email", function(req, res) {
   console.log("Inside view connections get Request");
   console.log("Req Params : ", req.params);
@@ -313,5 +373,73 @@ app.get("/savedetails", function(req, res) {
     }
   });
 });
+
+app.post("/messageFromSender", function(req, res) {
+  console.log("Inside Sendder message");
+  //console.log("Req Body : ", username + "password : ",password);
+  console.log("Req Body : ", req.body);
+  kafka.make_request(
+    "messageFromSender_topic",
+    {
+      senderemail: req.body.senderemail,
+      receiveremail: req.body.receiveremail,
+      message: req.body.message
+    },
+    function(err, result) {
+      console.log("in result");
+      // console.log(res, err);
+      if (err) {
+        res.sendStatus(400).end();
+      } else {
+        if (result.code == 200) {
+          console.log(result);
+          res.json({
+            success: true,
+            code: result.code,
+            value: result.value
+          });
+          console.log("successful message registered");
+          // done(null, { results: results.value });
+        } else {
+          console.log("fail");
+          //done(null, false, { message: results.value });
+        }
+      }
+    }
+  );
+ });
+
+ app.post("/receiverInbox", function(req, res) {
+  console.log("Inside receiver inbox");
+  //console.log("Req Body : ", username + "password : ",password);
+  console.log("Req Body : ", req.body);
+  kafka.make_request(
+    "receiverinbox_topic",
+    {
+      receiveremail: req.body.receiveremail
+    },
+    function(err, result) {
+      console.log("in result");
+      // console.log(res, err);
+      if (err) {
+        res.sendStatus(400).end();
+      } else {
+        if (result.code == 200) {
+          console.log("Result is", result);
+          res.json({
+            success: true,
+            code: result.code,
+            value: result.value
+          });
+          console.log("successful message registered");
+          // done(null, { results: results.value });
+        } else {
+          console.log("fail");
+          //done(null, false, { message: results.value });
+        }
+      }
+    }
+  );
+ });
 
 module.exports = app;

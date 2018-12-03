@@ -22,7 +22,7 @@ componentDidMount() {
 //jobID from localStorage.getItem (Recruiter profile)
 //const data = window.localStorgae.getItem(jobId);
 //Navbar from recruiter
-const data = { jobId: 1 };
+const data = { jobId: 15 };
 console.log("Job ID: " + data.jobId);
 axios
 .get(
@@ -70,9 +70,9 @@ render() {
     <p style={{ fontWeight: "200", fontFamily: "Sans Serif" }}>
     {" "}
     <b> Name of Applicant : </b>
-    {Applications.fname} {Applications.lname}{" "}
+    {Applications.firstName} {Applications.lastName}{" "}
     </p>
-    <p>Address : {Applications.address}</p>
+    <p>City : {Applications.city}</p>
     </div>
     </div>
     </div>

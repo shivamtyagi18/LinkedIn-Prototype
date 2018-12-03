@@ -69,7 +69,8 @@ class Search extends Component {
         const data = {
             email : localStorage.getItem("email"),
             jobId : this.state.savjobprop,
-            companyName: e.target.dataset.attr
+            companyName: e.target.dataset.attr,
+            jobTitle : e.target.dataset.value
         }
 
         console.log("Successful data - ", data)

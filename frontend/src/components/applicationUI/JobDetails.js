@@ -9,7 +9,7 @@ import axios from "axios";
 import { getProfile,apply } from '../../actions'
 //import validator from "validator";
 //import ApplicationNavbar from "./ApplicationNavbar";
-import Navbar from "./Navbar";
+import Navbar from "../applicantUI/Navbar";
 import {
     Button, 
     Modal, 
@@ -162,14 +162,14 @@ class JobDetails extends Component {
   render() {
     const { jobDetails } = this.state;
     let jobFetch = null;
-
+console.log(jobDetails.easyApply);
     /*if (
       this.state.jobIdFetch === 1 ||
       this.state.jobIdFetch === 3 ||
       this.state.jobIdFetch === 5
     )*/
     if (
-      (this.props.location.state.displayprops)%2
+      jobDetails.easyApply === "no" ||  jobDetails.easyApply === "No"
     )     {
       console.log("jobID if: "+this.props.location.state.displayprops);
       jobFetch =
@@ -301,9 +301,15 @@ class JobDetails extends Component {
                   </div>
                 </div>
                 <hr />
-                <button type="submit" class="btn " onClick={this.handleApply}>
-                  <a href="/Application"> Apply</a>
-                </button>
+                <Link 
+                  to="/Application" 
+                  target="_blank" 
+                >
+                  <button type="submit" class="btn " onClick={this.handleApply}>
+                    Apply
+                  </button>
+                </Link>
+                    {/* <a href="/Application"> Apply</a> */}
               </div>
             </div>
           </div>
@@ -445,13 +451,19 @@ class JobDetails extends Component {
                 </div>
                 <hr />
                 <MuiThemeProvider>
-                <Button
-                    color="dark"
-                    style={{ marginBottom: '2rem' }}
-                    onClick={this.toggle}
-                >
-                  <a href="/EasyApply">Easy Apply</a>
-                </Button>
+                  <Link 
+                    to="/EasyApply" 
+                    target="_blank"
+                  >
+                    <Button
+                      color="dark"
+                      style={{ marginBottom: '2rem' }}
+                      onClick={this.toggle}
+                    >
+                      Easy Apply
+                    </Button>
+                  </Link>
+                  {/* <a href="/EasyApply">Easy Apply</a> */}
                {/*} <Modal
                     isOpen={this.state.modal}
                     toggle={this.toggle}

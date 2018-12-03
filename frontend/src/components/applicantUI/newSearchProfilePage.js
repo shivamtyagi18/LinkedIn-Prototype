@@ -28,7 +28,9 @@ class newSearchProfilePage extends Component {
       education: "",
       experience: "",
       city: "",
-      flag: false
+      flag: false,
+      messageFlag:false,
+      check:false
     };
   }
 
@@ -144,6 +146,51 @@ class newSearchProfilePage extends Component {
     });
   };
 
+  messageChangeHandler = e => {
+    this.setState({
+      message: e.target.value
+    });
+  };
+ 
+  sendMessage = e => {
+    e.preventDefault();
+ 
+    const data = {
+      senderemail: localStorage.getItem("email"),
+      receiveremail: this.props.profileInfo.email,
+ 
+      message: this.state.message
+    };
+    console.log(data);
+    if (localStorage.getItem("email")) {
+      axios.defaults.withCredentials = true;
+      axios
+        .post("http://localhost:3001/applicant/profile/messageFromSender", data)
+        .then(response => {
+          console.log("Status Code : ", response.status);
+          console.log(response.data);
+          if (response.data.code == 200) {
+            this.setState({
+              messageFlag: true
+              //propArray: response.data
+            });
+          } else {
+            this.setState({
+              messageFlag: false
+            });
+          }
+        })
+        .catch(err => {
+          this.setState({ messageFlag: false });
+          console.log(err);
+        });
+    } else {
+      this.setState({
+        check: true
+      });
+    }
+  };
+
   handleSave = e => {
     console.log("entered here in handler of save button");
     const data = {
@@ -204,6 +251,10 @@ class newSearchProfilePage extends Component {
   }
 
   render() {
+    if (this.state.messageFlag) {
+      window.alert("Message sent successfully");
+      this.state.messageFlag = false;
+    }
     let successmessage = null;
     if(this.props.ConnectionRequest.firstName){
         successmessage = (
@@ -349,6 +400,8 @@ class newSearchProfilePage extends Component {
                       <button
                         class="btn btn-secondary bg-light dropdown-toggle"
                         type="button"
+                        data-toggle="modal"
+                        data-target="#inboxModal"
                         style={{
                           margin: "center ",
                           position: "relative",
@@ -366,6 +419,70 @@ class newSearchProfilePage extends Component {
                       >
                         Message
                       </button>
+
+                        <div
+                         class="modal fade"
+                         id="inboxModal"
+                         role="dialog"
+                         position="relative"
+                         tabIndex="-1"
+                       >
+                         <div
+                           class="modal-dialog modal-dialog-centered"
+                           role="document"
+                           position="relative"
+                         >
+                           <div class="modal-content">
+                             <div class="modal-header">
+                               <button
+                                 type="button"
+                                 class="close"
+                                 data-dismiss="modal"
+                               >
+                                 &times;
+                               </button>
+                               <h4 class="modal-title">
+                                 Message {this.state.firstName} {this.state.lastName}
+
+                               </h4>
+                             </div>
+                             <div class="modal-body">
+                               <div class="travelerinbox-area">
+                                 <textarea
+                                   type="text"
+                                   className="messageText"
+                                   name="message"
+                                   id="message"
+                                   placeholder="Type Your Message"
+                                   onChange={this.messageChangeHandler}
+                                   style={{ width: "500px", height: "200px" }}
+                                 />
+                               </div>
+                             </div>
+                             <div
+                               class="modal-footer"
+                               style={{ textAlign: "center" }}
+                             >
+                               <button
+                                 type="button"
+                                 class="askbtn1 btn-sm"
+                                 data-dismiss="modal"
+                               >
+                                 Close
+                               </button>
+                               <button
+                                 type="submit"
+                                 class="askbtn1 btn-sm"
+                                 data-dismiss="modal"
+                                 onClick={this.sendMessage}
+                               >
+                                 Send
+                               </button>
+                             </div>
+                           </div>
+                         </div>
+                       </div>
+
                     </div>
                   </div>
                 </div>

@@ -52,6 +52,7 @@ export class EasyApply extends Component {
       }
 
     handleResume = (e) => {
+        console.log("Inside Handle Resume")
         e.preventDefault();
         this.setState({
             danger: false
@@ -142,13 +143,13 @@ export class EasyApply extends Component {
             <br/>
             <div className="form-group">
                 <label for="email">Email:</label>
-                <input type="email" onChange={this.onChange} value={this.state.email} className="form-control" placeholder="Enter email" name="email" style={{fontSize:"2rem"}}/>
+                <input type="email" readOnly value={this.state.email} className="form-control" placeholder="Enter email" name="email" style={{fontSize:"2rem"}}/>
             </div>
             <br/>
             <div className="form-group">
-            <button class="btn btn-primary" style={{backgroundColor:"grey",borderColor:"black",fontSize:"18px"}}>
+            <button class="btn btn-primary" style={{backgroundColor:"grey",borderColor:"black",fontSize:"18px",paddingLeft:"10px",paddingRight:"15px"}}>
                 Resume
-                    <input type="file" onChange={this.handleResume} name="resume" style={{display: 'none'}} />
+                    <input type="file" onChange={this.handleResume} name="resume" style={{marginRight:"5px"}} />
                 </button>
                 <p id="displayResume"></p>
             </div>

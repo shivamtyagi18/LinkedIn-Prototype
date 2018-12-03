@@ -12,7 +12,8 @@ import PostJob from "./recruiterUI/recruiterPostJob";
 import NavbarHome from "./recruiterUI/navbarHome";
 import editJob from "./recruiterUI/editJob";
 import RecruiterProfile from "./recruiterUI/recruiterProfile";
-
+import ApplicantProfile from "./applicantUI/applicantAccount";
+import receiverInbox from "./applicantUI/receiverInbox";
 
 import LoginApplicant from "./applicantUI/loginApplicant";
 import ApplicantHome from "./applicantUI/Home"
@@ -103,7 +104,8 @@ class Main extends Component {
           path="/recruiter/profile"
           component={RecruiterProfile}
           />
-
+<Route exact path="/account" component={ApplicantProfile} />
+<Route exact path="/messaging" component={receiverInbox} />
         <Route
           exact
           path="/applicant/loginApplicant"

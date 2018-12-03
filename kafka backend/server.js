@@ -15,8 +15,9 @@ var userUpdate = require("./services/applicantKafka/userupdate");
 var profileViews = require("./services/applicantKafka/profileViews");
 var clickCounts = require("./services/applicantKafka/clickCounts");
 var getprofile = require("./services/applicantKafka/getprofile");
+var receiverinbox = require("./services/applicantKafka/receiverinbox");
 
-
+var messageFromSender = require("./services/applicantKafka/messageFromSender");
 var addRecruiter = require("./services/recruiterKafka/addRecruiter");
 var addJob = require("./services/recruiterKafka/addJob");
 var getJobs = require("./services/recruiterKafka/getJobs");
@@ -26,6 +27,9 @@ var recruiterDisplay = require("./services/recruiterKafka/displayRecruiter");
 var modifyRecruiterAccount = require("./services/recruiterKafka/modifyRecruiterAccount");
 var jobDisplay = require("./services/recruiterKafka/displayJob");
 var searchPostedJob = require("./services/recruiterKafka/searchPostedJob");
+var deleteAccount = require("./services/applicantKafka/deleteAccount");
+var changeApplicantPassword = require("./services/applicantKafka/changeApplicantPassword");
+
 
 
 var jobDetails = require("./services/applicationKafka/jobDetails");
@@ -97,4 +101,7 @@ handleTopicRequest("recruiterDisplay_topic", recruiterDisplay);
 handleTopicRequest("jobDisplay_topic", jobDisplay);
 handleTopicRequest("searchPostedJob_topic", searchPostedJob);
 handleTopicRequest("modifyRecruiterAccount_topic", modifyRecruiterAccount);
-
+handleTopicRequest("deleteAccount_topic", deleteAccount);
+handleTopicRequest("changePassword", changeApplicantPassword);
+handleTopicRequest("messageFromSender_topic", messageFromSender);
+handleTopicRequest("receiverinbox_topic", receiverinbox);

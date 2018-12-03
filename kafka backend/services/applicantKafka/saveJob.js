@@ -6,10 +6,11 @@ function handle_request(msg, callback) {
   console.log("In saveJob request:" + JSON.stringify(msg));
   var email = msg.email;
   var jobId = msg.jobId;
+  var jobTitle = msg.jobTitle;
   var companyName = msg.companyName;
   mongoose.Users.findOneAndUpdate(
     { email: email},
-    { $push: { savedJobs: jobId + " " + companyName } },
+    { $push: { savedJobs: jobId + " " + companyName + " " + jobTitle } },
     { new: true },
     function(err, user) {
       console.log("job saved: ", user);

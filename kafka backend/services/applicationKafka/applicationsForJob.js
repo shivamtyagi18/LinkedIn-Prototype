@@ -6,7 +6,7 @@ console.log("In get Applications for Job request:" + JSON.stringify(msg));
 var jobId = msg.jobId;
 console.log("Applications requested for : ", jobId);
 mongoose.Applications.find({ jobId: jobId }, function(err, applications) {
-console.log("Error : ", err);
+console.log("Error : ", err, applications);
 if (err) {
 res.code = "400";
 res.value =

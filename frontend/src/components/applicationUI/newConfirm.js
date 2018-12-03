@@ -8,7 +8,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { apply } from '../../actions'
 import { connect } from "react-redux";
 const ROOT_URL = "http://localhost:3001";
-export class Confirm extends Component {
+export class newConfirm extends Component {
   
   continue = (e) => {
     e.preventDefault();
@@ -130,4 +130,4 @@ const styles = {
 function mapStateToProps(state) {
   return { user: state.user };
 }
-export default connect(mapStateToProps, { apply })(Confirm);
+export default connect(mapStateToProps, { apply })(newConfirm);
