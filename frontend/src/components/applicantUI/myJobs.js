@@ -60,72 +60,55 @@ class MyJobs extends Component {
         <div>
           <br />
           <div class="row">
-            <div class="col-md-2 banner-sec">
-              <div
-                className="row col-md-12"
-                style={{
-                  width: "120px",
-                  overflow: "visible",
-                  height: "80px",
-                  margin: "0 auto",
-                  position: "relative",
-                  backgroundColor: "transparent",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  boxSizing: "border-box",
-
-                  marginLeft: "20px"
-                }}
-              >
-                <img
-                  src="/images/profile_img.jpg"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    borderRadius: "50%"
-                  }}
-                />
-              </div>
-            </div>
-            <div class="col-md-10" style={{ textAlign: "left" }}>
+            
+             
+            <div class="col-md-12" style={{ textAlign: "left" }}>
               <h2
                 style={{
                   fontWeight: "400",
                   fontSize: "19px",
-                  fontFamily: "Sans Serif"
+                  fontFamily: "Sans Serif",
+                  marginLeft:"12px"
                 }}
               >
                 {p.firstName} {p.lastName}
               </h2>
 
-              <div className="row" />
-              <br />
-
-              <br />
+              
+             
               <div class="col-md-12">
                 <h2
                   style={{
-                    fontWeight: "300",
-                    fontSize: "17px",
-                    fontFamily: "Courier New",
-                    marginLeft: "-15px",
-                    color: "black"
+                    fontWeight: "400",
+                  fontSize: "19px",
+                  fontFamily: "Sans Serif"
                   }}
                 >
-                  {p.headline}
+                Company Name :  {p.companyName}
                 </h2>
               </div>
-              <span
-                style={{
-                  fontSize: "15px",
-                  fontFamily: "sans-serif",
-                  color: "grey"
-                }}
-              >
-                {p.city}
-              </span>
+              <div class="col-md-12">
+                <h2
+                  style={{
+                    fontWeight: "400",
+                  fontSize: "19px",
+                  fontFamily: "Sans Serif"
+                  }}
+                >
+                 Job Title : {p.jobTitle}
+                </h2>
+              </div>
+              <div class="col-md-12">
+                <h2
+                  style={{
+                    fontWeight: "400",
+                  fontSize: "19px",
+                  fontFamily: "Sans Serif"
+                  }}
+                >
+                 Job Id : {p.jobId}
+                </h2>
+              </div>
             </div>
           </div>
           <br />
@@ -143,7 +126,7 @@ class MyJobs extends Component {
             <h2
               style={{
                 fontSize: "30px",
-                fontFamily: "Comic Sans MS",
+                fontFamily: "Sans Serif",
                 textAlign: "center",
                 fontWeight: "500",
                 marginTop: "80px",
@@ -151,7 +134,7 @@ class MyJobs extends Component {
                 position: "relative"
               }}
             >
-              Your Jobs
+              Applied Jobs
             </h2>
             <section
               className="profile-block-introduction"

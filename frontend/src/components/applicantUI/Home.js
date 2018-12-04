@@ -112,7 +112,7 @@ class Home extends Component {
             })
         }
                    
-        const imgurl2 = `https://s3.us-east-2.amazonaws.com/linkedin-images/noprofile`;
+        const imgurl2 = `https://s3.us-east-2.amazonaws.com/linkedin-images/${this.props.profileInfo.img}`;
         let redirectVar = null;
         this.state.login=localStorage.getItem("email")
         console.log("details",this.state.login)

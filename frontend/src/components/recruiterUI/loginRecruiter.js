@@ -292,6 +292,9 @@ class LoginRecruiter extends Component {
                     {" "}
                     <span style={{ color: "black" }}> New to Linkedin? </span>
                     <Link to="/recruiter/addRecruiter">Sign Up</Link>
+                    {" "}<br></br>
+                    <span style={{ color: "black" }}></span>
+                    <Link to="/">LinkedIn.com</Link>
                   </h4>
                 </form>
               </div>

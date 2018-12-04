@@ -102,6 +102,7 @@ class SearchUser extends Component {
 
     render(){
 
+       
         //let finalProperty = null;
         let searchbar = <SearchBar searchrender={this.props.searchrender}/>
         let nav = <Navbar navdata={this.props.navdata}/>
@@ -119,21 +120,23 @@ class SearchUser extends Component {
         console.log("total--",this.state.total);
            
     let details = Object.keys(this.props.Users).map(user => {
+        
          var user=this.props.Users[user]
             console.log("jobs",user)
+            const imgurl2 = `https://s3.us-east-2.amazonaws.com/linkedin-images/${user.img}`;
             return( 
     <React.Fragment>
 
-       
              
     <div class="row col-sm-12">
     <div class="displayjobinfo container-fluid"> 
     
-                {/* <div class="col-sm-4">
-                    <div><img src={imgurl2} width="100%"></img></div>
-                </div> */}
+                
     <div class="col-sm-12">
-        <div class="col-sm-12">  
+    <div class="col-sm-2">
+                    <div><img src={imgurl2} width="100%"></img></div>
+                </div>
+        <div class="col-sm-10">  
                   
                 <div class="headline">
                     <h3 class="hit-headline"><a><div name="displayjob" data-value={user.email} onClick={this.onDivClick}>{user.firstName}  {user.lastName}</div></a></h3>

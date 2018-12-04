@@ -76,6 +76,7 @@ window.location.reload(1);
 if(this.props.connectionRequestsInfo.length > 0){
   showconnectionrequests = Object.keys(connectionRequestsInfo).map(prop => {
     c = connectionRequestsInfo[prop];
+    var imgurl2 = `https://s3.us-east-2.amazonaws.com/linkedin-images/${c.img}`;
     return (
       <div>
         <br />
@@ -100,7 +101,7 @@ if(this.props.connectionRequestsInfo.length > 0){
               }}
             >
               <img
-                src="/images/profile_img.jpg"
+                src={imgurl2}
                 style={{
                   width: "100%",
                   height: "100%",
@@ -203,6 +204,7 @@ if(this.props.connectionRequestsInfo.length > 0){
   if(this.props.connectionsInfo.length > 0){
     showproperty = Object.keys(connectionsInfo).map(prop => {
       p = connectionsInfo[prop];
+      var imgurl = `https://s3.us-east-2.amazonaws.com/linkedin-images/${p.img}`;
       return (
         <div>
           <br />
@@ -227,7 +229,7 @@ if(this.props.connectionRequestsInfo.length > 0){
                 }}
               >
                 <img
-                  src="/images/profile_img.jpg"
+                  src={imgurl}
                   style={{
                     width: "100%",
                   height: "100%",

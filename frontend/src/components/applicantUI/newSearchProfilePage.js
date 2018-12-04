@@ -276,10 +276,9 @@ class newSearchProfilePage extends Component {
     console.log(this.state.firstName);
     console.log("Usr is: ", this.props.user);
     const { profileInfo } = this.state;
-    var imgurl2 = null;
     if (this.state.gender === "Female") imgurl2 = "/images/female.png";
-    if (this.state.gender === "Male" || this.state.gender === "gender")
-      imgurl2 = "/images/male.png";
+    if (this.state.gender === "Male" || this.state.gender === "gender");
+    var imgurl2 = `https://s3.us-east-2.amazonaws.com/linkedin-images/${this.props.profileInfo.img}`;
 
     return (
       <React.Fragment>

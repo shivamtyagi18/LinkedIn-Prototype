@@ -48,7 +48,7 @@ console.log(msg.jobId);
 var application = new mongoose.Applications({
 // applicationId: DataCue.applicationId,
 //applicantId: req.body.applicantId,
-applicantId : msg.email,
+applicantId : msg.applicantId,
 jobId: msg.jobId,
 firstName: msg.firstName,
 lastName: msg.lastName,
@@ -62,6 +62,7 @@ resume:msg.resume,
 coverLetter:msg.coverLetter,
 appliedOn: msg.appliedOn,
 jobTitle:msg.jobTitle,
+occupation: msg.occupation,
 companyName:msg.companyName
 });
 console.log("msg",msg);
