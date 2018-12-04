@@ -694,10 +694,17 @@ class JobDetails extends Component {
         }
     }
 
-    setItems = data => (e) => {
-      localStorage.setItem("jobTitle", data.jobTitle)
-      localStorage.setItem("companyName", data.companyName)
-    }
+    
+      setItems = data => (e) => {
+        localStorage.setItem("jobTitle", data.jobTitle)
+        localStorage.setItem("companyName", data.companyName)
+        const data1 = {
+          "jobId": localStorage.getItem("jobId")
+        }
+        axios.post('http://localhost:3001/halfApply', data1)
+      }
+  
+    
 
     onSubmit = (e) => {
         e.preventDefault();

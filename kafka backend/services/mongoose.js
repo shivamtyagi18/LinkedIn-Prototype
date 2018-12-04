@@ -479,6 +479,7 @@ module.exports.Inbox = mongoose.model("Inbox", {
     type: String
   }
  });
+ 
 module.exports.Logs = mongoose.model("Logs", {
   jobId: {
     type: Number
@@ -497,7 +498,8 @@ module.exports.Logs = mongoose.model("Logs", {
     type: [String]
   },
   appliedOn: {
-    type: [String]
+    type:Date,
+    default: Date()
   },
   numberOfApplicants: {  //no of complete forms
     type: Number,
@@ -511,6 +513,10 @@ module.exports.Logs = mongoose.model("Logs", {
     type: Number,
     default: 0
   },
+  halfApply: {
+    type:Number,
+    default:0
+  }
 });
 // module.exports.Applications = mongoose.model("Application", {
 //     firstName: {

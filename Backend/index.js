@@ -100,6 +100,7 @@ app.use("/applicant/search", routes.Search); //  by shivam 14/11
 // app.use("/applicant/connections", routes.ApplicantConnections);
 app.use("/connections", routes.ApplicantConnectionsNew);
 app.use("/saveJob", routes.SaveJob);
+app.use("/halfApply", routes.halfApply);
 // app.use("/dashboard", routes.Dashboard);
 //app.use("/applicant/messages", routes.ApplicantMessages); // by shivam 15/11
 app.use("/applicant/profile", routes.ApplicantProfile); // changed for applicant by shivam 14/11

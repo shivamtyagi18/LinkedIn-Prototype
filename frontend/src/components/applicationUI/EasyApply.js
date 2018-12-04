@@ -304,8 +304,26 @@ export class EasyApply extends Component {
         }
     }
   render() {
+let errorMessage=null;
+    if (this.props.application.code == 405) {
+        errorMessage = (
+          <div
+            style={{
+              fontSize: "24px",
+   
+              lineHeight: "20px",
+              color: "red",
+              textAlign: "center",
+              padding: "10px"
+            }}
+          >
+            <p style={{ color: "red" }}>You have already applied for this job.</p>
+          </div>
+        );
+      }
+
     let redirectVar = null;
-    if(this.state.redirectVar){
+    if(this.props.application.code==200){
         redirectVar=<Redirect to="/applicant/profile/myJobs"/>
     }
     let nav = <Navbar navdata={this.props.navdata}/>
@@ -317,6 +335,7 @@ export class EasyApply extends Component {
       <div style={{marginTop:"5%"}}>
       
         <h1 style={{textAlign: 'center'}}>Easy Apply</h1>
+        {errorMessage}
         <div className="container" style={{width: 500, marginTop: 60, textAlign: 'left',fontSize:"2rem"}}>
             <div
                 style={{display: this.state.danger, color: "red"}}
@@ -362,7 +381,7 @@ export class EasyApply extends Component {
 }
 
 function mapStateToProps(state) {
-    return {profileInfo: state.getProfileInfo};
+    return {profileInfo: state.getProfileInfo, application:state.application};
   }
   
   export default connect(mapStateToProps, { apply, getProfile })(EasyApply);

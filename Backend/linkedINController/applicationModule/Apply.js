@@ -167,7 +167,7 @@ code: result.code
 });
 console.log("Successfully applied.");
 // done(null, { results: results.value });
-} else if (result.code == 404) {
+} else if (result.code == 405) {
 //here check applicantID with Job ID in the database
 res.json({
 success: false,
@@ -179,6 +179,61 @@ console.log("Applicant has already applied");
 }
 );
 });
+
+
+
+
+// app.post("/apply", function(req, res) {
+//     console.log("Inside Apply Post Request");
+//     console.log(req.body);
+//     console.log("Hello" + req.body.jobId);
+//     kafka.make_request(
+//       "apply_topic",
+//       {
+//         //getJobID (Recruiter Model) + applicantID(Applicant Model)
+//         //applicationId: req.body.applicationId,
+//         applicantId: req.body.email,
+//         jobId: req.body.jobId,
+//         firstName: req.body.firstName,
+//         lastName: req.body.lastName,
+//         education: req.body.education,
+//         city: req.body.city,
+//         bio: req.body.bio,
+//         about: req.body.about,
+//         sponsorship: req.body.sponsorship,
+//         occupation: req.body.occupation,
+//         disability: req.body.disability,
+//         resume: req.body.resume,
+//         coverLetter: req.body.coverLetter,
+//         appliedOn: req.body.appliedOn,
+//         jobTitle: req.body.jobTitle,
+//         companyName: req.body.companyName
+//       },
+//       function(err, result) {
+//         console.log("in result for apply");
+//         if (err) {
+//           res.sendStatus(400).end();
+//         } else {
+//           if (result.code == 200) {
+//             console.log("result" + result);
+//             res.json({
+//               success: true,
+//               code: result.code
+//             });
+//             console.log("Successfully applied.");
+//             // done(null, { results: results.value });
+//           } else if (result.code == 405) {
+//             //here check applicantID with Job ID in the database
+//             res.json({
+//               success: false,
+//               code: result.code
+//             });
+//             console.log("Applicant has already applied");
+//           }
+//         }
+//       }
+//     );
+//    });
 /*
 app.post("/download/:file(*)", (req, res) => {
 console.log("Inside download file");

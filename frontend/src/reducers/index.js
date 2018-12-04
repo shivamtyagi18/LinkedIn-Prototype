@@ -11,8 +11,14 @@ import SEARCHPOSTEDJOB from "./searchPostedJob";
 import OwnerRegisterReducer from "./ownerregister";
 import ADDRECRUITERREDUCER from "./addRecruiter";
 import GETJOBSOFRECRUITER from "./getRecruiterJobs";
+import GRAPH1 from "./graph1";
+import GRAPH2 from "./graph2";
+import GRAPH3 from "./graph3";
+import GRAPH4 from "./graph4";
+import GRAPH5 from "./graph5";
 
 import CREATEAPPLICANT from "./createApplicant";
+import postApplication from "./userReducer";
 import LoginApplicantReducer from "./applicantLogin";
 import LoginRecruiterReducer from "./loginRecruiter";
 import SearchJobsReducer from "./searchJobs";
@@ -55,8 +61,14 @@ const mainReducer = combineReducers({
   myNetworkRequests: myNetworkRequests,
   myJobs:myJobs,
   saveJobs:saveJobs,
+  application:postApplication,
   sendConnectionRequest:sendConnectionRequestReducer,
-  acceptConnectionRequest:acceptConnectionRequestReducer
+  acceptConnectionRequest:acceptConnectionRequestReducer,
+  graph1reducer:GRAPH1,
+  graph2reducer:GRAPH2,
+  graph3reducer:GRAPH3,
+  graph4reducer:GRAPH4,
+  graph5reducer:GRAPH5
 });
 
 const rootReducer = (state, action) => {

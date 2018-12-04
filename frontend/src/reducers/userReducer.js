@@ -13,10 +13,7 @@ const initialState = {
 export default function(state = initialState, action) {
     switch(action.type){
         case POST_APPLICATION:
-            return{
-                ...state,
-                flag: 'true'
-            }
+            return action.payload;
         // case GET_APPLICATION:
         //     return{
         //         ...state,

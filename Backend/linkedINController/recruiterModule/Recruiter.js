@@ -461,6 +461,7 @@ const fs = require("fs");
 const config = require("../../configDB/settings");
 const jwt = require("jsonwebtoken");
 const passport = require("passport");
+const mongoose = require('../../../kafka backend/services/mongoose');
 app.use(morgan("dev"));
 var kafka = require("../../kafka/client");
 console.log("here");
@@ -875,6 +876,183 @@ app.put("/editJob/:jobId/:email", function(req, res) {
       }
     }
   );
+});
+
+app.get("/citywise/:jobId/:email", function(req, res) {
+  console.log("Inside Edit Job Update Put Request");
+  //console.log("Req Body : ", username + "password : ",password);
+  console.log("Req Body : ", req.body);
+  console.log("Req Params : ", req.params);
+  
+  mongoose.Logs.find({
+    postedBy:req.params.email,
+    jobId : req.params.jobId
+ }, function(err,jobs){
+     console.log(err);
+     console.log(jobs);
+     console.log(jobs[0].jobId);
+     
+     if(err){
+      res.code = "400";
+      res.value =
+        "The data not found. Please double-check and try again.";
+      console.log(res.value);
+     }
+     else {
+//-----------------to find city wise applications-----------------------------------------------
+mongoose.Logs.aggregate( [
+  {$match:{'jobId':jobs[0].jobId}}, { $unwind: "$applicantCity" },  { $sortByCount: "$applicantCity" } ],function(err, user) {
+  console.log("City Wise : ", user);
+  console.log("Error : ", err);
+  //console.log("Password : ",user.Credentials[0].password)
+  if (err) {
+    res.code = "400";
+    res.value =
+      "The data not found. Please double-check and try again.";
+    console.log(res.value);
+  } else {
+    console.log(user);
+          res.writeHead(200, {
+            "Content-Type": "application/json"
+          });
+          console.log(JSON.stringify(user));
+          res.end(JSON.stringify(user));
+    //res.cookie('cookie',user.Credentials[0].email,{maxAge: 900000, httpOnly: false, path : '/'});
+  }
+});
+     }
+});
+});
+
+app.get("/first10jobs/:jobId/:email", function(req, res) {
+  console.log("Inside Edit Job Update Put Request");
+  //console.log("Req Body : ", username + "password : ",password);
+  console.log("Req Body : ", req.body);
+  console.log("Req Params : ", req.params);
+  mongoose.Logs.find({
+    postedBy:req.params.email
+ }, function(err,jobs){
+     console.log(err);
+     console.log(jobs);
+     //-----------------to find first 10 applications-----------------------------------------------
+     mongoose.Logs.aggregate([
+      {$match:{'postedBy':req.params.email}},{$sort:{postedOn:1}}],function(err, user) {
+      console.log("Firts 10 : ", user);
+      console.log("Error : ", err);
+      //console.log("Password : ",user.Credentials[0].password)
+      if (err) {
+        res.code = "400";
+        res.value =
+          "The data was not found. Please double-check and try again.";
+        console.log(res.value);
+      } else {
+        res.writeHead(200, {
+          "Content-Type": "application/json"
+        });
+        console.log(JSON.stringify(user));
+        res.end(JSON.stringify(user));
+      }
+    });
+});
+});
+
+app.get("/top5jobs/:email", function(req, res) {
+  console.log("Inside Edit Job Update Put Request");
+  //console.log("Req Body : ", username + "password : ",password);
+  console.log("Req Body : ", req.body);
+  console.log("Req Params : ", req.params);
+  mongoose.Logs.find({
+    postedBy:req.params.email
+ }, function(err,jobs){
+     console.log(err);
+     console.log(jobs);
+//-----------------to find top 5 applications-----------------------------------------------
+mongoose.Logs.aggregate([
+  {$match:{'postedBy':req.params.email}},{$sort:{numberOfApplicants:1}}],function(err, user) {
+  console.log("top 5 : ", user);
+  console.log("Error : ", err);
+  //console.log("Password : ",user.Credentials[0].password)
+  if (err) {
+    res.code = "400";
+    res.value =
+      "The data was not found. Please double-check and try again.";
+    console.log(res.value);
+  } else {
+    res.writeHead(200, {
+      "Content-Type": "application/json"
+    });
+    console.log(JSON.stringify(user));
+    res.end(JSON.stringify(user));
+  }
+});
+});
+});
+
+app.get("/savedjob/:email", function(req, res) {
+  console.log("Inside Edit Job Update Put Request");
+  //console.log("Req Body : ", username + "password : ",password);
+  console.log("Req Body : ", req.body);
+  console.log("Req Params : ", req.params);
+  mongoose.Logs.find({
+    postedBy:req.params.email
+ }, function(err,jobs){
+     console.log(err);
+     console.log(jobs);
+//----------------- Saved jobs -----------------------------------------------
+mongoose.Logs.aggregate([
+  {$match:{'postedBy':req.params.email}},{$sort:{numberOfSaves:1}}],function(err, user) {
+  console.log(" job saved : ", user);
+  console.log("Error : ", err);
+  //console.log("Password : ",user.Credentials[0].password)
+  if (err) {
+    res.code = "400";
+    res.value =
+      "The data was not found. Please double-check and try again.";
+    console.log(res.value);
+  } else {
+    res.writeHead(200, {
+      "Content-Type": "application/json"
+    });
+    console.log(JSON.stringify(user));
+    res.end(JSON.stringify(user));
+  }
+});
+});
+});
+
+app.get("/monthwise/:jobId/:email", function(req, res) {
+  console.log("Inside Edit Job Update Put Request");
+  //console.log("Req Body : ", username + "password : ",password);
+  console.log("Req Body : ", req.body);
+  console.log("Req Params : ", req.params);
+  mongoose.Logs.find({
+    postedBy:req.params.email,
+    jobId : req.params.jobId
+ }, function(err,jobs){
+     console.log(err);
+     console.log(jobs);
+//-----------------to find month wise applications-----------------------------------------------
+mongoose.Logs.aggregate([
+  // {$match:{'postedBy':req.params.email}},{$sort:{postedOn:1}}],function(err, user) {
+    {$match:{'postedBy':req.params.email}},{ $unwind: "$appliedOn" },  { $sortByCount: {$month:"$appliedOn"}}],function(err, user) {
+  console.log("Firts 10 : ", user);
+  console.log("Error : ", err);
+  //console.log("Password : ",user.Credentials[0].password)
+  if (err) {
+    res.code = "400";
+    res.value =
+      "The data was not found. Please double-check and try again.";
+    console.log(res.value);
+  } else {
+    res.writeHead(200, {
+      "Content-Type": "application/json"
+    });
+    console.log(JSON.stringify(user));
+    res.end(JSON.stringify(user));
+  }
+});
+
+});
 });
 
 module.exports = app;

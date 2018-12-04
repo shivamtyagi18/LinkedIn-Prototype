@@ -16,6 +16,7 @@ var profileViews = require("./services/applicantKafka/profileViews");
 var clickCounts = require("./services/applicantKafka/clickCounts");
 var getprofile = require("./services/applicantKafka/getprofile");
 var receiverinbox = require("./services/applicantKafka/receiverinbox");
+var halfApply = require("./services/applicantKafka/halfApply");
 
 var messageFromSender = require("./services/applicantKafka/messageFromSender");
 var addRecruiter = require("./services/recruiterKafka/addRecruiter");
@@ -105,3 +106,4 @@ handleTopicRequest("deleteAccount_topic", deleteAccount);
 handleTopicRequest("changePassword", changeApplicantPassword);
 handleTopicRequest("messageFromSender_topic", messageFromSender);
 handleTopicRequest("receiverinbox_topic", receiverinbox);
+handleTopicRequest("halfApply_topic" , halfApply)

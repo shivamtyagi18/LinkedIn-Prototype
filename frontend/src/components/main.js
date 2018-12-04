@@ -27,7 +27,7 @@ import newSearchProfilePage from "./applicantUI/newSearchProfilePage"
 import MyNetwork from "./applicantUI/myNetwork";
 import RecruiterNetwork from "./applicantUI/RecruiterNetwork";
 import MyJobs from "./applicantUI/myJobs";
-
+import RecruiterDashboard from "./recruiterUI/dashboard";
 
 
 
@@ -71,6 +71,11 @@ class Main extends Component {
             exact
             path="/recruiter/addRecruiter"
             component={RegisterRecruiter}
+          />
+          <Route
+            exact
+            path="/recruiter/dashboard"
+            component={RecruiterDashboard}
           />
           <Route
             exact

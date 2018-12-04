@@ -135,7 +135,7 @@ window.location.reload(1);
           <li class="dropdown">
                        <a class="dropdown-toggle" data-toggle="dropdown">{localStorage.getItem("email")} <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                           <li><Link to="#" class="test">Help</Link></li>
+                           <li><Link to="/recruiter/dashboard" class="test">Dashboard</Link></li>
                            <li><Link to="/recruiter/loginRecruiter" onClick={this.handleLogout} class="test" >Sign Out</Link></li>
                          </ul>
           </li>

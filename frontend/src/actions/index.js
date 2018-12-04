@@ -35,6 +35,13 @@ export const MY_NETWORK = "MY_NETWORK";
 export const MY_NETWORK_REQUESTS = "MY_NETWORK_REQUESTS";
 export const MY_JOBS = "MY_JOBS";
 
+
+export const GRAPH1 = "GRAPH1";
+export const GRAPH2 = "GRAPH2";
+export const GRAPH3 = "GRAPH3";
+export const GRAPH4 = "GRAPH4";
+export const GRAPH5 = "GRAPH5";
+
 axios.defaults.headers.common["authorization"] = localStorage.getItem("token");
 //export const CREATE_BOOK = "create_book";
 
@@ -592,3 +599,85 @@ export function searchPostedJob(values, callback) {
     payload: request
   };
  }
+
+
+ export function graph1(values, callback){
+  axios.defaults.withCredentials = true;
+  console.log(values);
+  const request = axios.get(`${ROOT_URL}/recruiter/citywise/${values.jobId}/${values.email}`).then((datarequested) => {
+    if (callback) callback();
+    return datarequested;
+  });
+  //Action dispatched
+  console.log(request);
+  return {
+    type: GRAPH1,
+    payload: request
+  };
+ }
+
+
+ export function graph2(values, callback){
+  axios.defaults.withCredentials = true;
+  console.log(values);
+  const request = axios.get(`${ROOT_URL}/recruiter/first10jobs/${values.jobId}/${values.email}`).then((datarequested) => {
+    if (callback) callback();
+    return datarequested;
+  });
+  //Action dispatched
+  console.log(request);
+  return {
+    type: GRAPH2,
+    payload: request
+  };
+ }
+
+
+ export function graph3(values, callback){
+  axios.defaults.withCredentials = true;
+  console.log(values);
+  const request = axios.get(`${ROOT_URL}/recruiter/top5jobs/${values.email}`).then((datarequested) => {
+    if (callback) callback();
+    return datarequested;
+  });
+  //Action dispatched
+  console.log(request);
+  return {
+    type: GRAPH3,
+    payload: request
+  };
+ }
+
+
+ export function graph4(values, callback){
+  axios.defaults.withCredentials = true;
+  console.log(values);
+  const request = axios.get(`${ROOT_URL}/recruiter/savedjob/${values.email}`).then((datarequested) => {
+    if (callback) callback();
+    return datarequested;
+  });
+  //Action dispatched
+  console.log(request);
+  return {
+    type: GRAPH4,
+    payload: request
+  };
+ }
+
+
+ export function graph5(values, callback){
+  axios.defaults.withCredentials = true;
+  console.log(values);
+  const request = axios.get(`${ROOT_URL}/recruiter/monthwise/${values.jobId}/${values.email}`).then((datarequested) => {
+    if (callback) callback();
+    return datarequested;
+  });
+  //Action dispatched
+  console.log(request);
+  return {
+    type: GRAPH5,
+    payload: request
+  };
+ }
+
+

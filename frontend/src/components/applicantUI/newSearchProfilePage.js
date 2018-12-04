@@ -251,11 +251,30 @@ class newSearchProfilePage extends Component {
   }
 
   render() {
+console.log(this.props.ConnectionRequest);
+let successmessage = null;
+   if (this.props.ConnectionRequest == "Error") {
+     successmessage = (
+       <div
+         style={{
+           backgroundColor: "white",
+           fontSize: "12px",
+           color: "red",
+           textAlign: "center",
+           padding: "6px",
+           marginTop: "10px"
+         }}
+       >
+         <h5>Connection Request already sent.</h5>
+       </div>
+     );
+   }
+
     if (this.state.messageFlag) {
       window.alert("Message sent successfully");
       this.state.messageFlag = false;
     }
-    let successmessage = null;
+    
     if(this.props.ConnectionRequest.firstName){
         successmessage = (
           <div

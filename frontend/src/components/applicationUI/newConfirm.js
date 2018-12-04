@@ -156,11 +156,14 @@ import { List, ListItem } from 'material-ui/List';
 import RaisedButton from 'material-ui/RaisedButton';
 import { apply } from '../../actions'
 import { connect } from "react-redux";
+var moment = require("moment");
 const ROOT_URL = "http://localhost:3001";
 export class newConfirm extends Component {
   
   continue = (e) => {
     e.preventDefault();
+    var date = moment().toDate();
+    date = moment(date).format("MM/DD/YYYY");
    // const { values: { firstName, lastName, email, education, occupation, city, bio, about, sponsorship, disability, resume, coverLetter } } = this.props;
     const data= { 
       jobId: localStorage.getItem("jobId"),
@@ -177,6 +180,7 @@ export class newConfirm extends Component {
       sponsorship:this.props.values.sponsorship,
       disability:this.props.values.disability, 
       resume:"resume"+this.props.values.email,
+      appliedOn: date,
       coverLetter:"coverLetter"+this.props.values.email 
     }  
     console.log("values",data)

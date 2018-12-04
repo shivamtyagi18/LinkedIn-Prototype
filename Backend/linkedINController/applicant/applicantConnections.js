@@ -7,27 +7,29 @@ app.post("/request", function(req, res) {
   //console.log("Req Body : ", username + "password : ",password);
   console.log("Req Body : ", req.body);
   kafka.make_request("connrequest_topic", req.body, function(err, result) {
-    console.log("in result");
+    console.log("in result", result);
     // console.log(res, err);
     if (err) {
       res.sendStatus(400).end();
     } else {
       if (result.code == 200) {
-        console.log(result);
-        res.writeHead(200, {
-          "Content-Type": "application/json"
+        res.json({
+          success: true,
+          code: result.code
         });
-        console.log(JSON.stringify(result.value));
-        res.end(JSON.stringify(result.value));
-
+ 
         // done(null, { results: results.value });
-      } else {
-        console.log("fail");
+      } else if (result.code == 202) {
+        res.json({
+          success: false,
+          code: result.code
+        });
+ 
         //done(null, false, { message: results.value });
       }
     }
   });
-});
+ });
 
 app.post("/accept", function(req, res) {
   console.log("Inside Connection accept Post Request");
