@@ -1,6 +1,7 @@
 // const express = require("express");
 // const app = express();
 // var morgan = require("morgan");
+// var validatePostJobFields = require("../../Validations/postJob");
 
 // var mysql = require("mysql");
 // const multer = require("multer");
@@ -10,6 +11,7 @@
 // const config = require("../../configDB/settings");
 // const jwt = require("jsonwebtoken");
 // const passport = require("passport");
+// const mongoose = require('../../../kafka backend/services/mongoose');
 // app.use(morgan("dev"));
 // var kafka = require("../../kafka/client");
 // console.log("here");
@@ -20,33 +22,24 @@
 // //var requireAuth = passport.authenticate("jwt", { session: false });
 
 // var aws = require("aws-sdk"),
-//  bodyParser = require("body-parser"),
-//  multerS3 = require("multer-s3");
-
+//   bodyParser = require("body-parser"),
+//   multerS3 = require("multer-s3");
 
 // aws.config.update({
-//   secretAccessKey: '',
-
-//   accessKeyId: '',
- 
-//   region: 'us-east-2',
-//   ACL:'public-read'
-
+//   secretAccessKey: "",
+//   accessKeyId: "",
+//   region: "us-east-2",
+//   ACL: "public-read"
 // });
 // s3 = new aws.S3();
 // var upload = multer({
 //   storage: multerS3({
-//       s3: s3,
-//       bucket: 'linkedin-images',
-//       key: function (req, file, cb) {
-//           console.log("file---",file);
-//           console.log(req.body);
-//           console.log("req----",req.body.companyLogo);
-//           var name = req.body.companyLogo
-//          // console.log("filename is",name)
-//           //cb(null, file.originalname); //use Date.now() for unique file keys
-//           cb(null,name); //use Date.now() for unique file keys
-//       }
+//     s3: s3,
+//     bucket: "linkedin-shivam",
+//     key: function(req, file, cb) {
+//       console.log("S3", file);
+//       cb(null, req.body.companyLogo); //use Date.now() for unique file keys
+//     }
 //   })
 // });
 
@@ -54,7 +47,7 @@
 //   //console.log("Req : ",req);
 //   console.log("Res : Darryl", req.body);
 //   res.send();
-//  });
+// });
 
 // app.post("/addRecruiter", function(req, res) {
 //   console.log("Inside Add recruiter Post Request");
@@ -66,7 +59,7 @@
 //       lastName: req.body.lastName,
 //       email: req.body.email,
 //       password: req.body.password,
-//       type : "recruiter"
+//       type: "recruiter"
 //     },
 //     function(err, result) {
 //       console.log("in result");
@@ -93,7 +86,6 @@
 //     }
 //   );
 // });
-
 
 // app.post("/loginRecruiter", function(req, res) {
 //   console.log("Inside Recruiter Login Post Request");
@@ -122,7 +114,7 @@
 //                 token: "Bearer " + token,
 //                 email: result.value.email,
 //                 firstName: result.value.firstName,
-//                 type:result.value.type,
+//                 type: result.value.type,
 //                 code: result.code
 //               });
 //             }
@@ -149,7 +141,6 @@
 //   );
 // });
 
-
 // app.post("/searchPostedJob", function(req, res) {
 //   console.log("Inside search post request");
 //   console.log("Search Criteria from recruiter", req.body);
@@ -158,8 +149,8 @@
 //   kafka.make_request(
 //     "searchPostedJob_topic",
 //     {
-//       jobTitle : req.body.jobTitle,
-//       companyName : req.body.companyName
+//       jobTitle: req.body.jobTitle,
+//       companyName: req.body.companyName
 //     },
 //     function(err, result) {
 //       console.log("in result");
@@ -176,7 +167,7 @@
 //           }
 
 //           // console.log("property store:", PropertyStore);
-//            res.redirect("/recruiter/searchresult");
+//           res.redirect("/recruiter/searchresult");
 //           console.log("redirect successful");
 //           // done(null, { results: results.value });
 //         } else {
@@ -195,7 +186,6 @@
 //   });
 //   res.end(JSON.stringify(JobPosted));
 // });
-
 
 // app.get("/recruiterDisplay/:email", function(req, res) {
 //   console.log("Inside Recruiter Display Post Request");
@@ -218,7 +208,7 @@
 //             success: true,
 //             value: result.value,
 //             code: result.code
-//           })
+//           });
 
 //           // done(null, { results: results.value });
 //         } else if (result.code == 401) {
@@ -233,7 +223,6 @@
 //     }
 //   );
 // });
-
 
 // app.get("/displayJob/:jobId/:email", function(req, res) {
 //   console.log("Inside Job Display Get Request");
@@ -257,7 +246,7 @@
 //             success: true,
 //             value: result.value,
 //             code: result.code
-//           })
+//           });
 
 //           // done(null, { results: results.value });
 //         } else if (result.code == 401) {
@@ -288,7 +277,7 @@
 //       state: req.body.state,
 //       zipcode: req.body.zipCode,
 //       phoneNumber: req.body.phoneNumber,
-//       Email:req.params.email,
+//       Email: req.params.email,
 //       email: req.body.email,
 //       companyName: req.body.company
 //     },
@@ -316,26 +305,32 @@
 //   );
 // });
 
-
 // app.post("/addJob", function(req, res) {
 //   console.log("Inside Add Job");
 //   console.log("Req Body : ", req.body);
 
+//   const { errors, isValid } = validatePostJobFields(req.body);
+
+//   if (!isValid) {
+//     return res.status(202).json(errors);
+//   }
+
 //   kafka.make_request(
 //     "addJob_topic",
-//     {   email:req.body.recruiterEmail,
-//         jobId: req.body.jobId,
-//         jobTitle: req.body.jobTitle,
-//         jobDescription: req.body.jobDescription,
-//         industry: req.body.industry,
-//         employmentType: req.body.employmentType,
-//         location: req.body.location,
-//         companyName:req.body.companyName,
-//         jobFunction: req.body.jobFunction,
-//         companyLogo: req.body.companyLogo,
-//         jobOpenings:req.body.jobOpenings,
-//         postedOn: req.body.postedOn,
-//         easyApply: req.body.easyApply
+//     {
+//       email: req.body.recruiterEmail,
+//       jobId: req.body.jobId,
+//       jobTitle: req.body.jobTitle,
+//       jobDescription: req.body.jobDescription,
+//       industry: req.body.industry,
+//       employmentType: req.body.employmentType,
+//       location: req.body.location,
+//       companyName: req.body.companyName,
+//       jobFunction: req.body.jobFunction,
+//       companyLogo: req.body.companyLogo,
+//       jobOpenings: req.body.jobOpenings,
+//       postedOn: req.body.postedOn,
+//       easyApply: req.body.easyApply
 //     },
 //     function(err, result) {
 //       console.log("in result");
@@ -350,9 +345,10 @@
 //           res.end();
 //           console.log("job successfuly added");
 //           // done(null, { results: results.value });
-//         } else {
-//           console.log("failure adding job");
-//           //done(null, false, { message: results.value });
+//         } else if (result.code == 202) {
+//           console.log("Job Id already exists");
+//           errors.jobId = "Job Id already exists";
+//           return res.status(202).json(errors);
 //         }
 //       }
 //     }
@@ -389,11 +385,9 @@
 //       }
 //     }
 //   );
-//  });
+// });
 
-
- 
-//  app.put("/editJob/:jobId/:email", function(req, res) {
+// app.put("/editJob/:jobId/:email", function(req, res) {
 //   console.log("Inside Edit Job Update Put Request");
 //   //console.log("Req Body : ", username + "password : ",password);
 //   console.log("Req Body : ", req.body);
@@ -402,13 +396,13 @@
 //     "editJob_topic",
 //     {
 //       jobId: req.params.jobId,
-//       email:req.params.email,
+//       email: req.params.email,
 //       jobTitle: req.body.jobTitle,
 //       jobDescription: req.body.jobDescription,
 //       industry: req.body.industry,
 //       employmentType: req.body.employmentType,
 //       jobFunction: req.body.jobFunction,
-//       jobOpenings:req.body.jobOpenings
+//       jobOpenings: req.body.jobOpenings
 //     },
 //     function(err, result) {
 //       console.log("in result");
@@ -423,7 +417,7 @@
 //           });
 //           console.log(JSON.stringify(result.value));
 //           res.end(JSON.stringify(result.value));
- 
+
 //           // done(null, { results: results.value });
 //         } else {
 //           console.log("fail");
@@ -432,26 +426,13 @@
 //       }
 //     }
 //   );
-//  });
-
-// module.exports = app;
-
-
-
-
-
-
-
-
-
-
-
-
+// });
 
 const express = require("express");
 const app = express();
 var morgan = require("morgan");
 var validatePostJobFields = require("../../Validations/postJob");
+var validateRecruiterProfile = require("../../Validations/recruiterProfile");
 
 var mysql = require("mysql");
 const multer = require("multer");
@@ -461,7 +442,6 @@ const fs = require("fs");
 const config = require("../../configDB/settings");
 const jwt = require("jsonwebtoken");
 const passport = require("passport");
-const mongoose = require('../../../kafka backend/services/mongoose');
 app.use(morgan("dev"));
 var kafka = require("../../kafka/client");
 console.log("here");
@@ -714,7 +694,12 @@ app.get("/displayJob/:jobId/:email", function(req, res) {
 
 app.put("/modifyRecruiterAccount/:email", function(req, res) {
   console.log("Inside Recruiter Update Post Request");
-  //console.log("Req Body : ", username + "password : ",password);
+  const { errors, isValid } = validateRecruiterProfile(req.body);
+
+  if (!isValid) {
+    console.log("Errors are: ", errors);
+    return res.status(202).json(errors);
+  }
   console.log("Req Body : ", req.body);
   console.log("Req Params : ", req.params);
   kafka.make_request(
@@ -878,6 +863,8 @@ app.put("/editJob/:jobId/:email", function(req, res) {
   );
 });
 
+module.exports = app;
+//-----------------to find city wise applications-----------------------------------------------
 app.get("/citywise/:jobId/:email", function(req, res) {
   console.log("Inside Edit Job Update Put Request");
   //console.log("Req Body : ", username + "password : ",password);
