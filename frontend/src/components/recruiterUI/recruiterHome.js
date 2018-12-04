@@ -24,7 +24,8 @@ constructor (props) {
             searchedJobs :[],
             postFlag:false,
             searchFlag: false,
-            divClickFlag: false
+            divClickFlag: false,
+            displayPostedJob: ""
         }
         //Bind the handlers to this class
         this.searchChangeHandler = this.searchChangeHandler.bind(this);
@@ -58,6 +59,15 @@ onDivClick = (e) => {
     divClickFlag: true
   })
 }
+
+viewPostedApps = (e) => {
+  e.preventDefault();
+  console.log(e.target.dataset.value)
+  this.setState({
+    displayPostedJob: e.target.dataset.value
+  })
+}
+
 postJob = (e) => {
   e.preventDefault();
   this.setState({
@@ -106,6 +116,9 @@ renderJobResults() {
                            <p class="displayjobdescription"> Posted On : 
                              {posted_date}/{posted_month}/{posted_year}
                              </p></div>
+                             <button class="btn1 btn-primary" data-value={jobs.jobId} onClick={this.viewPostedApps}>
+                               View Posted Applications
+                             </button>
 
                         </div>
                       
@@ -117,6 +130,16 @@ renderJobResults() {
 
 render() {
   let redirectVar = null;
+
+  if(this.state.displayPostedJob!==""){
+    this.props.history.push({
+        pathname : '/ApplicationsForJob',
+        state : {
+            displayPostedJob : this.state.displayPostedJob
+        }
+    })
+}
+
   console.log(this.state.divClickFlag);
   if(this.state.divClickFlag){
     redirectVar=<Redirect to= {

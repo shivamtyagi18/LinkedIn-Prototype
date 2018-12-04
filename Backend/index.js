@@ -12,6 +12,21 @@ const multer = require('multer');
 
 
 //----------------------------------------S3----------------------------------------------
+app.use(function(req, res, next) {
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.setHeader("Access-Control-Allow-Origin", "https://s3.us-east-2.amazonaws.com/linkedin-images");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET,HEAD,OPTIONS,POST,PUT,DELETE"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers"
+  );
+  res.setHeader("Cache-Control", "no-cache");
+  next();
+});
 
 var aws = require('aws-sdk'),
     bodyParser = require('body-parser'),
@@ -35,7 +50,7 @@ app.use(bodyParser.json());
 var upload = multer({
     storage: multerS3({
         s3: s3,
-        bucket: 'linkedin-shivam',
+        bucket: 'linkedin-images',
         key: function (req, file, cb) {
             console.log("file---",file);
             console.log("req----",req.body.applicantEmail);
@@ -77,20 +92,7 @@ app.use(
 );
 
 //Allow Access Control
-app.use(function(req, res, next) {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
-  res.setHeader("Access-Control-Allow-Credentials", "true");
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET,HEAD,OPTIONS,POST,PUT,DELETE"
-  );
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers"
-  );
-  res.setHeader("Cache-Control", "no-cache");
-  next();
-});
+
 
 app.use("/recruiter", routes.Recruiter);
 app.use("/applicant", routes.User); // by shivam 14/11

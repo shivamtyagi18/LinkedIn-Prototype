@@ -148,14 +148,52 @@ class newProfilePage extends Component {
       industry: this.state.industry,
       phone: this.state.phone,
       phoneType: this.state.phoneType,
+      image: "image" + localStorage.getItem("email"),
+      resume: "resume" + localStorage.getItem("email"),
       address: this.state.address,
       skills: this.state.skills,
+      selectedFile: this.state.selectedFile,
       gender: this.state.gender,
       experience: this.state.experience,
+      resume1: this.state.resume,
       education: this.state.education,
       warning: "hidden"
     };
     this.props.saveDetails(data);
+    let formData = new FormData();
+    formData.append("image", localStorage.getItem("email"));
+    formData.append("selectedFile", data.selectedFile);
+
+    axios
+      .post(
+        "http://localhost:3001/applicant/profile/profileImageUpload",
+        formData
+      )
+      .then(results => {
+        console.log("Successful");
+        window.reload(1);
+        // access results...
+      });
+
+    const applicantEmail = localStorage.getItem("email");
+    const formDataResume = new FormData();
+    formDataResume.append("applicantEmail", applicantEmail);
+    formDataResume.append("resume", data.resume1);
+    console.log(formDataResume);
+    axios.post("http://localhost:3001/resume", formDataResume).then(result => {
+      // access results...
+      console.log("Successfull image upload");
+    });
+  };
+
+  onChange = e => {
+    if (e.target.name === "selectedFile") {
+      this.setState({
+        selectedFile: e.target.files[0]
+      });
+    } else {
+      this.setState({ [e.target.name]: e.target.value });
+    }
   };
 
   //WARNING! To be deprecated in React v17. Use new lifecycle static getDerivedStateFromProps instead.
@@ -174,6 +212,8 @@ class newProfilePage extends Component {
         city: nextProps.profileInfo.city,
         phone: nextProps.profileInfo.phone,
         phoneType: nextProps.profileInfo.phoneType,
+        image: nextProps.profileInfo.img,
+        resume: nextProps.profileInfo.resume,
         address: nextProps.profileInfo.address,
         skills: nextProps.profileInfo.skills,
         gender: nextProps.profileInfo.gender,
@@ -220,9 +260,11 @@ class newProfilePage extends Component {
     console.log("Usr is: ", this.props.user);
     const { profileInfo } = this.state;
     var imgurl2 = null;
-    if (this.state.gender === "Female") imgurl2 = "/images/female.png";
-    if (this.state.gender === "Male" || this.state.gender === "gender")
-      imgurl2 = "/images/male.png";
+    // if (this.state.gender === "Female") imgurl2 = "/images/female.png";
+    // if (this.state.gender === "Male" || this.state.gender === "gender")
+    imgurl2 = `https://s3.us-east-2.amazonaws.com/linkedin-images/${
+      this.state.image
+    }`;
     let modalDisplay = (
       <div
         class="modal fade"
@@ -274,11 +316,71 @@ class newProfilePage extends Component {
               </div>
             </div>
             <div class="modal-body" style={{ marginLeft: "10px" }}>
+              <div
+                className="row col-md-12"
+                style={{
+                  textAlign: "center",
+                  marginTop: "80px",
+                  marginLeft: "200px",
+                  marginBottom: "20px"
+                }}
+              >
+                <div
+                  className="col-md-6"
+                  style={{
+                    width: "150px",
+                    overflow: "visible",
+                    height: "150px",
+                    margin: "0 auto",
+                    position: "relative",
+                    backgroundColor: "transparent",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    boxSizing: "border-box",
+                    marginTop: "-80px",
+                    marginLeft: "20px"
+                  }}
+                >
+                  <img
+                    src={imgurl2}
+                    style={{
+                      width: "152px",
+                      height: "152px",
+                      borderRadius: "50%",
+                      border: "1px solid grey"
+                    }}
+                  />
+                </div>
+                <div className="col-md-6">
+                  <label
+                    style={{
+                      width: "250px",
+                      color: "#0073b1",
+                      backgroundColor: "transparent",
+                      border: "none",
+                      fontWeight: "500",
+                      fontSize: "18px",
+                      marginLeft: "-110px"
+                    }}
+                  >
+                    Edit Profile Picture
+                  </label>
+                  <input
+                    type="file"
+                    class="form-control"
+                    name="selectedFile"
+                    onChange={this.onChange}
+                    multiple
+                  />
+                </div>
+              </div>
               <div className="row">
                 <div className="col-md-4" style={{ textAlign: "left" }}>
                   <label
                     style={{
-                      fontSize: "12px",
+                      fontSize: "16px",
                       color: "black",
                       textAlign: "left",
                       fontWeight: "400"
@@ -1210,23 +1312,18 @@ class newProfilePage extends Component {
                   className="col-md-6 Edit-Image"
                   style={{ marginLeft: "-43px", overflow: "visible" }}
                 >
-                  <div className="btn-group">
+                  <div>
                     <button
-                      class="btn btn-secondary dropdown-toggle"
                       type="button"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
+                      data-toggle="modal"
+                      data-target="#exampleModal4"
+                      class="btn btn-primary"
                       style={{
-                        position: "relative",
-                        textAlign: "center",
-                        height: "39px",
-                        width: "100%",
-                        marginTop: "10px",
-                        backgroundColor: "transparent",
+                        height: "44px",
+                        width: "34px",
                         border: "none",
-                        borderRadius: "0px",
-                        color: "#0073b1"
+                        backgroundColor: "transparent",
+                        outline: 0
                       }}
                     >
                       <svg
@@ -1250,24 +1347,7 @@ class newProfilePage extends Component {
                         />
                       </svg>
                     </button>
-                    <div className="dropdown-menu dropdown-menu-right">
-                      <button
-                        className="dropdown-item"
-                        role="menuitem"
-                        value="Software"
-                        style={{
-                          width: "250px",
-                          height: "auto",
-                          backgroundColor: "transparent",
-                          border: "none",
-                          fontWeight: "400",
-                          fontSize: "18px"
-                        }}
-                      >
-                        Edit Profile Picture
-                        <input type="file" />
-                      </button>
-                    </div>
+                    {modalDisplay}
                   </div>
                 </div>
               </div>
@@ -1998,3 +2078,5 @@ export default connect(
   mapStateToProps,
   { getProfile, saveDetails }
 )(newProfilePage);
+
+/////////////////////

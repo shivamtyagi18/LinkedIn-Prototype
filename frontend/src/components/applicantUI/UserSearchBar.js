@@ -90,7 +90,7 @@ class UserSearchBar extends Component {
 
                     
 
-                    <div class="col-sm-4" style={{marginTop:"-27px",width:"150px"}}>
+                    <div class="col-sm-4" style={{marginTop:"-17px",width:"150px"}}>
                     <Field
                     name="User"
                     component={this.renderFieldUser}
@@ -98,7 +98,7 @@ class UserSearchBar extends Component {
                     />
                     </div>
 
-                    <div class="col-sm-6" style={{width:"170px",marginTop:"-5px"}}>
+                    <div class="col-sm-6" style={{width:"170px",marginTop:"4px"}}>
                     <button class="btn1 btn-primary" style={{backgroundColor:"white",borderColor:"black",fontSize:"16px",borderRadius:"15px",color:"black",padding:"5px"}}>Search People...</button>
                     </div>
 

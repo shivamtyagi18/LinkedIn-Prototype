@@ -189,6 +189,8 @@ export function tlogout() {
   localStorage.removeItem("token");
   localStorage.removeItem("firstName");
   localStorage.removeItem("type");
+  localStorage.removeItem("jobTitle");
+  localStorage.removeItem("companyName");
   window.location.reload(1);
 
   //Action dispatched
