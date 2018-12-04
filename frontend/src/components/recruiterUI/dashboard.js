@@ -390,6 +390,7 @@ let showgraph4 = Object.keys(graph4state).map(prop => {
                 </div>{" "}
                 </div>
         <div class="col-md-2">
+                  <div><h4>Citywise Applications</h4></div>
             <button
                         class="btn btn-primary"
                         type="button"
@@ -414,6 +415,7 @@ let showgraph4 = Object.keys(graph4state).map(prop => {
             </button>
             </div>
             <div class="col-md-2">
+            <div><h4>First 10 Jobs</h4></div>
             <button
                         class="btn btn-primary"
                         type="button"
@@ -438,6 +440,7 @@ let showgraph4 = Object.keys(graph4state).map(prop => {
             </button>
             </div>
             <div class="col-md-2">
+            <div><h4>Top 5 Jobs</h4></div>
             <button
                         class="btn btn-primary"
                         type="button"
@@ -462,6 +465,7 @@ let showgraph4 = Object.keys(graph4state).map(prop => {
             </button>
             </div>
             <div class="col-md-2">
+            <div><h4>Job Saves</h4></div>
             <button
                         class="btn btn-primary"
                         type="button"
@@ -486,6 +490,7 @@ let showgraph4 = Object.keys(graph4state).map(prop => {
             </button>
             </div>
             <div class="col-md-2">
+            <div><h4>Monthwise Applications</h4></div>
             <button
                         class="btn btn-primary"
                         type="button"
@@ -510,6 +515,7 @@ let showgraph4 = Object.keys(graph4state).map(prop => {
             </button>
             </div>
             <div class="col-md-2">
+            <div><h4> Job Views </h4></div>
             <button
                         class="btn btn-primary"
                         type="button"
