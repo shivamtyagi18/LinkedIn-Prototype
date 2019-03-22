@@ -1,3 +1,13 @@
+//Has to be deleted. Just to give an example for how to design a mongoose schema
+/* 
+Im first of all trying that we can present something on IEEE.
+Im doing register backend front end
+you can do login backend front end
+And Ill do farmers dashboard.
+If you can do IOT dashboard,
+we will have a lot to present. But dont stress. Yo
+
+*/
 var mongoose = require("mongoose");
 
 var Users = mongoose.model("User", {
@@ -11,15 +21,17 @@ var Users = mongoose.model("User", {
   },
   type: {
     type: String,
-    default: "traveller/owner"
+    default: "farmer/IOT Manager/Infrastructure Manager"
+  },
+  userName: {
+    type: String,
+    default: "username",
+    unique: true,
+    required: true
   },
   phone: {
     type: String,
     default: "xxx-xxx-xxxx"
-  },
-  address: {
-    type: String,
-    default: "address"
   },
   city: {
     type: String,
@@ -29,77 +41,26 @@ var Users = mongoose.model("User", {
     type: String,
     default: "state"
   },
-  zipcode: {
-    type: String,
-    default: "zipcode"
-  },
   country: {
     type: String,
     default: "country"
   },
-  experience: {
-    type: String,
-    default: "experience"
-  },
-  education: {
-    type: String,
-    default: "education"
-  },
-  skills: {
-    type: String,
-    default: "skills"
-  },
-  profileSummary: {
-    type: String,
-    default: "profileSummary"
-  },
-  clickCounts: {
-    type: Number,
-    default: 0
-  },
-  resume: {
-    type: String,
-    default: "resume"
-  },
-  gender: {
-    type: String,
-    default: "gender"
-  },
+
+  //for profile pic. But image is hard i have never worked with S3
+  //Yo.
   img: {
     type: String,
     default: "image"
-  },
-  connectionRequests: [String],
-  connections: [String],
-  savedJobs: [String],
-  appliedJobs: {
-    type: String,
-    default: "appliedJobs"
   },
   email: {
     type: String,
     unique: true,
     required: true
   },
-
   password: {
-    type: String
-  },
-  companyName: {
     type: String,
-    default:"Company Name"
+    required: true
   }
-
-
-  // Credentials :[{
-  //     email :{
-  //         type : String
-  //     },
-  //     password : {
-  //         type : String
-  //     },
-
-  // }]
 });
 
 module.exports = { Users };

@@ -1,23 +1,12 @@
-# LinkedIn
+# SmartAgCloud
 
-Team project CMPE273
-Shivam Tyagi
-Sarang Grover
-Jasnoor Brar
+Team project CMPE281
+Hemaprasanthi Mutyala
+Lakshmi Kameswari Maduri
 Maahi Chatterjee
-Divjyot Singh Khanuja
-Darryl Ferdinands
+Wenyan He
 
+~_~_~_~_~_~_~_~_ Log ~_~_~_~_~_~_~
+Kindly keep the readme updated. We are only commiting on git to make sure that our project is working after it has been intergrated. Please everyone maintain 2 versions in your server. As discussed in the meeting on 19th March 2019, Cloud comes in when different componenets are on different laptops. So one version would contain the integrated version of the entire project and the other one will only have your components. Please make changes in the boiler plate.
 
-Did node backend react frontend kafka backend installations and created the folder structures for the same.
-
-Created database linkedin  also in mlab and db files are present there.
-
-everyone clone this and start working inside linkedincontroller and create a file for their module and start creating api requests.( route handler folder will contain route for index.js for all) 
-similarly for kafka backend create corresponding routes by creating folder inside services for your module.
-
-
-
-
-
-
+03/18/2019 : Boiler plate created(MC)

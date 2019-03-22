@@ -1,6 +1,6 @@
 var express = require("express");
 var app = express();
-var morgan = require("morgan");
+//var morgan = require("morgan");
 var passport = require("passport");
 var bodyParser = require("body-parser");
 var session = require("express-session");
@@ -8,13 +8,15 @@ var cookieParser = require("cookie-parser");
 var cors = require("cors");
 const routes = require("./routeHandler/routes");
 var { mongoose } = require("./configDB/db");
-const multer = require('multer');
-
+const multer = require("multer");
 
 //----------------------------------------S3----------------------------------------------
 app.use(function(req, res, next) {
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
-  res.setHeader("Access-Control-Allow-Origin", "https://s3.us-east-2.amazonaws.com/linkedin-images");
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://s3.us-east-2.amazonaws.com/linkedin-images"
+  );
   res.setHeader("Access-Control-Allow-Credentials", "true");
   res.setHeader(
     "Access-Control-Allow-Methods",
@@ -28,6 +30,7 @@ app.use(function(req, res, next) {
   next();
 });
 
+/* Very important syntax. USes Amazon S3 storage for images and files(cloud tech)
 var aws = require('aws-sdk'),
     bodyParser = require('body-parser'),
     multerS3 = require('multer-s3');
@@ -62,6 +65,7 @@ var upload = multer({
     })
 });
 
+*/
 
 //---------------------------------------------------------------------------------------
 
@@ -93,36 +97,17 @@ app.use(
 
 //Allow Access Control
 
+//Leaving some sample routes for reference. Compare with project to understand
+//app.use("/recruiter", routes.Recruiter);
+//app.use("/applicant", routes.User);
+//app.use("/applicant/search", routes.Search);
 
-app.use("/recruiter", routes.Recruiter);
-app.use("/applicant", routes.User); // by shivam 14/11
-app.use("/applicant/search", routes.Search); //  by shivam 14/11
-// app.use("/applicant/connections", routes.ApplicantConnections);
-app.use("/connections", routes.ApplicantConnectionsNew);
-app.use("/saveJob", routes.SaveJob);
-app.use("/halfApply", routes.halfApply);
-// app.use("/dashboard", routes.Dashboard);
-//app.use("/applicant/messages", routes.ApplicantMessages); // by shivam 15/11
-app.use("/applicant/profile", routes.ApplicantProfile); // changed for applicant by shivam 14/11
-
-app.use("/applicationModule", routes.Apply);
-app.use("/applicationModule", routes.ApplicantAppliedJobs);
-app.use("/applicationModule", routes.JobDetails);
-app.use("/applicationModule", routes.ApplicationsForJob);
-
-app.post('/resume', upload.array('resume',4), (req, res) => {
-  //console.log("Req : ",req);
-  console.log("Resume Image : ",req.body);
-  res.send();
-});
-
-app.post('/coverletter', upload.array('coverLetter',4), (req, res) => {
-  //console.log("Req : ",req);
-  console.log("Cover Letter Image : ",req.body);
-  res.send();
-});
-
-app.use("/applicationModule", routes.ApplySQL);
+//Uses Multer. Example. Has to be updated for SmartAgCloud appplication
+//app.post("/resume", upload.array("resume", 4), (req, res) => {
+//console.log("Req : ",req);
+//console.log("Resume Image : ", req.body);
+//res.send();
+//});
 
 app.listen(3001);
 console.log("Server Listening on port 3001");

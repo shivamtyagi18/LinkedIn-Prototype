@@ -1,3 +1,5 @@
+//Sample. HAs to be deleted or modified
+
 const Validator = require("validator");
 const isEmpty = require("./is-empty");
 
