@@ -37,7 +37,7 @@
     "path": "^0.12.7",
     "react-charts": "^2.0.0-alpha.12",
     "react-redux": "^5.0.7",
-    "redis": "^2.8.0",
+    "redis": "^3.1.1",
     "response-time": "^2.3.2",
     "uuid": "^3.3.2",
     "validator": "^10.9.0"
